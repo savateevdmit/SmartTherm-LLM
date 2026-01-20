@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Первый администратор — SmartTherm — База знаний{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-12 col-md-7 col-lg-6">
+    <div class="card p-4">
+      <div class="mb-3">
+        <div class="text-muted small">SmartTherm</div>
+        <h1 class="h4 mb-1">Создать первого администратора</h1>
+        <div class="text-muted small">Доступно только если таблица пользователей пуста.</div>
+      </div>
+
+      <form method="post" action="{{ url('/setup') }}" class="d-grid gap-2">
+        <div>
+          <label class="form-label">Логин</label>
+          <input name="login" class="form-control" required maxlength="50"/>
+        </div>
+        <div>
+          <label class="form-label">Пароль</label>
+          <input name="password" type="password" class="form-control" required minlength="8"/>
+        </div>
+        <div>
+          <label class="form-label">Повтор пароля</label>
+          <input name="password2" type="password" class="form-control" required minlength="8"/>
+        </div>
+        <button class="btn btn-primary" type="submit">Создать</button>
+        <a class="btn btn-outline-secondary" href="{{ url('/login') }}">Назад к входу</a>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

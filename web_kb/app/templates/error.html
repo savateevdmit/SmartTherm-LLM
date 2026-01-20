@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}Ошибка — SmartTherm — База знаний{% endblock %}
+{% block content %}
+<div class="card p-4">
+  <h1 class="h5 mb-2">Ошибка</h1>
+  <div class="text-muted">{{ error }}</div>
+  <div class="mt-3">
+    <a class="btn btn-outline-secondary btn-sm" href="{{ url('/questions') }}">К списку вопросов</a>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block title %}Запись #{{ q.id }} — SmartTherm — База знаний{% endblock %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+  <div class="btn-group" role="group" aria-label="Навигация по вопросам">
+    <a class="btn btn-outline-secondary btn-sm {% if not prev_id %}disabled{% endif %}" href="{% if prev_id %}{{ url('/questions/' ~ prev_id) }}{% else %}#{% endif %}">
+      ← Предыдущий вопрос
+    </a>
+    <a class="btn btn-outline-secondary btn-sm {% if not next_id %}disabled{% endif %}" href="{% if next_id %}{{ url('/questions/' ~ next_id) }}{% else %}#{% endif %}">
+      Следующий вопрос →
+    </a>
+  </div>
+
+  <a class="btn btn-outline-secondary btn-sm" href="{{ url('/questions') }}?from={{ q.id }}">Ко всем вопросам</a>
+</div>
+
+<div class="card p-4 mb-3">
+  <div class="d-flex justify-content-between align-items-start gap-3 flex-wrap">
+    <div>
+      <div class="text-muted small">SmartTherm · ID #{{ q.id }}</div>
+      <h1 class="h4 mb-2">{{ q.text }}</h1>
+
+      {% if q.tags %}
+      <div class="d-flex flex-wrap gap-2">
+        {% for t in q.tags.split(",") %}
+          <span class="badge badge-tag rounded-pill">{{ t }}</span>
+        {% endfor %}
+      </div>
+      {% endif %}
+    </div>
+
+    <div class="d-flex gap-2">
+      <a class="btn btn-outline-secondary btn-sm" href="{{ url('/questions/' ~ q.id ~ '/edit') }}">Редактировать</a>
+      <form method="post" action="{{ url('/questions/' ~ q.id ~ '/delete') }}" data-confirm="Удалить запись?" class="m-0">
+        <input type="hidden" name="csrf" value="{{ sess.csrf }}"/>
+        <button class="btn btn-outline-danger btn-sm" type="submit">Удалить</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="card p-4">
+  <h2 class="h5 mb-3">Ответ</h2>
+
+  {% if a %}
+    <div style="white-space: pre-wrap">{{ a.text }}</div>
+
+    {% if a.visual_path %}
+      <div class="row g-2 mt-3">
+        {% for img in a.visual_path %}
+        <div class="col-6 col-md-4 col-lg-3">
+          <a href="{{ media_url(img) }}" target="_blank" class="text-decoration-none">
+            <img class="w-100 img-thumb" src="{{ media_url(img) }}" alt="{{ img }}"/>
+          </a>
+          <div class="text-muted small mt-1">{{ img }}</div>
+        </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  {% else %}
+    <div class="text-muted">Ответ ещё не добавлен.</div>
+  {% endif %}
+</div>
+{% endblock %}

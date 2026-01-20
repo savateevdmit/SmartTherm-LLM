@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block title %}Пользователи — SmartTherm — База знаний{% endblock %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <div>
+    <div class="text-muted small">SmartTherm</div>
+    <h1 class="h4 mb-0">Пользователи админ‑панели</h1>
+    <div class="text-muted small">Администраторов: {{ admins_admin_count }}</div>
+  </div>
+  <a class="btn btn-primary" href="{{ url('/admins/new') }}">+ Добавить пользователя</a>
+</div>
+
+{% if error %}
+  <div class="alert alert-danger border-0 shadow-sm">{{ error }}</div>
+{% endif %}
+
+<div class="card p-3">
+  <div class="table-responsive">
+    <table class="table table-hover align-middle mb-0">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Логин</th>
+          <th>Роль</th>
+          <th>Создан</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for a in admins %}
+        <tr>
+          <td>{{ a.id }}</td>
+          <td class="fw-semibold">{{ a.username }}</td>
+          <td>
+            {% if a.role == 'admin' %}
+              <span class="badge text-bg-light border">Администратор</span>
+            {% else %}
+              <span class="badge text-bg-light border">Оператор</span>
+            {% endif %}
+          </td>
+          <td class="text-muted">{{ a.created_at }}</td>
+          <td class="text-end">
+            <form method="post" action="{{ url('/admins/' ~ a.id ~ '/delete') }}" class="m-0" data-confirm="Удалить пользователя {{ a.username }}?">
+              <input type="hidden" name="csrf" value="{{ sess.csrf }}"/>
+              <button class="btn btn-outline-danger btn-sm" type="submit">Удалить</button>
+            </form>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <div class="text-muted small mt-3">
+    Нельзя удалить последнего администратора и нельзя удалить текущего пользователя.
+  </div>
+</div>
+{% endblock %}

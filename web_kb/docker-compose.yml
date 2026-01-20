@@ -1,0 +1,39 @@
+services:
+  webkb:
+    build: .
+    container_name: smarttherm-webkb
+    restart: unless-stopped
+    environment:
+      # --- DB ---
+      DB_HOST: "${DB_HOST}"
+      DB_PORT: "${DB_PORT}"
+      DB_USER: "${DB_USER}"
+      DB_PASSWORD: "${DB_PASSWORD}"
+      DB_NAME: "${DB_NAME}"
+
+      # --- App ---
+      APP_SECRET_KEY: "${APP_SECRET_KEY}"
+      SESSION_COOKIE_NAME: "${SESSION_COOKIE_NAME}"
+      COOKIE_SECURE: "1"
+
+      # --- HuggingFace / Embeddings ---
+      HF_TOKEN: "${HF_TOKEN}"
+      EMBED_MODEL_ID: "${EMBED_MODEL_ID}"
+      EMBED_DEVICE: "${EMBED_DEVICE}"
+      EMBED_TRUNCATE_DIM: "${EMBED_TRUNCATE_DIM}"
+
+      # --- Media ---
+      MEDIA_DIR: "/app/media"
+      MAX_UPLOAD_MB: "${MAX_UPLOAD_MB}"
+
+      # --- Important for subpath hosting ---
+      ROOT_PATH: "/smarttherm/webkb"
+
+    volumes:
+      - ./media:/app/media
+      - ./app.log:/app/app.log
+      - ./sessions.sqlite3:/app/sessions.sqlite3
+
+    ports:
+      # bind only to localhost (recommended, nginx will proxy)
+      - "127.0.0.1:8001:8000"

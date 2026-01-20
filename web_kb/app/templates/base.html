@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>{% block title %}SmartTherm — База знаний{% endblock %}</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    :root{
+      --st-bg: #f6f7fb;
+      --st-card: #ffffff;
+      --st-text: #0f172a;
+      --st-muted: #64748b;
+      --st-border: rgba(15, 23, 42, 0.10);
+      --st-primary: #2563eb;
+      --st-primary-600: #1d4ed8;
+    }
+    body { background: var(--st-bg); color: var(--st-text); }
+    .navbar { background: rgba(255,255,255,.8); backdrop-filter: blur(10px); border-bottom: 1px solid var(--st-border); }
+    .brand-dot { width: 10px; height: 10px; border-radius: 999px; background: var(--st-primary); display:inline-block; margin-right:8px; box-shadow: 0 0 0 4px rgba(37,99,235,.12); }
+    .card { background: var(--st-card); border: 1px solid var(--st-border); border-radius: 16px; box-shadow: 0 10px 30px rgba(2, 6, 23, 0.06); }
+    .text-muted { color: var(--st-muted)!important; }
+    .btn-primary { background: var(--st-primary); border-color: var(--st-primary); }
+    .btn-primary:hover { background: var(--st-primary-600); border-color: var(--st-primary-600); }
+    .form-control, .form-select { border-radius: 12px; border: 1px solid var(--st-border); background: #fff; }
+    .form-control:focus, .form-select:focus { border-color: rgba(37,99,235,.55); box-shadow: 0 0 0 .25rem rgba(37,99,235,.12); }
+    .badge-tag { background: rgba(37,99,235,.08); border: 1px solid rgba(37,99,235,.18); color: #1e3a8a; font-weight: 600; }
+    .img-thumb { max-height: 180px; object-fit: cover; border-radius: 14px; border: 1px solid var(--st-border); background: #fff; }
+    .page-link { border-radius: 12px; }
+    .table thead th { color: var(--st-muted); font-weight: 600; }
+  </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg">
+  <div class="container py-2">
+    <a class="navbar-brand fw-semibold" href="{{ url('/questions') }}">
+      <span class="brand-dot"></span>
+      SmartTherm — База знаний
+    </a>
+
+    {% if sess %}
+    <div class="d-flex gap-2 align-items-center flex-wrap justify-content-end">
+      <span class="text-muted small">Пользователь: <strong>{{ sess.username }}</strong> ({{ 'Администратор' if sess.role=='admin' else 'Оператор' }})</span>
+      <a class="btn btn-outline-primary btn-sm" href="{{ url('/me/password') }}">Изменить пароль</a>
+      <a class="btn btn-primary btn-sm" href="{{ url('/questions/new') }}">+ Добавить запись</a>
+      {% if sess.role == 'admin' %}
+        <a class="btn btn-outline-secondary btn-sm" href="{{ url('/admins') }}">Пользователи</a>
+      {% endif %}
+      <form method="post" action="{{ url('/logout') }}" class="m-0">
+        <button class="btn btn-outline-danger btn-sm" type="submit">Выйти</button>
+      </form>
+    </div>
+    {% endif %}
+  </div>
+</nav>
+
+<main class="container py-4">
+  {% if error %}
+  <div class="alert alert-danger border-0 shadow-sm">{{ error }}</div>
+  {% endif %}
+  {% if success %}
+  <div class="alert alert-success border-0 shadow-sm">{{ success }}</div>
+  {% endif %}
+  {% block content %}{% endblock %}
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  document.addEventListener("submit", (e) => {
+    const f = e.target;
+    if (f && f.dataset && f.dataset.confirm) {
+      if (!confirm(f.dataset.confirm)) e.preventDefault();
+    }
+  });
+</script>
+</body>
+</html>

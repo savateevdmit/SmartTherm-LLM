@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}Добавить запись — SmartTherm — База знаний{% endblock %}
+{% block content %}
+<div class="card p-4">
+  <div class="mb-3">
+    <div class="text-muted small">SmartTherm</div>
+    <h1 class="h4 mb-0">Добавить запись в базу знаний</h1>
+  </div>
+
+  <form method="post" action="{{ url('/questions/new') }}" enctype="multipart/form-data" class="d-grid gap-3">
+    <input type="hidden" name="csrf" value="{{ sess.csrf }}"/>
+
+    <div>
+      <label class="form-label">Вопрос (обязательно, до 500 символов)</label>
+      <textarea name="text" class="form-control" rows="3" maxlength="500" required>{{ text or "" }}</textarea>
+    </div>
+
+    <div>
+      <label class="form-label">Ответ (обязательно, до 2000 символов)</label>
+      <textarea name="answer_text" class="form-control" rows="5" maxlength="2000" required>{{ answer_text or "" }}</textarea>
+    </div>
+
+    <div class="row g-3">
+      <div class="col-12 col-md-6">
+        <label class="form-label">Теги (необязательно)</label>
+        <input name="tags" class="form-control" maxlength="255" value="{{ tags or "" }}"/>
+      </div>
+      <div class="col-12 col-md-6">
+        <label class="form-label">Изображения (необязательно)</label>
+        <input type="file" name="files" multiple class="form-control" accept="image/png,image/jpeg"/>
+        <div class="text-muted small mt-1">Разрешены PNG/JPG. Все файлы будут сохранены как JPG. Лимит по весу: {{ app_settings.max_upload_mb }} МБ.</div>
+      </div>
+    </div>
+
+    <div class="d-flex gap-2">
+      <button class="btn btn-primary" type="submit">Создать</button>
+      <a class="btn btn-outline-secondary" href="{{ url('/questions') }}">Отмена</a>
+    </div>
+  </form>
+</div>
+{% endblock %}

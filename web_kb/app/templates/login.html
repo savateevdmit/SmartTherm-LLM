@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}Вход — SmartTherm — База знаний{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-12 col-md-6 col-lg-5">
+    <div class="card p-4">
+      <div class="mb-3">
+        <div class="text-muted small">SmartTherm</div>
+        <h1 class="h4 mb-0">Вход в админ‑панель базы знаний</h1>
+      </div>
+
+      {% if admins_count == 0 %}
+        <div class="alert alert-warning border-0 shadow-sm">
+          Пользователи не созданы. <a href="{{ url('/setup') }}">Создать первого администратора</a>.
+        </div>
+      {% endif %}
+
+      <form method="post" action="{{ url('/login') }}" class="d-grid gap-2">
+        <input type="hidden" name="next" value="{{ next or url('/questions') }}"/>
+
+        <div>
+          <label class="form-label">Логин</label>
+          <input name="login" class="form-control" required maxlength="50" autocomplete="username"/>
+        </div>
+        <div>
+          <label class="form-label">Пароль</label>
+          <input name="password" type="password" class="form-control" required autocomplete="current-password"/>
+        </div>
+
+        <button class="btn btn-primary" type="submit">Войти</button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}
