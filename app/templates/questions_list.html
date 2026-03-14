@@ -1,0 +1,144 @@
+{% extends "base.html" %}
+{% block title %}SmartTherm — База знаний{% endblock %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3 gap-3 flex-wrap">
+  <div>
+    <div class="text-muted small">SmartTherm</div>
+    <h1 class="h4 mb-0">База знаний</h1>
+    <div class="text-muted small">Найдено: {{ total }}</div>
+  </div>
+  <a class="btn btn-primary" href="{{ url('/questions/new') }}">+ Добавить запись</a>
+</div>
+
+<div class="card p-3 mb-3">
+  <form method="get" action="{{ url('/questions') }}" class="row g-2 align-items-end">
+    {# ВАЖНО: from не передаём в форму, чтобы он не “лип” дальше #}
+    <div class="col-12 col-md-8">
+      <label class="form-label">Поиск (вопрос/ответ/теги)</label>
+      <input name="q" class="form-control" value="{{ query or '' }}" maxlength="200" placeholder="например: wifi, датчик, ошибка..."/>
+    </div>
+    <div class="col-6 col-md-2">
+      <label class="form-label">На странице</label>
+      <select name="page_size" class="form-select">
+        {% for s in [10,20,50,100] %}
+          <option value="{{ s }}" {% if page_size == s %}selected{% endif %}>{{ s }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="col-6 col-md-2 d-grid">
+      <button class="btn btn-outline-secondary" type="submit">Искать</button>
+    </div>
+  </form>
+</div>
+
+{% if items|length == 0 %}
+  <div class="alert alert-light border shadow-sm">Ничего не найдено.</div>
+{% endif %}
+
+<style>
+  .focus-card {
+    outline: 3px solid rgba(37,99,235,.25);
+    box-shadow: 0 12px 34px rgba(37,99,235,.12);
+  }
+</style>
+
+<div class="row g-3" id="questionsList">
+  {% for it in items %}
+  {% set q = it.q %}
+  {% set a = it.a %}
+  <div class="col-12">
+    <div class="card p-3" id="q-{{ q.id }}" data-qid="{{ q.id }}">
+      <div class="d-flex justify-content-between gap-3 flex-wrap">
+        <div class="flex-grow-1">
+          <div class="w-100">
+            <a class="h5 m-0 text-decoration-none link-dark d-block" href="{{ url('/questions/' ~ q.id) }}">
+              {{ q.text }}
+            </a>
+
+            {% if a and a.text %}
+              <div class="text-muted small mt-1">
+                {{ a.text[:220] }}{% if a.text|length > 220 %}…{% endif %}
+              </div>
+            {% else %}
+              <div class="text-muted small mt-1">Ответ ещё не добавлен.</div>
+            {% endif %}
+
+            {% if q.tags %}
+            <div class="d-flex flex-wrap gap-2 mt-2">
+              {% for t in q.tags.split(",") %}
+                <span class="badge badge-tag rounded-pill">{{ t }}</span>
+              {% endfor %}
+            </div>
+            {% endif %}
+          </div>
+        </div>
+
+        <div class="d-flex gap-2 align-items-start">
+          <a class="btn btn-outline-secondary btn-sm" href="{{ url('/questions/' ~ q.id ~ '/edit') }}">Редактировать</a>
+          <form method="post" action="{{ url('/questions/' ~ q.id ~ '/delete') }}" data-confirm="Удалить запись?" class="m-0">
+            <input type="hidden" name="csrf" value="{{ sess.csrf }}"/>
+            <button class="btn btn-outline-danger btn-sm" type="submit">Удалить</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="text-muted small mt-2">
+        ID: {{ q.id }}
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+{% set qs = "q=" ~ (query|urlencode) ~ "&page_size=" ~ page_size %}
+<nav class="mt-3">
+  <ul class="pagination flex-wrap gap-1">
+    <li class="page-item {% if page <= 1 %}disabled{% endif %}">
+      <a class="page-link" href="{{ url('/questions') }}?{{ qs }}&page={{ page-1 }}">←</a>
+    </li>
+
+    {% set start = page - 2 %}
+    {% set end = page + 2 %}
+    {% if start < 1 %}{% set start = 1 %}{% endif %}
+    {% if end > pages %}{% set end = pages %}{% endif %}
+
+    {% if start > 1 %}
+      <li class="page-item"><a class="page-link" href="{{ url('/questions') }}?{{ qs }}&page=1">1</a></li>
+      {% if start > 2 %}
+        <li class="page-item disabled"><span class="page-link">…</span></li>
+      {% endif %}
+    {% endif %}
+
+    {% for p in range(start, end+1) %}
+      <li class="page-item {% if p == page %}active{% endif %}">
+        <a class="page-link" href="{{ url('/questions') }}?{{ qs }}&page={{ p }}">{{ p }}</a>
+      </li>
+    {% endfor %}
+
+    {% if end < pages %}
+      {% if end < pages - 1 %}
+        <li class="page-item disabled"><span class="page-link">…</span></li>
+      {% endif %}
+      <li class="page-item"><a class="page-link" href="{{ url('/questions') }}?{{ qs }}&page={{ pages }}">{{ pages }}</a></li>
+    {% endif %}
+
+    <li class="page-item {% if page >= pages %}disabled{% endif %}">
+      <a class="page-link" href="{{ url('/questions') }}?{{ qs }}&page={{ page+1 }}">→</a>
+    </li>
+  </ul>
+</nav>
+
+<script>
+  (function() {
+    const fromId = Number("{{ from_id or 0 }}");
+    if (!fromId) return;
+
+    const el = document.getElementById("q-" + fromId);
+    if (!el) return;
+
+    el.classList.add("focus-card");
+    el.scrollIntoView({behavior: "smooth", block: "center"});
+    setTimeout(() => el.classList.remove("focus-card"), 2200);
+  })();
+</script>
+{% endblock %}

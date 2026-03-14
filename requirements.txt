@@ -4,16 +4,23 @@ uvicorn[standard]==0.34.0
 SQLAlchemy==2.0.36
 PyMySQL==1.1.1
 
-jinja2==3.1.5
+jinja2==3.1.6
 python-multipart==0.0.20
 
 passlib==1.7.4
 argon2-cffi==23.1.0
 
 python-dotenv==1.0.1
-
 pillow==11.1.0
 
-sentence-transformers==3.4.1
-torch>=2.1.0
+sentence-transformers>=5.1.0
 numpy==2.2.1
+
+redis==5.2.1
+
+aiogram==3.4.1
+aiohttp==3.9.5
+
+requests==2.32.5
+
+boto3==1.35.99

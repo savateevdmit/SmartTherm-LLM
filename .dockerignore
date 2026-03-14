@@ -1,0 +1,10 @@
+models/
+backups/
+data/
+media/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.git/
+.env
