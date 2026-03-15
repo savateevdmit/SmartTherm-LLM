@@ -4651,3 +4651,8 @@ sqlalchemy.exc.OperationalError: (pymysql.err.OperationalError) (2003, "Can't co
 2026-03-15 12:32:14,136 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/3_Dense/model.safetensors "HTTP/1.1 302 Found"
 2026-03-15 12:32:15,530 INFO httpx: HTTP Request: GET https://huggingface.co/api/models/google/embeddinggemma-300m "HTTP/1.1 200 OK"
 2026-03-15 12:32:16,225 INFO sentence_transformers.SentenceTransformer: 14 prompts are loaded, with the keys: ['query', 'document', 'BitextMining', 'Clustering', 'Classification', 'InstructionRetrieval', 'MultilabelClassification', 'PairClassification', 'Reranking', 'Retrieval', 'Retrieval-query', 'Retrieval-document', 'STS', 'Summarization']
+2026-03-15 20:16:40,042 INFO kb_admin: DB connect target: host=db port=3306 db=smarttherm
+2026-03-15 20:16:40,049 INFO kb_admin: DB schema OK in 'smarttherm' (admins, questions, answers)
+2026-03-15 20:16:40,911 INFO kb_admin: LLM worker started
+2026-03-15 20:16:40,912 INFO kb_admin: DB connect target: host=db port=3306 db=smarttherm
+2026-03-15 20:16:40,916 INFO kb_admin: DB schema OK in 'smarttherm' (admins, questions, answers)
