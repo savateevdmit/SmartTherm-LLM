@@ -49,10 +49,8 @@ log_file="${BACKUP_DIR}/restore_last.log"
 echo "[db_restore] restoring from ${latest} ..."
 echo "[db_restore] writing import log to ${log_file}"
 
-# Important: let the dump control USE/CREATE DATABASE if it contains it.
-# Also capture stderr/stdout to log.
 set +e
-gzip -dc "${latest}" | mariadb -h"${DB_HOST}" -P"${DB_PORT}" -u"${DB_USER}" 1>"${log_file}" 2>&1
+gzip -dc "${latest}" | mariadb -h"${DB_HOST}" -P"${DB_PORT}" -u"${DB_USER}" "${DB_NAME}" 1>"${log_file}" 2>&1
 rc=$?
 set -e
 
@@ -63,8 +61,8 @@ echo "[db_restore] tables in ${DB_NAME} after restore: ${after}"
 
 if [[ "${after}" == "0" ]]; then
   echo "[db_restore] ERROR: no tables created after import."
-  echo "[db_restore] Last 80 lines of import log:"
-  tail -n 80 "${log_file}" || true
+  echo "[db_restore] Last 120 lines of import log:"
+  tail -n 120 "${log_file}" || true
   exit 2
 fi
 

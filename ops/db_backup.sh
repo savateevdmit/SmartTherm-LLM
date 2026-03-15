@@ -13,7 +13,6 @@ set -euo pipefail
 
 mkdir -p "${BACKUP_DIR}"
 
-# Prefer mariadb-dump if available, fallback to mysqldump
 DUMP_BIN=""
 if command -v mariadb-dump >/dev/null 2>&1; then
   DUMP_BIN="mariadb-dump"
@@ -21,7 +20,6 @@ elif command -v mysqldump >/dev/null 2>&1; then
   DUMP_BIN="mysqldump"
 else
   echo "[db_backup] ERROR: neither mariadb-dump nor mysqldump found in container"
-  echo "[db_backup] TIP: use image mariadb:11 or mysql:8 that includes dump client"
   exit 1
 fi
 
@@ -35,7 +33,6 @@ while true; do
 
   echo "[db_backup] dumping to ${out}"
 
-  # --column-statistics=0 supported by mysqldump; mariadb-dump ignores unknown options? to be safe, pass only when mysqldump
   EXTRA_OPTS=()
   if [[ "${DUMP_BIN}" == "mysqldump" ]]; then
     EXTRA_OPTS+=(--column-statistics=0)
@@ -44,9 +41,11 @@ while true; do
   "${DUMP_BIN}" \
     -h"${DB_HOST}" -P"${DB_PORT}" \
     -u"${DB_USER}" \
-    --single-transaction --quick --routines --triggers \
+    --single-transaction --quick \
+    --routines --triggers --events \
+    --default-character-set=utf8mb4 \
     "${EXTRA_OPTS[@]}" \
-    "${DB_NAME}" | gzip -c > "${out}"
+    --databases "${DB_NAME}" | gzip -c > "${out}"
 
   echo "[db_backup] cleanup older than ${BACKUP_KEEP_DAYS} days"
   find "${BACKUP_DIR}" -type f -name "*.sql.gz" -mtime "+${BACKUP_KEEP_DAYS}" -delete || true
