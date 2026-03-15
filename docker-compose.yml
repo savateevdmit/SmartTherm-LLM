@@ -7,7 +7,6 @@ services:
     volumes:
       - redis_data:/data
 
-  # --- Local DB inside compose ---
   db:
     image: mariadb:11.8
     container_name: smarttherm-mariadb
@@ -18,10 +17,8 @@ services:
     volumes:
       - mariadb_data:/var/lib/mysql
     ports:
-      # optional: expose for local admin tools; safe to keep localhost only
-      - "127.0.0.1:3307:3306"
+      - "127.0.0.1:18307:3306"
 
-  # One-shot restore from newest ./backups/*.sql.gz if DB is empty
   db_restore:
     image: mariadb:11.8
     container_name: smarttherm-db-restore
@@ -35,7 +32,6 @@ services:
       DB_PASSWORD: "${DB_PASSWORD}"
       DB_NAME: "${DB_NAME}"
       BACKUP_DIR: "/backups"
-      # set to 1 only when you explicitly want to overwrite DB from backup
       RESTORE_FORCE: "${RESTORE_FORCE}"
     volumes:
       - ./backups:/backups
@@ -62,7 +58,7 @@ services:
       --ctx-size ${LLM_N_CTX}
       --seed ${LLM_SEED}
     ports:
-      - "127.0.0.1:8080:8080"
+      - "127.0.0.1:18080:8080"
 
   minio:
     image: minio/minio:latest
@@ -75,7 +71,7 @@ services:
     volumes:
       - minio_data:/data
     ports:
-      - "127.0.0.1:9001:9001"
+      - "127.0.0.1:19001:9001"
 
   minio_init:
     image: minio/mc:latest
@@ -143,7 +139,7 @@ services:
     volumes:
       - ./data:/app/data
     ports:
-      - "127.0.0.1:8052:8052"
+      - "127.0.0.1:18052:8052"
     depends_on:
       - redis
       - db
