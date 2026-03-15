@@ -47,10 +47,6 @@ def _format_eta(seconds: int) -> str:
 
 
 async def _build_media_group(media_ids: list, public_base: str, internal_base: str) -> list[InputMediaPhoto]:
-    """
-    Build up to 3 photos for send_media_group.
-    IMPORTANT: we do NOT use caption here to avoid 1024-char caption limit and HTML parsing issues.
-    """
     media_group: list[InputMediaPhoto] = []
 
     for mid in (media_ids or [])[:3]:
@@ -128,10 +124,8 @@ async def on_text(message: Message):
     answer_text = res.get("answer_text") or ""
     media_ids = res.get("media_ids") or []
 
-    # 1) Always send the main text as a normal message (no truncation by caption limits)
     await message.answer(answer_text, parse_mode=ParseMode.HTML, disable_web_page_preview=True)
 
-    # 2) If media exists, send a header + album
     if media_ids:
         await message.answer("Медиа по вашему запросу:", parse_mode=ParseMode.HTML)
 

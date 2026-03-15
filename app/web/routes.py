@@ -334,7 +334,6 @@ def change_password_action(
     admin.password_hash = hash_password(new_password)
     db.commit()
 
-    # optional: rotate csrf token to prevent replay
     try:
         token = request.cookies.get(get_cookie_name(), "")
         if token:

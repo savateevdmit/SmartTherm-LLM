@@ -7,6 +7,41 @@ services:
     volumes:
       - redis_data:/data
 
+  # --- Local DB inside compose ---
+  db:
+    image: mariadb:11.8
+    container_name: smarttherm-mariadb
+    restart: unless-stopped
+    environment:
+      MARIADB_ROOT_PASSWORD: "${DB_PASSWORD}"
+      MARIADB_DATABASE: "${DB_NAME}"
+    volumes:
+      - mariadb_data:/var/lib/mysql
+    ports:
+      # optional: expose for local admin tools; safe to keep localhost only
+      - "127.0.0.1:3307:3306"
+
+  # One-shot restore from newest ./backups/*.sql.gz if DB is empty
+  db_restore:
+    image: mariadb:11.8
+    container_name: smarttherm-db-restore
+    depends_on:
+      - db
+    restart: "no"
+    environment:
+      DB_HOST: "db"
+      DB_PORT: "3306"
+      DB_USER: "root"
+      DB_PASSWORD: "${DB_PASSWORD}"
+      DB_NAME: "${DB_NAME}"
+      BACKUP_DIR: "/backups"
+      # set to 1 only when you explicitly want to overwrite DB from backup
+      RESTORE_FORCE: "${RESTORE_FORCE}"
+    volumes:
+      - ./backups:/backups
+      - ./ops/db_restore.sh:/db_restore.sh:ro
+    entrypoint: ["bash", "/db_restore.sh"]
+
   llama:
     image: ghcr.io/ggml-org/llama.cpp:server-cuda
     container_name: smarttherm-llama
@@ -18,7 +53,7 @@ services:
     env_file:
       - .env
     volumes:
-       - ./models:/models:ro
+      - ./models:/models:ro
     command: >
       --host 0.0.0.0
       --port 8080
@@ -68,9 +103,9 @@ services:
       NVIDIA_VISIBLE_DEVICES: "all"
       NVIDIA_DRIVER_CAPABILITIES: "compute,utility"
 
-      DB_HOST: "${DB_HOST}"
-      DB_PORT: "${DB_PORT}"
-      DB_USER: "${DB_USER}"
+      DB_HOST: "db"
+      DB_PORT: "3306"
+      DB_USER: "root"
       DB_PASSWORD: "${DB_PASSWORD}"
       DB_NAME: "${DB_NAME}"
 
@@ -111,6 +146,8 @@ services:
       - "127.0.0.1:8052:8052"
     depends_on:
       - redis
+      - db
+      - db_restore
       - minio
 
   worker:
@@ -122,9 +159,9 @@ services:
       NVIDIA_VISIBLE_DEVICES: "all"
       NVIDIA_DRIVER_CAPABILITIES: "compute,utility"
 
-      DB_HOST: "${DB_HOST}"
-      DB_PORT: "${DB_PORT}"
-      DB_USER: "${DB_USER}"
+      DB_HOST: "db"
+      DB_PORT: "3306"
+      DB_USER: "root"
       DB_PASSWORD: "${DB_PASSWORD}"
       DB_NAME: "${DB_NAME}"
 
@@ -153,6 +190,8 @@ services:
       - ./data:/app/data
     depends_on:
       - redis
+      - db
+      - db_restore
       - llama
     command: ["bash", "-lc", "python -m app.worker.run_worker"]
 
@@ -173,13 +212,13 @@ services:
     command: ["bash", "-lc", "python -m bot.main"]
 
   db_backup:
-    image: mariadb:11
+    image: mariadb:11.8
     container_name: smarttherm-db-backup
     restart: unless-stopped
     environment:
-      DB_HOST: "${DB_HOST}"
-      DB_PORT: "${DB_PORT}"
-      DB_USER: "${DB_USER}"
+      DB_HOST: "db"
+      DB_PORT: "3306"
+      DB_USER: "root"
       DB_PASSWORD: "${DB_PASSWORD}"
       DB_NAME: "${DB_NAME}"
       BACKUP_INTERVAL_HOURS: "${BACKUP_INTERVAL_HOURS}"
@@ -188,8 +227,11 @@ services:
     volumes:
       - ./backups:/backups
       - ./ops/db_backup.sh:/db_backup.sh:ro
+    depends_on:
+      - db
     entrypoint: ["bash", "/db_backup.sh"]
 
 volumes:
   redis_data:
   minio_data:
+  mariadb_data:

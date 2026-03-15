@@ -83,7 +83,8 @@
       </div>
 
       <div class="text-muted small mt-2">
-        ID: {{ q.id }}
+        №: {{ loop.index0 + (page - 1) * page_size + 1 }}
+        <span class="ms-2">ID: {{ q.id }}</span>
       </div>
     </div>
   </div>

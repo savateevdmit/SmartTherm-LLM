@@ -13,7 +13,6 @@ def make_engine():
         f"@{settings.db_host}:{settings.db_port}/{settings.db_name}"
         f"?charset=utf8mb4"
     )
-    # DO NOT print credentials
     return create_engine(url, pool_pre_ping=True, pool_recycle=3600)
 
 

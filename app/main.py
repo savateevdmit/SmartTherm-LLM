@@ -9,8 +9,11 @@ from app.api.routes import router as api_router
 from app.middleware import SecurityHeadersMiddleware, AppErrorMiddleware
 from app.infrastructure.logging_setup import setup_logging
 from app.media_storage_s3 import get_media_bytes, ensure_bucket_exists
+from app.db_init import check_schema_or_raise
 
 setup_logging()
+
+check_schema_or_raise()
 
 app = FastAPI(title="SmartTherm - Backend", root_path=settings.root_path or "")
 

@@ -58,10 +58,6 @@ def _image_to_jpg_bytes(content: bytes) -> bytes:
 
 
 async def save_images(files: List[UploadFile]) -> List[int]:
-    """
-    Save uploaded images to S3 (MinIO) if MEDIA_STORAGE=s3.
-    Return list of numeric media ids (ints).
-    """
     mode = _storage_mode()
     if mode != "s3":
         raise RuntimeError("MEDIA_STORAGE must be 's3' (local media storage is disabled).")
@@ -87,9 +83,6 @@ async def save_images(files: List[UploadFile]) -> List[int]:
 
 
 def delete_media_files(names: Optional[List[Union[int, str]]]) -> None:
-    """
-    Delete media objects from S3 (MinIO) if MEDIA_STORAGE=s3.
-    """
     if not names:
         return
 

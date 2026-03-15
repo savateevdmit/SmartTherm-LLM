@@ -53,7 +53,6 @@ def chat_completion(system: str, user: str) -> str:
         try:
             r = requests.post(url, json=payload, timeout=300)
 
-            # Retry on transient overload
             if r.status_code in (429, 503, 502, 504):
                 raise requests.HTTPError(f"{r.status_code} from LLM server", response=r)
 

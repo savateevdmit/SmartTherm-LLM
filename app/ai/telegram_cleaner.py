@@ -53,15 +53,11 @@ class TelegramCleaner:
 
     @staticmethod
     def _beautify_steps(text: str) -> str:
-        # 1) Normalize "-" bullet to "•" (generic bullet)
         text = re.sub(r"(?m)^\s*-\s+", "• ", text)
 
-        # 2) If a bullet line is actually numbered step: "• 1)" or "• 1."
-        #    remove the bullet and make number bold (as markdown **..** for later conversion)
         text = re.sub(r"(?m)^\s*•\s*(\d+)\)\s*", r"**\1)** ", text)
         text = re.sub(r"(?m)^\s*•\s*(\d+)\.\s+", r"**\1.** ", text)
 
-        # 3) Also make plain numbered lines bold: "1)" / "1."
         text = re.sub(r"(?m)^(\s*)(\d+)\)\s*", r"\1**\2)** ", text)
         text = re.sub(r"(?m)^(\s*)(\d+)\.\s+", r"\1**\2.** ", text)
 
@@ -72,14 +68,11 @@ class TelegramCleaner:
         text = TelegramCleaner.clean_harmony_garbage(text)
         text = TelegramCleaner.validate_links(text)
 
-        # Headings -> bold (markdown style first)
         text = re.sub(r"^#+\s*(.*)$", r"**\1**", text, flags=re.MULTILINE)
         text = re.sub(r"^-{3,}$", "", text, flags=re.MULTILINE)
 
-        # Markdown links [t](u) -> t (u)
         text = re.sub(r"\[([^\]]+)\]\(([^)]+)\)", r"\1 (\2)", text)
 
-        # Tables -> bullets
         lines = text.split("\n")
         new_lines = []
         for line in lines:
@@ -93,10 +86,8 @@ class TelegramCleaner:
                 new_lines.append(line)
         text = "\n".join(new_lines)
 
-        # Make steps pretty (remove "• 1)" and bold numbers)
         text = TelegramCleaner._beautify_steps(text)
 
-        # Cut to 3000
         if len(text) > 3000:
             cut_text = text[:3000]
             last_dot = cut_text.rfind(".")
@@ -104,7 +95,6 @@ class TelegramCleaner:
 
         text = re.sub(r"\n{3,}", "\n\n", text).strip()
 
-        # Escape then re-introduce allowed formatting
         text = html.escape(text)
 
         text = TelegramCleaner._md_fenced_code_to_html(text)

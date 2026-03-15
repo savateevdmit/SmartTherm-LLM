@@ -95,12 +95,6 @@ def get_media_bytes(media_id: int) -> Optional[bytes]:
 
 
 def next_media_id(counter_start: int = 50000) -> int:
-    """
-    Generate next numeric media_id using a counter stored in S3.
-
-    Object: <S3_PREFIX>/media_counter.txt
-    Example key (with your prefix): smarttherm-media/media/media_counter.txt
-    """
     ensure_bucket_exists()
     cfg = s3_config()
     client = s3_client()

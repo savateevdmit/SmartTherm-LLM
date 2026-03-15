@@ -18,9 +18,6 @@ class Question(Base):
 
     id = Column(Integer, primary_key=True, autoincrement=True)
     text = Column(String(500), nullable=False)
-
-    # VECTOR type is DB-specific; we won't map it as JSON anymore.
-    # We'll write it via raw SQL: embedding = VEC_FromText(:emb_json)
     embedding = Column("embedding", nullable=True)
 
     tags = Column(String(255), nullable=True)
@@ -36,8 +33,6 @@ class Answer(Base):
     question_id = Column(Integer, ForeignKey("questions.id", ondelete="CASCADE"), nullable=False)
     text = Column(String(2000), nullable=False)
 
-    # visual_path stores list of ints (media ids) in JSON column in MySQL
-    # Keep JSON in answers, as before.
     from sqlalchemy.dialects.mysql import JSON as MYSQL_JSON
     visual_path = Column(MYSQL_JSON, nullable=True)
 

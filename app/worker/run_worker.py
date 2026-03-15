@@ -6,6 +6,7 @@ from app.infrastructure.redis_queue import dequeue, set_result
 from app.infrastructure.telegram_logger import send_log_message
 from app.db import SessionLocal
 from app.ai.answer_service import AnswerService
+from app.db_init import check_schema_or_raise
 
 log = logging.getLogger("kb_admin")
 
@@ -33,6 +34,8 @@ def _format_log(username: str, question: str, answer: str, min_dist: float, answ
 async def main():
     setup_logging()
     log.info("LLM worker started")
+
+    check_schema_or_raise()
 
     while True:
         task = dequeue(block_seconds=5)

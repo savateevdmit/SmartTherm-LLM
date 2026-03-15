@@ -59,10 +59,6 @@ def get_cookie_name() -> str:
 
 
 class SqliteSessionStore:
-    """
-    Cookie token -> session data stored in local sqlite.
-    Pros: survives restart, works with multiple workers (same DB file), simple.
-    """
     def __init__(self, path: str = "sessions.sqlite3"):
 
         DEFAULT_SESSIONS_DB = os.getenv("SESSIONS_DB_PATH", "sessions.sqlite3")

@@ -18,11 +18,6 @@ RAG_TOP_K = _get_int("RAG_TOP_K", 3)
 
 
 def _parse_visual_path(vp: Any) -> List[int]:
-    """
-    MySQL JSON column may be returned as:
-    - list[int]
-    - JSON string like "[10254, 20043]"
-    """
     if vp is None:
         return []
 

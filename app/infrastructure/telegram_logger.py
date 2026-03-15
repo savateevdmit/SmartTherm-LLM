@@ -73,10 +73,8 @@ async def send_log_message(text: str, media_ids: Optional[List[int]] = None) -> 
     bot = Bot(token=token)
 
     try:
-        # 1) Always send log text as a normal message
         await bot.send_message(chat_id=chat_id, text=text, parse_mode=ParseMode.HTML)
 
-        # 2) If media exists, send header + album
         if media_ids:
             await bot.send_message(chat_id=chat_id, text="Медиа:", parse_mode=ParseMode.HTML)
             media_group = await _build_media_group(media_ids)

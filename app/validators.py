@@ -2,16 +2,10 @@ from typing import List, Tuple
 
 
 def parse_tags(tags_raw: str) -> Tuple[str, List[str]]:
-    """
-    Input: 'tag1, tag2 tag3' -> store as CSV 'tag1,tag2,tag3' (<=10, each trimmed).
-    Returns (csv, list).
-    """
     if not tags_raw:
         return "", []
-    # split by comma
     parts = [p.strip() for p in tags_raw.split(",")]
     parts = [p for p in parts if p]
-    # unique preserving order
     seen = set()
     uniq = []
     for p in parts:

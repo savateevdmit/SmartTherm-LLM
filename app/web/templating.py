@@ -9,10 +9,6 @@ def _base_path() -> str:
 
 
 def _url(path: str) -> str:
-    """
-    Prefix relative paths with root_path.
-    Example: url('/questions') -> /smarttherm/webkb/questions
-    """
     if not path.startswith("/"):
         path = "/" + path
     return f"{_base_path()}{path}"

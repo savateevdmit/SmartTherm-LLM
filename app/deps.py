@@ -26,7 +26,6 @@ def get_session(request: Request) -> Optional[Dict[str, Any]]:
 
 
 def redirect_to_login(next_url: str = "/questions") -> RedirectResponse:
-    # next_url is app-local path like "/questions"
     return RedirectResponse(url=_u(f"/login?next={_u(next_url)}"), status_code=303)
 
 
