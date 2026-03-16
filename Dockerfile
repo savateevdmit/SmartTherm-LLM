@@ -18,13 +18,15 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 COPY requirements.txt /app/requirements.txt
 
-# Install torch CUDA wheels for Blackwell (sm_120)
-# We use nightly cu128 because stable cu124 wheels don't include sm_120.
 RUN python -m pip install --upgrade pip setuptools wheel && \
-    python -m pip install --no-input --pre \
+    python -m pip install --no-input --pre --only-binary=:all: \
       --index-url https://download.pytorch.org/whl/nightly/cu128 \
       torch torchvision torchaudio && \
-    python -m pip install --no-input --index-url https://pypi.org/simple -r /app/requirements.txt
+    python -m pip install --no-input --index-url https://pypi.org/simple -r /app/requirements.txt && \
+    python -m pip install --no-input --pre --only-binary=:all: \
+      --index-url https://download.pytorch.org/whl/nightly/cu128 \
+      --upgrade --force-reinstall \
+      torch torchvision torchaudio
 
 RUN python -c "import torch; print('torch', torch.__version__); print('cuda', torch.version.cuda); print('arch_list', torch.cuda.get_arch_list() if torch.cuda.is_available() else None)"
 
