@@ -3,11 +3,14 @@ import asyncio
 import logging
 
 from aiogram import Bot, Dispatcher
+from aiogram.client.session.aiohttp import AiohttpSession
 
 from app.infrastructure.logging_setup import setup_logging
 from bot.handlers import router
 
 log = logging.getLogger("kb_admin")
+
+VPS_PROXY = os.getenv("VPS_PROXY")
 
 
 async def main():
@@ -17,11 +20,13 @@ async def main():
     if not token:
         raise RuntimeError("TG_BOT_TOKEN is not set")
 
-    bot = Bot(token=token)
+    session = AiohttpSession(proxy=VPS_PROXY)
+    bot = Bot(token=token, session=session)
+
     dp = Dispatcher()
     dp.include_router(router)
 
-    log.info("Telegram bot started")
+    log.info(f"🚀 Bot started via VPS proxy: {VPS_PROXY}")
     await dp.start_polling(bot)
 
 

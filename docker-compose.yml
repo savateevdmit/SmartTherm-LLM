@@ -139,7 +139,7 @@ services:
     volumes:
       - ./data:/app/data
     ports:
-      - "127.0.0.1:18052:8052"
+      - "0.0.0.0:18052:8052"
     depends_on:
       - redis
       - db
@@ -193,10 +193,13 @@ services:
 
   tg_bot:
     build: .
+    env_file:
+      - .env
     container_name: smarttherm-tg-bot
     restart: unless-stopped
     environment:
       REDIS_URL: "${REDIS_URL}"
+      VPS_PROXY: ${VPS_PROXY}
       QUEUE_NAME: "${QUEUE_NAME}"
       TG_BOT_TOKEN: "${TG_BOT_TOKEN}"
       ROOT_PATH: "${ROOT_PATH}"
