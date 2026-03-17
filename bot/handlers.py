@@ -31,9 +31,14 @@ def _media_path(media_id: int) -> str:
     return f"/media/{media_id}.jpg"
 
 
+def _vps_proxy() -> str:
+    return (os.getenv("VPS_PROXY", "") or "").strip()
+
+
 async def _fetch_media_bytes(url: str) -> bytes:
+    proxy = _vps_proxy() or None
     async with aiohttp.ClientSession() as session:
-        async with session.get(url, timeout=30) as resp:
+        async with session.get(url, timeout=30, proxy=proxy) as resp:
             if resp.status != 200:
                 raise RuntimeError(f"Failed to fetch media: {resp.status}")
             return await resp.read()

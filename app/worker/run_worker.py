@@ -1,3 +1,4 @@
+import os
 import asyncio
 import logging
 
@@ -9,6 +10,10 @@ from app.ai.answer_service import AnswerService
 from app.db_init import check_schema_or_raise
 
 log = logging.getLogger("kb_admin")
+
+
+def _vps_proxy() -> str:
+    return (os.getenv("VPS_PROXY", "") or "").strip()
 
 
 def _format_log(username: str, question: str, answer: str, min_dist: float, answer_ids: list[int]) -> str:
@@ -34,6 +39,12 @@ def _format_log(username: str, question: str, answer: str, min_dist: float, answ
 async def main():
     setup_logging()
     log.info("LLM worker started")
+
+    proxy = _vps_proxy()
+    if proxy:
+        log.info("VPS proxy is configured for worker: %s", proxy)
+    else:
+        log.info("VPS proxy is not configured for worker (VPS_PROXY is empty)")
 
     check_schema_or_raise()
 

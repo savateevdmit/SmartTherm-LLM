@@ -5,6 +5,7 @@ from typing import Optional, List
 
 import aiohttp
 from aiogram import Bot
+from aiogram.client.session.aiohttp import AiohttpSession
 from aiogram.enums import ParseMode
 from aiogram.types import BufferedInputFile, InputMediaPhoto
 
@@ -31,9 +32,15 @@ def _media_path(media_id: int) -> str:
     return f"/media/{media_id}.jpg"
 
 
+def _vps_proxy() -> Optional[str]:
+    p = (os.getenv("VPS_PROXY", "") or "").strip()
+    return p or None
+
+
 async def _fetch_media_bytes(url: str) -> bytes:
+    proxy = _vps_proxy()
     async with aiohttp.ClientSession() as session:
-        async with session.get(url, timeout=30) as resp:
+        async with session.get(url, timeout=30, proxy=proxy) as resp:
             if resp.status != 200:
                 raise RuntimeError(f"Failed to fetch media: {resp.status}")
             return await resp.read()
@@ -70,7 +77,12 @@ async def send_log_message(text: str, media_ids: Optional[List[int]] = None) -> 
     if not token or not chat_id:
         return
 
-    bot = Bot(token=token)
+    proxy = _vps_proxy()
+    if proxy:
+        session = AiohttpSession(proxy=proxy)
+        bot = Bot(token=token, session=session)
+    else:
+        bot = Bot(token=token)
 
     try:
         await bot.send_message(chat_id=chat_id, text=text, parse_mode=ParseMode.HTML)
