@@ -2,12 +2,15 @@ import os
 import asyncio
 import logging
 from typing import Optional, List
+from urllib.parse import urlparse
 
 import aiohttp
 from aiogram import Bot
 from aiogram.client.session.aiohttp import AiohttpSession
 from aiogram.enums import ParseMode
 from aiogram.types import BufferedInputFile, InputMediaPhoto
+
+from app.infrastructure.telegram_html import sanitize_telegram_html
 
 log = logging.getLogger("kb_admin")
 
@@ -28,7 +31,14 @@ def _internal_webkb_base() -> str:
     return (os.getenv("WEBKB_INTERNAL_BASE_URL", "http://webkb:8052") or "").rstrip("/")
 
 
+def _root_path() -> str:
+    return (os.getenv("ROOT_PATH", "") or "").rstrip("/")
+
+
 def _media_path(media_id: int) -> str:
+    rp = _root_path()
+    if rp:
+        return f"{rp}/media/{media_id}.jpg"
     return f"/media/{media_id}.jpg"
 
 
@@ -37,10 +47,28 @@ def _vps_proxy() -> Optional[str]:
     return p or None
 
 
+def _should_use_proxy(url: str) -> bool:
+    try:
+        u = urlparse(url)
+        host = (u.hostname or "").lower()
+    except Exception:
+        return False
+
+    # internal docker service should never go through proxy
+    if host in ("webkb", "localhost", "127.0.0.1"):
+        return False
+
+    return True
+
+
 async def _fetch_media_bytes(url: str) -> bytes:
     proxy = _vps_proxy()
-    async with aiohttp.ClientSession() as session:
-        async with session.get(url, timeout=30, proxy=proxy) as resp:
+    if not proxy or not _should_use_proxy(url):
+        proxy = None
+
+    timeout = aiohttp.ClientTimeout(total=60)
+    async with aiohttp.ClientSession(timeout=timeout) as session:
+        async with session.get(url, timeout=timeout, proxy=proxy) as resp:
             if resp.status != 200:
                 raise RuntimeError(f"Failed to fetch media: {resp.status}")
             return await resp.read()
@@ -85,7 +113,11 @@ async def send_log_message(text: str, media_ids: Optional[List[int]] = None) -> 
         bot = Bot(token=token)
 
     try:
-        await bot.send_message(chat_id=chat_id, text=text, parse_mode=ParseMode.HTML)
+        await bot.send_message(
+            chat_id=chat_id,
+            text=sanitize_telegram_html(text),
+            parse_mode=ParseMode.HTML,
+        )
 
         if media_ids:
             await bot.send_message(chat_id=chat_id, text="Медиа:", parse_mode=ParseMode.HTML)

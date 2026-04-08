@@ -71,7 +71,7 @@ services:
     volumes:
       - minio_data:/data
     ports:
-      - "127.0.0.1:19001:9001"
+      - "0.0.0.0:19001:9001"
 
   minio_init:
     image: minio/mc:latest
@@ -88,6 +88,32 @@ services:
       /bin/sh -lc "
       mc alias set local ${S3_ENDPOINT_URL} ${S3_ACCESS_KEY_ID} ${S3_SECRET_ACCESS_KEY} &&
       mc mb -p local/${S3_BUCKET} || true
+      "
+
+  media_migrate_to_s3:
+    image: minio/mc:latest
+    container_name: smarttherm-media-migrate
+    depends_on:
+      - minio
+    restart: "no"
+    environment:
+      S3_ENDPOINT_URL: "${S3_ENDPOINT_URL}"
+      S3_BUCKET: "${S3_BUCKET}"
+      S3_ACCESS_KEY_ID: "${S3_ACCESS_KEY_ID}"
+      S3_SECRET_ACCESS_KEY: "${S3_SECRET_ACCESS_KEY}"
+      S3_PREFIX: "${S3_PREFIX}"
+    volumes:
+      - ./media:/media:ro
+    entrypoint: >
+      /bin/sh -lc "
+      set -e;
+      mc alias set local ${S3_ENDPOINT_URL} ${S3_ACCESS_KEY_ID} ${S3_SECRET_ACCESS_KEY};
+      mc mb -p local/${S3_BUCKET} || true;
+      for f in /media/*; do
+        [ -f \"$$f\" ] || continue;
+        mc cp \"$$f\" local/${S3_BUCKET}/${S3_PREFIX}/;
+      done;
+      echo Done;
       "
 
   webkb:

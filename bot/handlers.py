@@ -1,15 +1,16 @@
 import os
 import asyncio
 import logging
+from urllib.parse import urlparse
 
 import aiohttp
 from aiogram import Router, F
 from aiogram.enums import ParseMode
-from aiogram.filters import CommandStart
 from aiogram.types import Message, InputMediaPhoto
 from aiogram.types.input_file import BufferedInputFile
 
 from app.infrastructure.redis_queue import enqueue, wait_result, queue_length
+from app.infrastructure.telegram_html import sanitize_telegram_html
 
 log = logging.getLogger("kb_admin")
 router = Router()
@@ -19,15 +20,14 @@ def _root_path() -> str:
     return (os.getenv("ROOT_PATH", "") or "").rstrip("/")
 
 
-def _public_base_url() -> str:
-    return (os.getenv("WEBKB_PUBLIC_BASE_URL", "") or "").rstrip("/")
-
-
 def _internal_webkb_base() -> str:
     return (os.getenv("WEBKB_INTERNAL_BASE_URL", "http://webkb:8052") or "").rstrip("/")
 
 
 def _media_path(media_id: int) -> str:
+    root_path = (os.getenv("ROOT_PATH", "") or "").rstrip("/")
+    if root_path:
+        return f"{root_path}/media/{media_id}.jpg"
     return f"/media/{media_id}.jpg"
 
 
@@ -35,10 +35,25 @@ def _vps_proxy() -> str:
     return (os.getenv("VPS_PROXY", "") or "").strip()
 
 
+def _should_use_proxy(url: str) -> bool:
+    try:
+        u = urlparse(url)
+        host = (u.hostname or "").lower()
+    except Exception:
+        return False
+    if host in ("webkb", "localhost", "127.0.0.1"):
+        return False
+    return True
+
+
 async def _fetch_media_bytes(url: str) -> bytes:
-    proxy = _vps_proxy() or None
-    async with aiohttp.ClientSession() as session:
-        async with session.get(url, timeout=30, proxy=proxy) as resp:
+    proxy = _vps_proxy()
+    if not proxy or not _should_use_proxy(url):
+        proxy = None
+
+    timeout = aiohttp.ClientTimeout(total=60)
+    async with aiohttp.ClientSession(timeout=timeout) as session:
+        async with session.get(url, timeout=timeout, proxy=proxy) as resp:
             if resp.status != 200:
                 raise RuntimeError(f"Failed to fetch media: {resp.status}")
             return await resp.read()
@@ -47,11 +62,11 @@ async def _fetch_media_bytes(url: str) -> bytes:
 def _format_eta(seconds: int) -> str:
     if seconds <= 60:
         return f"{seconds} сек"
-    minutes = int((seconds + 59) // 60)  # ceil
+    minutes = int((seconds + 59) // 60)
     return f"{minutes} мин"
 
 
-async def _build_media_group(media_ids: list, public_base: str, internal_base: str) -> list[InputMediaPhoto]:
+async def _build_media_group_as_bytes(media_ids: list, internal_base: str) -> list[InputMediaPhoto]:
     media_group: list[InputMediaPhoto] = []
 
     for mid in (media_ids or [])[:3]:
@@ -60,13 +75,6 @@ async def _build_media_group(media_ids: list, public_base: str, internal_base: s
         except Exception:
             continue
 
-        # If you have a truly public base URL, Telegram can fetch by URL.
-        if public_base:
-            url = f"{public_base}{_media_path(mid_int)}"
-            media_group.append(InputMediaPhoto(media=url))
-            continue
-
-        # Otherwise fetch from internal webkb and send bytes.
         try:
             internal_url = f"{internal_base}{_media_path(mid_int)}"
             content = await _fetch_media_bytes(internal_url)
@@ -77,16 +85,6 @@ async def _build_media_group(media_ids: list, public_base: str, internal_base: s
             continue
 
     return media_group
-
-
-@router.message(CommandStart())
-async def on_start(message: Message):
-    await message.answer(
-        "Здравствуйте!\n\n"
-        "Я бот технической поддержки контроллера котла отопления <b>SmartTherm</b>.\n"
-        "Вы можете задать мне любой интересующий вас вопрос.",
-        parse_mode=ParseMode.HTML,
-    )
 
 
 @router.message(F.text)
@@ -117,7 +115,22 @@ async def on_text(message: Message):
         parse_mode=ParseMode.HTML,
     )
 
-    res = await asyncio.to_thread(wait_result, task_id, 180)
+    wait_seconds = int(os.getenv("TG_WAIT_SECONDS", "600") or "600")
+
+    pulse_task = asyncio.create_task(asyncio.sleep(120))
+    try:
+        res_task = asyncio.create_task(asyncio.to_thread(wait_result, task_id, wait_seconds))
+        done, _ = await asyncio.wait({res_task, pulse_task}, return_when=asyncio.FIRST_COMPLETED)
+
+        if pulse_task in done and not res_task.done():
+            await message.answer("Готовим ответ, это занимает чуть больше времени. Пожалуйста, подождите…")
+            res = await res_task
+        else:
+            res = res_task.result()
+    finally:
+        if not pulse_task.done():
+            pulse_task.cancel()
+
     if not res:
         await message.answer("Таймаут. Попробуйте позже.")
         return
@@ -129,14 +142,12 @@ async def on_text(message: Message):
     answer_text = res.get("answer_text") or ""
     media_ids = res.get("media_ids") or []
 
-    await message.answer(answer_text, parse_mode=ParseMode.HTML, disable_web_page_preview=True)
+    safe_html = sanitize_telegram_html(answer_text)
+    await message.answer(safe_html, parse_mode=ParseMode.HTML, disable_web_page_preview=True)
 
     if media_ids:
         await message.answer("Медиа по вашему запросу:", parse_mode=ParseMode.HTML)
-
-        public_base = _public_base_url()
         internal_base = _internal_webkb_base()
-
-        media_group = await _build_media_group(media_ids, public_base, internal_base)
+        media_group = await _build_media_group_as_bytes(media_ids, internal_base)
         if media_group:
             await message.answer_media_group(media_group)

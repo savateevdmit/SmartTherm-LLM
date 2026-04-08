@@ -12,30 +12,44 @@ from app.media_storage_s3 import get_media_bytes, ensure_bucket_exists
 from app.db_init import check_schema_or_raise
 
 setup_logging()
-
 check_schema_or_raise()
-
-app = FastAPI(title="SmartTherm - Backend", root_path=settings.root_path or "")
-
-app.add_middleware(AppErrorMiddleware)
-app.add_middleware(SecurityHeadersMiddleware)
 
 
 def _storage_mode() -> str:
     return (os.getenv("MEDIA_STORAGE", "local") or "local").strip().lower()
 
 
-if _storage_mode() == "s3":
-    ensure_bucket_exists()
+def create_app() -> FastAPI:
+    inner = FastAPI(title="SmartTherm - Backend")
 
-    @app.get("/media/{media_id}.jpg")
-    def media_get(media_id: int):
-        content = get_media_bytes(media_id)
-        if content is None:
-            return Response(status_code=404)
-        return Response(content=content, media_type="image/jpeg")
+    inner.add_middleware(AppErrorMiddleware)
+    inner.add_middleware(SecurityHeadersMiddleware)
+
+    if _storage_mode() == "s3":
+        ensure_bucket_exists()
+
+        @inner.get("/media/{media_id}.jpg")
+        def media_get(media_id: int):
+            content = get_media_bytes(media_id)
+            if content is None:
+                return Response(status_code=404)
+            return Response(content=content, media_type="image/jpeg")
+    else:
+        inner.mount("/media", StaticFiles(directory=settings.media_dir), name="media")
+
+    inner.include_router(web_router)
+    inner.include_router(api_router)
+    return inner
+
+
+outer = FastAPI(title="SmartTherm - Backend")
+
+root_path = (settings.root_path or "").rstrip("/")
+inner_app = create_app()
+
+if root_path:
+    outer.mount(root_path, inner_app)
 else:
-    app.mount("/media", StaticFiles(directory=settings.media_dir), name="media")
+    outer = inner_app
 
-app.include_router(web_router)
-app.include_router(api_router)
+app = outer

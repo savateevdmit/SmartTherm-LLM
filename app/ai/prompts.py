@@ -352,6 +352,8 @@ TRS Наушники (аудио-джек)
 5. OTGateway — альтернативная свободная прошивка для SmartTherm, использует mqtt auto discovery для Home Assistant, т. е. нет необходимости в настройке.
 6. LiveControl – альтернативная закрытая прошивка для SmartTherm
 
+Цена: 6950 рублей (на март 2026 года)
+
 Ссылки на полезные ресурсы
 ВАЖНЫЕ ССЫЛКИ:
 1. **Страница продукта и информация:** https://www.umkikit.ru/index.php?route=product/product&path=67&product_id=103

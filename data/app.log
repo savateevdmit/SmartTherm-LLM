@@ -4656,3 +4656,1057 @@ sqlalchemy.exc.OperationalError: (pymysql.err.OperationalError) (2003, "Can't co
 2026-03-15 20:16:40,911 INFO kb_admin: LLM worker started
 2026-03-15 20:16:40,912 INFO kb_admin: DB connect target: host=db port=3306 db=smarttherm
 2026-03-15 20:16:40,916 INFO kb_admin: DB schema OK in 'smarttherm' (admins, questions, answers)
+2026-03-18 08:43:47,766 INFO kb_admin: LLM worker started
+2026-03-18 08:43:47,766 INFO kb_admin: VPS proxy is configured for worker: socks5://91.184.253.218:1080
+2026-03-18 08:43:47,766 INFO kb_admin: DB connect target: host=db port=3306 db=smarttherm
+2026-03-18 08:43:47,769 INFO kb_admin: DB schema OK in 'smarttherm' (admins, questions, answers)
+2026-03-18 08:43:47,866 INFO kb_admin: DB connect target: host=db port=3306 db=smarttherm
+2026-03-18 08:43:47,869 INFO kb_admin: DB schema OK in 'smarttherm' (admins, questions, answers)
+2026-03-18 08:47:56,959 INFO kb_admin: Loading embeddings model=google/embeddinggemma-300m device=cuda truncate_dim=None
+2026-03-18 08:47:56,959 INFO sentence_transformers.SentenceTransformer: Load pretrained SentenceTransformer: google/embeddinggemma-300m
+2026-03-18 08:47:57,336 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/modules.json "HTTP/1.1 200 OK"
+2026-03-18 08:47:57,502 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/modules.json "HTTP/1.1 200 OK"
+2026-03-18 08:47:57,665 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-03-18 08:47:57,826 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-03-18 08:47:57,987 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-03-18 08:47:58,142 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/README.md "HTTP/1.1 200 OK"
+2026-03-18 08:47:58,299 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/README.md "HTTP/1.1 200 OK"
+2026-03-18 08:47:58,464 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/modules.json "HTTP/1.1 200 OK"
+2026-03-18 08:47:58,627 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/sentence_bert_config.json "HTTP/1.1 200 OK"
+2026-03-18 08:47:58,788 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/sentence_bert_config.json "HTTP/1.1 200 OK"
+2026-03-18 08:47:58,953 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+2026-03-18 08:47:59,115 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/config.json "HTTP/1.1 200 OK"
+2026-03-18 08:47:59,279 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/config.json "HTTP/1.1 200 OK"
+2026-03-18 08:47:59,475 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/model.safetensors "HTTP/1.1 302 Found"
+2026-03-18 08:47:59,635 INFO httpx: HTTP Request: GET https://huggingface.co/api/models/google/embeddinggemma-300m/xet-read-token/57c266a740f537b4dc058e1b0cda161fd15afa75 "HTTP/1.1 200 OK"
+2026-03-18 08:51:04,232 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/config.json "HTTP/1.1 200 OK"
+2026-03-18 08:51:04,392 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-03-18 08:51:04,560 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-03-18 08:51:04,795 INFO httpx: HTTP Request: GET https://huggingface.co/api/models/google/embeddinggemma-300m/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-03-18 08:51:04,953 INFO httpx: HTTP Request: GET https://huggingface.co/api/models/google/embeddinggemma-300m/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-03-18 08:51:05,120 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/tokenizer.json "HTTP/1.1 302 Found"
+2026-03-18 08:51:06,888 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/added_tokens.json "HTTP/1.1 200 OK"
+2026-03-18 08:51:07,054 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/added_tokens.json "HTTP/1.1 200 OK"
+2026-03-18 08:51:07,221 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/special_tokens_map.json "HTTP/1.1 200 OK"
+2026-03-18 08:51:07,382 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/special_tokens_map.json "HTTP/1.1 200 OK"
+2026-03-18 08:51:07,551 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/chat_template.jinja "HTTP/1.1 404 Not Found"
+2026-03-18 08:51:09,105 INFO httpx: HTTP Request: GET https://huggingface.co/api/models/google/embeddinggemma-300m "HTTP/1.1 200 OK"
+2026-03-18 08:51:09,274 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/1_Pooling/config.json "HTTP/1.1 200 OK"
+2026-03-18 08:51:09,438 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/1_Pooling/config.json "HTTP/1.1 200 OK"
+2026-03-18 08:51:09,607 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/2_Dense/config.json "HTTP/1.1 200 OK"
+2026-03-18 08:51:09,768 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/2_Dense/config.json "HTTP/1.1 200 OK"
+2026-03-18 08:51:09,944 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/2_Dense/model.safetensors "HTTP/1.1 302 Found"
+2026-03-18 08:51:11,516 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/3_Dense/config.json "HTTP/1.1 200 OK"
+2026-03-18 08:51:11,686 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/3_Dense/config.json "HTTP/1.1 200 OK"
+2026-03-18 08:51:11,863 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/3_Dense/model.safetensors "HTTP/1.1 302 Found"
+2026-03-18 08:51:13,040 INFO httpx: HTTP Request: GET https://huggingface.co/api/models/google/embeddinggemma-300m "HTTP/1.1 200 OK"
+2026-03-18 08:51:13,299 INFO sentence_transformers.SentenceTransformer: 14 prompts are loaded, with the keys: ['query', 'document', 'BitextMining', 'Clustering', 'Classification', 'InstructionRetrieval', 'MultilabelClassification', 'PairClassification', 'Reranking', 'Retrieval', 'Retrieval-query', 'Retrieval-document', 'STS', 'Summarization']
+2026-03-18 08:51:45,515 WARNING kb_admin: TG log: failed to fetch media 20043: Failed to fetch media: 404
+2026-03-18 08:51:45,522 WARNING kb_admin: TG log: failed to fetch media 25221: Failed to fetch media: 404
+2026-03-18 08:51:45,773 INFO kb_admin: Task done task_id=tg-355-1598209040 user=xto_to0_0
+2026-03-18 09:08:34,060 INFO kb_admin: DB connect target: host=db port=3306 db=smarttherm
+2026-03-18 09:08:34,063 INFO kb_admin: DB schema OK in 'smarttherm' (admins, questions, answers)
+2026-03-18 09:08:35,088 INFO kb_admin: LLM worker started
+2026-03-18 09:08:35,088 INFO kb_admin: VPS proxy is configured for worker: socks5://91.184.253.218:1080
+2026-03-18 09:08:35,088 INFO kb_admin: DB connect target: host=db port=3306 db=smarttherm
+2026-03-18 09:08:35,091 INFO kb_admin: DB schema OK in 'smarttherm' (admins, questions, answers)
+2026-03-18 09:14:09,986 INFO kb_admin: Loading embeddings model=google/embeddinggemma-300m device=cuda truncate_dim=None
+2026-03-18 09:14:09,986 INFO sentence_transformers.SentenceTransformer: Load pretrained SentenceTransformer: google/embeddinggemma-300m
+2026-03-18 09:14:10,354 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/modules.json "HTTP/1.1 200 OK"
+2026-03-18 09:14:10,517 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/modules.json "HTTP/1.1 200 OK"
+2026-03-18 09:14:10,677 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-03-18 09:14:10,841 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-03-18 09:14:11,005 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-03-18 09:14:11,162 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/README.md "HTTP/1.1 200 OK"
+2026-03-18 09:14:11,318 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/README.md "HTTP/1.1 200 OK"
+2026-03-18 09:14:11,710 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/modules.json "HTTP/1.1 200 OK"
+2026-03-18 09:14:11,870 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/sentence_bert_config.json "HTTP/1.1 200 OK"
+2026-03-18 09:14:12,156 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/sentence_bert_config.json "HTTP/1.1 200 OK"
+2026-03-18 09:14:12,324 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+2026-03-18 09:14:12,489 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/config.json "HTTP/1.1 200 OK"
+2026-03-18 09:14:12,645 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/config.json "HTTP/1.1 200 OK"
+2026-03-18 09:14:12,844 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/model.safetensors "HTTP/1.1 302 Found"
+2026-03-18 09:14:13,007 INFO httpx: HTTP Request: GET https://huggingface.co/api/models/google/embeddinggemma-300m/xet-read-token/57c266a740f537b4dc058e1b0cda161fd15afa75 "HTTP/1.1 200 OK"
+2026-03-18 09:17:15,834 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/config.json "HTTP/1.1 200 OK"
+2026-03-18 09:17:15,997 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-03-18 09:17:16,158 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-03-18 09:17:16,376 INFO httpx: HTTP Request: GET https://huggingface.co/api/models/google/embeddinggemma-300m/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-03-18 09:17:16,536 INFO httpx: HTTP Request: GET https://huggingface.co/api/models/google/embeddinggemma-300m/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-03-18 09:17:16,703 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/tokenizer.json "HTTP/1.1 302 Found"
+2026-03-18 09:17:18,669 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/added_tokens.json "HTTP/1.1 200 OK"
+2026-03-18 09:17:18,833 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/added_tokens.json "HTTP/1.1 200 OK"
+2026-03-18 09:17:18,992 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/special_tokens_map.json "HTTP/1.1 200 OK"
+2026-03-18 09:17:19,152 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/special_tokens_map.json "HTTP/1.1 200 OK"
+2026-03-18 09:17:19,321 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/chat_template.jinja "HTTP/1.1 404 Not Found"
+2026-03-18 09:17:20,863 INFO httpx: HTTP Request: GET https://huggingface.co/api/models/google/embeddinggemma-300m "HTTP/1.1 200 OK"
+2026-03-18 09:17:21,023 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/1_Pooling/config.json "HTTP/1.1 200 OK"
+2026-03-18 09:17:21,193 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/1_Pooling/config.json "HTTP/1.1 200 OK"
+2026-03-18 09:17:21,397 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/2_Dense/config.json "HTTP/1.1 200 OK"
+2026-03-18 09:17:21,558 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/2_Dense/config.json "HTTP/1.1 200 OK"
+2026-03-18 09:17:21,726 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/2_Dense/model.safetensors "HTTP/1.1 302 Found"
+2026-03-18 09:17:23,493 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/3_Dense/config.json "HTTP/1.1 200 OK"
+2026-03-18 09:17:23,658 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/3_Dense/config.json "HTTP/1.1 200 OK"
+2026-03-18 09:17:23,888 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/3_Dense/model.safetensors "HTTP/1.1 302 Found"
+2026-03-18 09:17:25,056 INFO httpx: HTTP Request: GET https://huggingface.co/api/models/google/embeddinggemma-300m "HTTP/1.1 200 OK"
+2026-03-18 09:17:25,315 INFO sentence_transformers.SentenceTransformer: 14 prompts are loaded, with the keys: ['query', 'document', 'BitextMining', 'Clustering', 'Classification', 'InstructionRetrieval', 'MultilabelClassification', 'PairClassification', 'Reranking', 'Retrieval', 'Retrieval-query', 'Retrieval-document', 'STS', 'Summarization']
+2026-03-18 09:17:32,774 WARNING kb_admin: TG log: failed to fetch media 20043: Failed to fetch media: 404
+2026-03-18 09:17:32,775 WARNING kb_admin: TG log: failed to fetch media 25221: Failed to fetch media: 404
+2026-03-18 09:17:33,025 INFO kb_admin: Task done task_id=tg-360-1598209040 user=xto_to0_0
+2026-03-18 09:22:39,940 INFO kb_admin: DB connect target: host=db port=3306 db=smarttherm
+2026-03-18 09:22:39,942 INFO kb_admin: DB schema OK in 'smarttherm' (admins, questions, answers)
+2026-03-18 09:22:40,990 INFO kb_admin: LLM worker started
+2026-03-18 09:22:40,990 INFO kb_admin: VPS proxy is configured for worker: socks5://91.184.253.218:1080
+2026-03-18 09:22:40,990 INFO kb_admin: DB connect target: host=db port=3306 db=smarttherm
+2026-03-18 09:22:40,995 INFO kb_admin: DB schema OK in 'smarttherm' (admins, questions, answers)
+2026-03-18 09:27:35,739 INFO kb_admin: Loading embeddings model=google/embeddinggemma-300m device=cuda truncate_dim=None
+2026-03-18 09:27:35,740 INFO sentence_transformers.SentenceTransformer: Load pretrained SentenceTransformer: google/embeddinggemma-300m
+2026-03-18 09:27:36,114 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/modules.json "HTTP/1.1 200 OK"
+2026-03-18 09:27:36,269 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/modules.json "HTTP/1.1 200 OK"
+2026-03-18 09:27:36,429 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-03-18 09:27:36,593 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-03-18 09:27:36,750 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-03-18 09:27:36,908 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/README.md "HTTP/1.1 200 OK"
+2026-03-18 09:27:37,062 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/README.md "HTTP/1.1 200 OK"
+2026-03-18 09:27:37,225 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/modules.json "HTTP/1.1 200 OK"
+2026-03-18 09:27:37,389 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/sentence_bert_config.json "HTTP/1.1 200 OK"
+2026-03-18 09:27:37,549 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/sentence_bert_config.json "HTTP/1.1 200 OK"
+2026-03-18 09:27:37,709 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+2026-03-18 09:27:37,870 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/config.json "HTTP/1.1 200 OK"
+2026-03-18 09:27:38,033 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/config.json "HTTP/1.1 200 OK"
+2026-03-18 09:27:38,224 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/model.safetensors "HTTP/1.1 302 Found"
+2026-03-18 09:27:38,385 INFO httpx: HTTP Request: GET https://huggingface.co/api/models/google/embeddinggemma-300m/xet-read-token/57c266a740f537b4dc058e1b0cda161fd15afa75 "HTTP/1.1 200 OK"
+2026-03-18 09:30:40,759 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/config.json "HTTP/1.1 200 OK"
+2026-03-18 09:30:40,948 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-03-18 09:30:41,108 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-03-18 09:30:41,352 INFO httpx: HTTP Request: GET https://huggingface.co/api/models/google/embeddinggemma-300m/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-03-18 09:30:41,514 INFO httpx: HTTP Request: GET https://huggingface.co/api/models/google/embeddinggemma-300m/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-03-18 09:30:41,689 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/tokenizer.json "HTTP/1.1 302 Found"
+2026-03-18 09:30:43,858 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/added_tokens.json "HTTP/1.1 200 OK"
+2026-03-18 09:30:44,023 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/added_tokens.json "HTTP/1.1 200 OK"
+2026-03-18 09:30:44,180 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/special_tokens_map.json "HTTP/1.1 200 OK"
+2026-03-18 09:30:44,342 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/special_tokens_map.json "HTTP/1.1 200 OK"
+2026-03-18 09:30:44,510 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/chat_template.jinja "HTTP/1.1 404 Not Found"
+2026-03-18 09:30:46,044 INFO httpx: HTTP Request: GET https://huggingface.co/api/models/google/embeddinggemma-300m "HTTP/1.1 200 OK"
+2026-03-18 09:30:46,215 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/1_Pooling/config.json "HTTP/1.1 200 OK"
+2026-03-18 09:30:46,378 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/1_Pooling/config.json "HTTP/1.1 200 OK"
+2026-03-18 09:30:46,539 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/2_Dense/config.json "HTTP/1.1 200 OK"
+2026-03-18 09:30:46,701 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/2_Dense/config.json "HTTP/1.1 200 OK"
+2026-03-18 09:30:46,871 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/2_Dense/model.safetensors "HTTP/1.1 302 Found"
+2026-03-18 09:30:48,038 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/3_Dense/config.json "HTTP/1.1 200 OK"
+2026-03-18 09:30:48,199 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/3_Dense/config.json "HTTP/1.1 200 OK"
+2026-03-18 09:30:48,364 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/3_Dense/model.safetensors "HTTP/1.1 302 Found"
+2026-03-18 09:30:49,529 INFO httpx: HTTP Request: GET https://huggingface.co/api/models/google/embeddinggemma-300m "HTTP/1.1 200 OK"
+2026-03-18 09:30:50,054 INFO sentence_transformers.SentenceTransformer: 14 prompts are loaded, with the keys: ['query', 'document', 'BitextMining', 'Clustering', 'Classification', 'InstructionRetrieval', 'MultilabelClassification', 'PairClassification', 'Reranking', 'Retrieval', 'Retrieval-query', 'Retrieval-document', 'STS', 'Summarization']
+2026-03-18 09:31:22,111 WARNING kb_admin: TG log: failed to fetch media 20043: Failed to fetch media: 404
+2026-03-18 09:31:22,111 WARNING kb_admin: TG log: failed to fetch media 25221: Failed to fetch media: 404
+2026-03-18 09:31:22,361 INFO kb_admin: Task done task_id=tg-365-1598209040 user=xto_to0_0
+2026-03-18 09:34:20,167 WARNING kb_admin: TG log: failed to fetch media 20043: Failed to fetch media: 404
+2026-03-18 09:34:20,168 WARNING kb_admin: TG log: failed to fetch media 25221: Failed to fetch media: 404
+2026-03-18 09:34:20,418 INFO kb_admin: Task done task_id=tg-370-1598209040 user=xto_to0_0
+2026-03-18 09:50:29,639 INFO kb_admin: DB connect target: host=db port=3306 db=smarttherm
+2026-03-18 09:50:29,642 INFO kb_admin: DB schema OK in 'smarttherm' (admins, questions, answers)
+2026-03-18 09:50:30,468 INFO kb_admin: LLM worker started
+2026-03-18 09:50:30,468 INFO kb_admin: VPS proxy is configured for worker: socks5://91.184.253.218:1080
+2026-03-18 09:50:30,468 INFO kb_admin: DB connect target: host=db port=3306 db=smarttherm
+2026-03-18 09:50:30,470 INFO kb_admin: DB schema OK in 'smarttherm' (admins, questions, answers)
+2026-03-18 09:55:11,773 INFO kb_admin: Loading embeddings model=google/embeddinggemma-300m device=cuda truncate_dim=None
+2026-03-18 09:55:11,773 INFO sentence_transformers.SentenceTransformer: Load pretrained SentenceTransformer: google/embeddinggemma-300m
+2026-03-18 09:55:12,096 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/modules.json "HTTP/1.1 200 OK"
+2026-03-18 09:55:12,260 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/modules.json "HTTP/1.1 200 OK"
+2026-03-18 09:55:12,421 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-03-18 09:55:12,583 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-03-18 09:55:12,746 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-03-18 09:55:12,904 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/README.md "HTTP/1.1 200 OK"
+2026-03-18 09:55:13,063 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/README.md "HTTP/1.1 200 OK"
+2026-03-18 09:55:13,228 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/modules.json "HTTP/1.1 200 OK"
+2026-03-18 09:55:13,388 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/sentence_bert_config.json "HTTP/1.1 200 OK"
+2026-03-18 09:55:13,550 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/sentence_bert_config.json "HTTP/1.1 200 OK"
+2026-03-18 09:55:13,710 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+2026-03-18 09:55:13,868 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/config.json "HTTP/1.1 200 OK"
+2026-03-18 09:55:14,090 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/config.json "HTTP/1.1 200 OK"
+2026-03-18 09:55:14,291 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/model.safetensors "HTTP/1.1 302 Found"
+2026-03-18 09:55:14,459 INFO httpx: HTTP Request: GET https://huggingface.co/api/models/google/embeddinggemma-300m/xet-read-token/57c266a740f537b4dc058e1b0cda161fd15afa75 "HTTP/1.1 200 OK"
+2026-03-18 09:58:18,648 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/config.json "HTTP/1.1 200 OK"
+2026-03-18 09:58:18,808 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-03-18 09:58:18,973 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-03-18 09:58:19,181 INFO httpx: HTTP Request: GET https://huggingface.co/api/models/google/embeddinggemma-300m/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-03-18 09:58:19,337 INFO httpx: HTTP Request: GET https://huggingface.co/api/models/google/embeddinggemma-300m/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-03-18 09:58:19,501 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/tokenizer.json "HTTP/1.1 302 Found"
+2026-03-18 09:58:21,275 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/added_tokens.json "HTTP/1.1 200 OK"
+2026-03-18 09:58:21,435 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/added_tokens.json "HTTP/1.1 200 OK"
+2026-03-18 09:58:21,596 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/special_tokens_map.json "HTTP/1.1 200 OK"
+2026-03-18 09:58:21,763 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/special_tokens_map.json "HTTP/1.1 200 OK"
+2026-03-18 09:58:21,922 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/chat_template.jinja "HTTP/1.1 404 Not Found"
+2026-03-18 09:58:23,468 INFO httpx: HTTP Request: GET https://huggingface.co/api/models/google/embeddinggemma-300m "HTTP/1.1 200 OK"
+2026-03-18 09:58:23,642 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/1_Pooling/config.json "HTTP/1.1 200 OK"
+2026-03-18 09:58:23,801 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/1_Pooling/config.json "HTTP/1.1 200 OK"
+2026-03-18 09:58:23,962 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/2_Dense/config.json "HTTP/1.1 200 OK"
+2026-03-18 09:58:24,123 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/2_Dense/config.json "HTTP/1.1 200 OK"
+2026-03-18 09:58:24,293 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/2_Dense/model.safetensors "HTTP/1.1 302 Found"
+2026-03-18 09:58:25,658 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/3_Dense/config.json "HTTP/1.1 200 OK"
+2026-03-18 09:58:25,834 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/3_Dense/config.json "HTTP/1.1 200 OK"
+2026-03-18 09:58:26,006 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/3_Dense/model.safetensors "HTTP/1.1 302 Found"
+2026-03-18 09:58:27,172 INFO httpx: HTTP Request: GET https://huggingface.co/api/models/google/embeddinggemma-300m "HTTP/1.1 200 OK"
+2026-03-18 09:58:27,433 INFO sentence_transformers.SentenceTransformer: 14 prompts are loaded, with the keys: ['query', 'document', 'BitextMining', 'Clustering', 'Classification', 'InstructionRetrieval', 'MultilabelClassification', 'PairClassification', 'Reranking', 'Retrieval', 'Retrieval-query', 'Retrieval-document', 'STS', 'Summarization']
+2026-03-18 09:58:59,378 ERROR kb_admin: Task failed task_id=tg-374-1598209040
+Traceback (most recent call last):
+  File "/app/app/worker/run_worker.py", line 82, in main
+    await send_log_message(
+  File "/app/app/infrastructure/telegram_logger.py", line 114, in send_log_message
+    await bot.send_message(
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/client/bot.py", line 2823, in send_message
+    return await self(call, request_timeout=request_timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/client/bot.py", line 492, in __call__
+    return await self.session(self, method, timeout=request_timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/client/session/base.py", line 254, in __call__
+    return cast(TelegramType, await middleware(bot, method))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/client/session/aiohttp.py", line 178, in make_request
+    response = self.check_response(
+               ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/client/session/base.py", line 120, in check_response
+    raise TelegramBadRequest(method=method, message=description)
+aiogram.exceptions.TelegramBadRequest: Telegram server says - Bad Request: can't parse entities: Unmatched end tag at byte offset 1938, expected "</code>", found "</pre>"
+2026-03-18 10:11:29,348 INFO kb_admin: DB connect target: host=db port=3306 db=smarttherm
+2026-03-18 10:11:29,351 INFO kb_admin: DB schema OK in 'smarttherm' (admins, questions, answers)
+2026-03-18 10:11:30,279 INFO kb_admin: LLM worker started
+2026-03-18 10:11:30,356 INFO kb_admin: VPS proxy is configured for worker: socks5://91.184.253.218:1080
+2026-03-18 10:11:30,356 INFO kb_admin: DB connect target: host=db port=3306 db=smarttherm
+2026-03-18 10:11:30,359 INFO kb_admin: DB schema OK in 'smarttherm' (admins, questions, answers)
+2026-03-18 10:14:51,505 INFO kb_admin: Loading embeddings model=google/embeddinggemma-300m device=cuda truncate_dim=None
+2026-03-18 10:14:51,506 INFO sentence_transformers.SentenceTransformer: Load pretrained SentenceTransformer: google/embeddinggemma-300m
+2026-03-18 10:14:51,840 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/modules.json "HTTP/1.1 200 OK"
+2026-03-18 10:14:52,006 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/modules.json "HTTP/1.1 200 OK"
+2026-03-18 10:14:52,167 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-03-18 10:14:52,339 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-03-18 10:14:52,498 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-03-18 10:14:52,656 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/README.md "HTTP/1.1 200 OK"
+2026-03-18 10:14:52,814 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/README.md "HTTP/1.1 200 OK"
+2026-03-18 10:14:52,982 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/modules.json "HTTP/1.1 200 OK"
+2026-03-18 10:14:53,142 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/sentence_bert_config.json "HTTP/1.1 200 OK"
+2026-03-18 10:14:53,301 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/sentence_bert_config.json "HTTP/1.1 200 OK"
+2026-03-18 10:14:53,464 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+2026-03-18 10:14:53,632 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/config.json "HTTP/1.1 200 OK"
+2026-03-18 10:14:53,798 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/config.json "HTTP/1.1 200 OK"
+2026-03-18 10:14:53,997 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/model.safetensors "HTTP/1.1 302 Found"
+2026-03-18 10:14:54,166 INFO httpx: HTTP Request: GET https://huggingface.co/api/models/google/embeddinggemma-300m/xet-read-token/57c266a740f537b4dc058e1b0cda161fd15afa75 "HTTP/1.1 200 OK"
+2026-03-18 10:17:57,200 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/config.json "HTTP/1.1 200 OK"
+2026-03-18 10:17:57,358 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-03-18 10:17:57,519 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-03-18 10:17:57,737 INFO httpx: HTTP Request: GET https://huggingface.co/api/models/google/embeddinggemma-300m/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-03-18 10:17:57,900 INFO httpx: HTTP Request: GET https://huggingface.co/api/models/google/embeddinggemma-300m/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-03-18 10:17:58,063 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/tokenizer.json "HTTP/1.1 302 Found"
+2026-03-18 10:18:00,665 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/added_tokens.json "HTTP/1.1 200 OK"
+2026-03-18 10:18:00,837 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/added_tokens.json "HTTP/1.1 200 OK"
+2026-03-18 10:18:01,001 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/special_tokens_map.json "HTTP/1.1 200 OK"
+2026-03-18 10:18:01,163 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/special_tokens_map.json "HTTP/1.1 200 OK"
+2026-03-18 10:18:01,322 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/chat_template.jinja "HTTP/1.1 404 Not Found"
+2026-03-18 10:18:02,865 INFO httpx: HTTP Request: GET https://huggingface.co/api/models/google/embeddinggemma-300m "HTTP/1.1 200 OK"
+2026-03-18 10:18:03,029 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/1_Pooling/config.json "HTTP/1.1 200 OK"
+2026-03-18 10:18:03,188 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/1_Pooling/config.json "HTTP/1.1 200 OK"
+2026-03-18 10:18:03,345 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/2_Dense/config.json "HTTP/1.1 200 OK"
+2026-03-18 10:18:03,508 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/2_Dense/config.json "HTTP/1.1 200 OK"
+2026-03-18 10:18:03,683 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/2_Dense/model.safetensors "HTTP/1.1 302 Found"
+2026-03-18 10:18:05,049 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/3_Dense/config.json "HTTP/1.1 200 OK"
+2026-03-18 10:18:05,210 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/3_Dense/config.json "HTTP/1.1 200 OK"
+2026-03-18 10:18:05,383 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/3_Dense/model.safetensors "HTTP/1.1 302 Found"
+2026-03-18 10:18:06,549 INFO httpx: HTTP Request: GET https://huggingface.co/api/models/google/embeddinggemma-300m "HTTP/1.1 200 OK"
+2026-03-18 10:18:06,811 INFO sentence_transformers.SentenceTransformer: 14 prompts are loaded, with the keys: ['query', 'document', 'BitextMining', 'Clustering', 'Classification', 'InstructionRetrieval', 'MultilabelClassification', 'PairClassification', 'Reranking', 'Retrieval', 'Retrieval-query', 'Retrieval-document', 'STS', 'Summarization']
+2026-03-18 10:18:14,714 INFO kb_admin: Task done task_id=tg-377-1598209040 user=xto_to0_0
+2026-03-18 10:19:25,039 INFO kb_admin: DB connect target: host=db port=3306 db=smarttherm
+2026-03-18 10:19:25,041 INFO kb_admin: DB schema OK in 'smarttherm' (admins, questions, answers)
+2026-03-18 10:19:25,251 INFO kb_admin: LLM worker started
+2026-03-18 10:19:25,251 INFO kb_admin: VPS proxy is configured for worker: socks5://91.184.253.218:1080
+2026-03-18 10:19:25,251 INFO kb_admin: DB connect target: host=db port=3306 db=smarttherm
+2026-03-18 10:19:25,254 INFO kb_admin: DB schema OK in 'smarttherm' (admins, questions, answers)
+2026-03-18 10:19:43,394 INFO kb_admin: Loading embeddings model=google/embeddinggemma-300m device=cuda truncate_dim=None
+2026-03-18 10:19:43,394 INFO sentence_transformers.SentenceTransformer: Load pretrained SentenceTransformer: google/embeddinggemma-300m
+2026-03-18 10:19:43,753 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/modules.json "HTTP/1.1 200 OK"
+2026-03-18 10:19:43,919 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/modules.json "HTTP/1.1 200 OK"
+2026-03-18 10:19:44,079 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-03-18 10:19:44,248 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-03-18 10:19:44,410 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-03-18 10:19:44,569 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/README.md "HTTP/1.1 200 OK"
+2026-03-18 10:19:44,726 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/README.md "HTTP/1.1 200 OK"
+2026-03-18 10:19:44,936 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/modules.json "HTTP/1.1 200 OK"
+2026-03-18 10:19:45,100 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/sentence_bert_config.json "HTTP/1.1 200 OK"
+2026-03-18 10:19:45,261 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/sentence_bert_config.json "HTTP/1.1 200 OK"
+2026-03-18 10:19:45,426 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+2026-03-18 10:19:45,582 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/config.json "HTTP/1.1 200 OK"
+2026-03-18 10:19:45,739 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/config.json "HTTP/1.1 200 OK"
+2026-03-18 10:19:45,939 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/model.safetensors "HTTP/1.1 302 Found"
+2026-03-18 10:19:46,099 INFO httpx: HTTP Request: GET https://huggingface.co/api/models/google/embeddinggemma-300m/xet-read-token/57c266a740f537b4dc058e1b0cda161fd15afa75 "HTTP/1.1 200 OK"
+2026-03-18 10:22:49,080 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/config.json "HTTP/1.1 200 OK"
+2026-03-18 10:22:49,240 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-03-18 10:22:49,406 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-03-18 10:22:49,653 INFO httpx: HTTP Request: GET https://huggingface.co/api/models/google/embeddinggemma-300m/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-03-18 10:22:49,818 INFO httpx: HTTP Request: GET https://huggingface.co/api/models/google/embeddinggemma-300m/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-03-18 10:22:49,983 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/tokenizer.json "HTTP/1.1 302 Found"
+2026-03-18 10:22:52,194 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/added_tokens.json "HTTP/1.1 200 OK"
+2026-03-18 10:22:52,352 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/added_tokens.json "HTTP/1.1 200 OK"
+2026-03-18 10:22:52,511 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/special_tokens_map.json "HTTP/1.1 200 OK"
+2026-03-18 10:22:52,681 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/special_tokens_map.json "HTTP/1.1 200 OK"
+2026-03-18 10:22:52,848 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/chat_template.jinja "HTTP/1.1 404 Not Found"
+2026-03-18 10:22:54,415 INFO httpx: HTTP Request: GET https://huggingface.co/api/models/google/embeddinggemma-300m "HTTP/1.1 200 OK"
+2026-03-18 10:22:54,576 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/1_Pooling/config.json "HTTP/1.1 200 OK"
+2026-03-18 10:22:54,733 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/1_Pooling/config.json "HTTP/1.1 200 OK"
+2026-03-18 10:22:54,898 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/2_Dense/config.json "HTTP/1.1 200 OK"
+2026-03-18 10:22:55,075 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/2_Dense/config.json "HTTP/1.1 200 OK"
+2026-03-18 10:22:55,238 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/2_Dense/model.safetensors "HTTP/1.1 302 Found"
+2026-03-18 10:22:56,408 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/3_Dense/config.json "HTTP/1.1 200 OK"
+2026-03-18 10:22:56,579 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/3_Dense/config.json "HTTP/1.1 200 OK"
+2026-03-18 10:22:56,750 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/3_Dense/model.safetensors "HTTP/1.1 302 Found"
+2026-03-18 10:22:57,918 INFO httpx: HTTP Request: GET https://huggingface.co/api/models/google/embeddinggemma-300m "HTTP/1.1 200 OK"
+2026-03-18 10:22:58,220 INFO sentence_transformers.SentenceTransformer: 14 prompts are loaded, with the keys: ['query', 'document', 'BitextMining', 'Clustering', 'Classification', 'InstructionRetrieval', 'MultilabelClassification', 'PairClassification', 'Reranking', 'Retrieval', 'Retrieval-query', 'Retrieval-document', 'STS', 'Summarization']
+2026-03-18 10:23:05,885 INFO kb_admin: Task done task_id=tg-378-1598209040 user=xto_to0_0
+2026-03-18 10:51:39,165 INFO kb_admin: LLM worker started
+2026-03-18 10:51:39,165 INFO kb_admin: VPS proxy is configured for worker: socks5://91.184.253.218:1080
+2026-03-18 10:51:39,165 INFO kb_admin: DB connect target: host=db port=3306 db=smarttherm
+2026-03-18 10:51:39,168 INFO kb_admin: DB schema OK in 'smarttherm' (admins, questions, answers)
+2026-03-18 10:51:39,540 INFO kb_admin: DB connect target: host=db port=3306 db=smarttherm
+2026-03-18 10:51:39,543 INFO kb_admin: DB schema OK in 'smarttherm' (admins, questions, answers)
+2026-03-18 10:51:59,717 INFO kb_admin: Loading embeddings model=google/embeddinggemma-300m device=cuda truncate_dim=None
+2026-03-18 10:51:59,717 INFO sentence_transformers.SentenceTransformer: Load pretrained SentenceTransformer: google/embeddinggemma-300m
+2026-03-18 10:52:00,098 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/modules.json "HTTP/1.1 200 OK"
+2026-03-18 10:52:00,282 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/modules.json "HTTP/1.1 200 OK"
+2026-03-18 10:52:00,495 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-03-18 10:52:00,666 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-03-18 10:52:00,846 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-03-18 10:52:01,004 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/README.md "HTTP/1.1 200 OK"
+2026-03-18 10:52:01,164 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/README.md "HTTP/1.1 200 OK"
+2026-03-18 10:52:01,322 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/modules.json "HTTP/1.1 200 OK"
+2026-03-18 10:52:01,507 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/sentence_bert_config.json "HTTP/1.1 200 OK"
+2026-03-18 10:52:01,799 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/sentence_bert_config.json "HTTP/1.1 200 OK"
+2026-03-18 10:52:02,037 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+2026-03-18 10:52:02,214 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/config.json "HTTP/1.1 200 OK"
+2026-03-18 10:52:02,475 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/config.json "HTTP/1.1 200 OK"
+2026-03-18 10:52:03,017 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/model.safetensors "HTTP/1.1 302 Found"
+2026-03-18 10:52:03,183 INFO httpx: HTTP Request: GET https://huggingface.co/api/models/google/embeddinggemma-300m/xet-read-token/57c266a740f537b4dc058e1b0cda161fd15afa75 "HTTP/1.1 200 OK"
+2026-03-18 10:55:06,768 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/config.json "HTTP/1.1 200 OK"
+2026-03-18 10:55:06,932 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-03-18 10:55:07,132 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-03-18 10:55:07,364 INFO httpx: HTTP Request: GET https://huggingface.co/api/models/google/embeddinggemma-300m/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-03-18 10:55:07,541 INFO httpx: HTTP Request: GET https://huggingface.co/api/models/google/embeddinggemma-300m/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-03-18 10:55:07,761 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/tokenizer.json "HTTP/1.1 302 Found"
+2026-03-18 10:55:10,131 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/added_tokens.json "HTTP/1.1 200 OK"
+2026-03-18 10:55:10,291 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/added_tokens.json "HTTP/1.1 200 OK"
+2026-03-18 10:55:10,450 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/special_tokens_map.json "HTTP/1.1 200 OK"
+2026-03-18 10:55:10,613 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/special_tokens_map.json "HTTP/1.1 200 OK"
+2026-03-18 10:55:10,775 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/chat_template.jinja "HTTP/1.1 404 Not Found"
+2026-03-18 10:55:12,337 INFO httpx: HTTP Request: GET https://huggingface.co/api/models/google/embeddinggemma-300m "HTTP/1.1 200 OK"
+2026-03-18 10:55:12,504 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/1_Pooling/config.json "HTTP/1.1 200 OK"
+2026-03-18 10:55:12,665 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/1_Pooling/config.json "HTTP/1.1 200 OK"
+2026-03-18 10:55:12,831 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/2_Dense/config.json "HTTP/1.1 200 OK"
+2026-03-18 10:55:13,004 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/2_Dense/config.json "HTTP/1.1 200 OK"
+2026-03-18 10:55:13,177 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/2_Dense/model.safetensors "HTTP/1.1 302 Found"
+2026-03-18 10:55:14,343 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/3_Dense/config.json "HTTP/1.1 200 OK"
+2026-03-18 10:55:14,503 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/3_Dense/config.json "HTTP/1.1 200 OK"
+2026-03-18 10:55:14,674 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/3_Dense/model.safetensors "HTTP/1.1 302 Found"
+2026-03-18 10:55:15,846 INFO httpx: HTTP Request: GET https://huggingface.co/api/models/google/embeddinggemma-300m "HTTP/1.1 200 OK"
+2026-03-18 10:55:16,105 INFO sentence_transformers.SentenceTransformer: 14 prompts are loaded, with the keys: ['query', 'document', 'BitextMining', 'Clustering', 'Classification', 'InstructionRetrieval', 'MultilabelClassification', 'PairClassification', 'Reranking', 'Retrieval', 'Retrieval-query', 'Retrieval-document', 'STS', 'Summarization']
+2026-03-18 10:55:23,226 ERROR kb_admin: Task failed task_id=tg-383-1598209040
+Traceback (most recent call last):
+  File "/app/app/worker/run_worker.py", line 82, in main
+    await send_log_message(
+  File "/app/app/infrastructure/telegram_logger.py", line 115, in send_log_message
+    await bot.send_message(chat_id=chat_id, text=rendered.text, parse_mode=ParseMode.HTML)
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/client/bot.py", line 2823, in send_message
+    return await self(call, request_timeout=request_timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/client/bot.py", line 492, in __call__
+    return await self.session(self, method, timeout=request_timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/client/session/base.py", line 254, in __call__
+    return cast(TelegramType, await middleware(bot, method))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/client/session/aiohttp.py", line 178, in make_request
+    response = self.check_response(
+               ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/client/session/base.py", line 120, in check_response
+    raise TelegramBadRequest(method=method, message=description)
+aiogram.exceptions.TelegramBadRequest: Telegram server says - Bad Request: can't parse entities: Unmatched end tag at byte offset 1918, expected "</code>", found "</pre>"
+2026-03-18 15:20:50,477 INFO kb_admin: DB connect target: host=db port=3306 db=smarttherm
+2026-03-18 15:20:50,480 INFO kb_admin: DB schema OK in 'smarttherm' (admins, questions, answers)
+2026-03-18 15:20:51,052 INFO kb_admin: LLM worker started
+2026-03-18 15:20:51,052 INFO kb_admin: VPS proxy is configured for worker: socks5://91.184.253.218:1080
+2026-03-18 15:20:51,052 INFO kb_admin: DB connect target: host=db port=3306 db=smarttherm
+2026-03-18 15:20:51,055 INFO kb_admin: DB schema OK in 'smarttherm' (admins, questions, answers)
+2026-03-18 15:21:37,125 INFO kb_admin: Loading embeddings model=google/embeddinggemma-300m device=cuda truncate_dim=None
+2026-03-18 15:21:37,125 INFO sentence_transformers.SentenceTransformer: Load pretrained SentenceTransformer: google/embeddinggemma-300m
+2026-03-18 15:21:37,470 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/modules.json "HTTP/1.1 200 OK"
+2026-03-18 15:21:37,638 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/modules.json "HTTP/1.1 200 OK"
+2026-03-18 15:21:37,807 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-03-18 15:21:37,967 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-03-18 15:21:38,139 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-03-18 15:21:38,299 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/README.md "HTTP/1.1 200 OK"
+2026-03-18 15:21:38,462 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/README.md "HTTP/1.1 200 OK"
+2026-03-18 15:21:38,631 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/modules.json "HTTP/1.1 200 OK"
+2026-03-18 15:21:38,800 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/sentence_bert_config.json "HTTP/1.1 200 OK"
+2026-03-18 15:21:38,969 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/sentence_bert_config.json "HTTP/1.1 200 OK"
+2026-03-18 15:21:39,139 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+2026-03-18 15:21:39,326 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/config.json "HTTP/1.1 200 OK"
+2026-03-18 15:21:39,494 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/config.json "HTTP/1.1 200 OK"
+2026-03-18 15:21:39,709 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/model.safetensors "HTTP/1.1 302 Found"
+2026-03-18 15:21:39,879 INFO httpx: HTTP Request: GET https://huggingface.co/api/models/google/embeddinggemma-300m/xet-read-token/57c266a740f537b4dc058e1b0cda161fd15afa75 "HTTP/1.1 200 OK"
+2026-03-18 15:24:43,284 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/config.json "HTTP/1.1 200 OK"
+2026-03-18 15:24:43,453 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-03-18 15:24:43,620 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-03-18 15:24:43,839 INFO httpx: HTTP Request: GET https://huggingface.co/api/models/google/embeddinggemma-300m/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-03-18 15:24:44,004 INFO httpx: HTTP Request: GET https://huggingface.co/api/models/google/embeddinggemma-300m/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-03-18 15:24:44,177 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/tokenizer.json "HTTP/1.1 302 Found"
+2026-03-18 15:24:46,154 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/added_tokens.json "HTTP/1.1 200 OK"
+2026-03-18 15:24:46,587 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/added_tokens.json "HTTP/1.1 200 OK"
+2026-03-18 15:24:46,758 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/special_tokens_map.json "HTTP/1.1 200 OK"
+2026-03-18 15:24:46,949 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/special_tokens_map.json "HTTP/1.1 200 OK"
+2026-03-18 15:24:47,124 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/chat_template.jinja "HTTP/1.1 404 Not Found"
+2026-03-18 15:24:48,680 INFO httpx: HTTP Request: GET https://huggingface.co/api/models/google/embeddinggemma-300m "HTTP/1.1 200 OK"
+2026-03-18 15:24:48,843 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/1_Pooling/config.json "HTTP/1.1 200 OK"
+2026-03-18 15:24:49,018 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/1_Pooling/config.json "HTTP/1.1 200 OK"
+2026-03-18 15:24:49,191 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/2_Dense/config.json "HTTP/1.1 200 OK"
+2026-03-18 15:24:49,361 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/2_Dense/config.json "HTTP/1.1 200 OK"
+2026-03-18 15:24:49,531 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/2_Dense/model.safetensors "HTTP/1.1 302 Found"
+2026-03-18 15:24:50,905 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/3_Dense/config.json "HTTP/1.1 200 OK"
+2026-03-18 15:24:51,081 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/3_Dense/config.json "HTTP/1.1 200 OK"
+2026-03-18 15:24:51,264 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/3_Dense/model.safetensors "HTTP/1.1 302 Found"
+2026-03-18 15:24:52,435 INFO httpx: HTTP Request: GET https://huggingface.co/api/models/google/embeddinggemma-300m "HTTP/1.1 200 OK"
+2026-03-18 15:24:52,698 INFO sentence_transformers.SentenceTransformer: 14 prompts are loaded, with the keys: ['query', 'document', 'BitextMining', 'Clustering', 'Classification', 'InstructionRetrieval', 'MultilabelClassification', 'PairClassification', 'Reranking', 'Retrieval', 'Retrieval-query', 'Retrieval-document', 'STS', 'Summarization']
+2026-03-18 15:25:00,302 INFO kb_admin: Task done task_id=tg-386-1598209040 user=xto_to0_0
+2026-03-18 17:06:13,377 INFO kb_admin: LLM worker started
+2026-03-18 17:06:13,377 INFO kb_admin: VPS proxy is configured for worker: socks5://91.184.253.218:1080
+2026-03-18 17:06:13,377 INFO kb_admin: DB connect target: host=db port=3306 db=smarttherm
+2026-03-18 17:06:13,380 INFO kb_admin: DB schema OK in 'smarttherm' (admins, questions, answers)
+2026-03-18 17:06:13,604 INFO kb_admin: DB connect target: host=db port=3306 db=smarttherm
+2026-03-18 17:06:13,606 INFO kb_admin: DB schema OK in 'smarttherm' (admins, questions, answers)
+2026-03-18 17:09:44,196 INFO kb_admin: DB connect target: host=db port=3306 db=smarttherm
+2026-03-18 17:09:44,199 INFO kb_admin: DB schema OK in 'smarttherm' (admins, questions, answers)
+2026-03-18 17:09:44,625 INFO kb_admin: LLM worker started
+2026-03-18 17:09:44,625 INFO kb_admin: VPS proxy is configured for worker: socks5://91.184.253.218:1080
+2026-03-18 17:09:44,626 INFO kb_admin: DB connect target: host=db port=3306 db=smarttherm
+2026-03-18 17:09:44,629 INFO kb_admin: DB schema OK in 'smarttherm' (admins, questions, answers)
+2026-03-18 17:10:21,845 INFO kb_admin: Loading embeddings model=google/embeddinggemma-300m device=cuda truncate_dim=None
+2026-03-18 17:10:21,845 INFO sentence_transformers.SentenceTransformer: Load pretrained SentenceTransformer: google/embeddinggemma-300m
+2026-03-18 17:10:22,177 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/modules.json "HTTP/1.1 200 OK"
+2026-03-18 17:10:22,351 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/modules.json "HTTP/1.1 200 OK"
+2026-03-18 17:10:22,518 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-03-18 17:10:22,693 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-03-18 17:10:22,855 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-03-18 17:10:23,020 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/README.md "HTTP/1.1 200 OK"
+2026-03-18 17:10:23,187 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/README.md "HTTP/1.1 200 OK"
+2026-03-18 17:10:23,367 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/modules.json "HTTP/1.1 200 OK"
+2026-03-18 17:10:23,538 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/sentence_bert_config.json "HTTP/1.1 200 OK"
+2026-03-18 17:10:23,713 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/sentence_bert_config.json "HTTP/1.1 200 OK"
+2026-03-18 17:10:23,879 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+2026-03-18 17:10:24,051 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/config.json "HTTP/1.1 200 OK"
+2026-03-18 17:10:24,219 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/config.json "HTTP/1.1 200 OK"
+2026-03-18 17:10:24,431 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/model.safetensors "HTTP/1.1 302 Found"
+2026-03-18 17:10:24,610 INFO httpx: HTTP Request: GET https://huggingface.co/api/models/google/embeddinggemma-300m/xet-read-token/57c266a740f537b4dc058e1b0cda161fd15afa75 "HTTP/1.1 200 OK"
+2026-03-18 17:13:39,046 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/config.json "HTTP/1.1 200 OK"
+2026-03-18 17:13:39,205 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-03-18 17:13:39,366 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-03-18 17:13:39,598 INFO httpx: HTTP Request: GET https://huggingface.co/api/models/google/embeddinggemma-300m/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-03-18 17:13:39,764 INFO httpx: HTTP Request: GET https://huggingface.co/api/models/google/embeddinggemma-300m/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-03-18 17:13:39,963 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/tokenizer.json "HTTP/1.1 302 Found"
+2026-03-18 17:13:41,937 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/added_tokens.json "HTTP/1.1 200 OK"
+2026-03-18 17:13:42,109 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/added_tokens.json "HTTP/1.1 200 OK"
+2026-03-18 17:13:42,283 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/special_tokens_map.json "HTTP/1.1 200 OK"
+2026-03-18 17:13:42,457 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/special_tokens_map.json "HTTP/1.1 200 OK"
+2026-03-18 17:13:42,626 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/chat_template.jinja "HTTP/1.1 404 Not Found"
+2026-03-18 17:13:44,182 INFO httpx: HTTP Request: GET https://huggingface.co/api/models/google/embeddinggemma-300m "HTTP/1.1 200 OK"
+2026-03-18 17:13:44,388 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/1_Pooling/config.json "HTTP/1.1 200 OK"
+2026-03-18 17:13:44,568 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/1_Pooling/config.json "HTTP/1.1 200 OK"
+2026-03-18 17:13:44,739 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/2_Dense/config.json "HTTP/1.1 200 OK"
+2026-03-18 17:13:44,907 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/2_Dense/config.json "HTTP/1.1 200 OK"
+2026-03-18 17:13:45,087 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/2_Dense/model.safetensors "HTTP/1.1 302 Found"
+2026-03-18 17:13:46,457 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/3_Dense/config.json "HTTP/1.1 200 OK"
+2026-03-18 17:13:46,622 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/3_Dense/config.json "HTTP/1.1 200 OK"
+2026-03-18 17:13:46,797 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/3_Dense/model.safetensors "HTTP/1.1 302 Found"
+2026-03-18 17:13:47,969 INFO httpx: HTTP Request: GET https://huggingface.co/api/models/google/embeddinggemma-300m "HTTP/1.1 200 OK"
+2026-03-18 17:13:48,239 INFO sentence_transformers.SentenceTransformer: 14 prompts are loaded, with the keys: ['query', 'document', 'BitextMining', 'Clustering', 'Classification', 'InstructionRetrieval', 'MultilabelClassification', 'PairClassification', 'Reranking', 'Retrieval', 'Retrieval-query', 'Retrieval-document', 'STS', 'Summarization']
+2026-03-18 17:13:55,349 ERROR kb_admin: Task failed task_id=tg-393-1598209040
+Traceback (most recent call last):
+  File "/app/app/worker/run_worker.py", line 82, in main
+    await send_log_message(
+  File "/app/app/infrastructure/telegram_logger.py", line 116, in send_log_message
+    await bot.send_message(
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/client/bot.py", line 2823, in send_message
+    return await self(call, request_timeout=request_timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/client/bot.py", line 492, in __call__
+    return await self.session(self, method, timeout=request_timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/client/session/base.py", line 254, in __call__
+    return cast(TelegramType, await middleware(bot, method))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/client/session/aiohttp.py", line 178, in make_request
+    response = self.check_response(
+               ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/client/session/base.py", line 120, in check_response
+    raise TelegramBadRequest(method=method, message=description)
+aiogram.exceptions.TelegramBadRequest: Telegram server says - Bad Request: can't parse entities: Unmatched end tag at byte offset 1928, expected "</code>", found "</pre>"
+2026-03-18 18:17:47,913 INFO kb_admin: DB connect target: host=db port=3306 db=smarttherm
+2026-03-18 18:17:47,915 INFO kb_admin: DB schema OK in 'smarttherm' (admins, questions, answers)
+2026-03-18 18:17:48,419 INFO kb_admin: LLM worker started
+2026-03-18 18:17:48,419 INFO kb_admin: VPS proxy is configured for worker: socks5://91.184.253.218:1080
+2026-03-18 18:17:48,419 INFO kb_admin: DB connect target: host=db port=3306 db=smarttherm
+2026-03-18 18:17:48,422 INFO kb_admin: DB schema OK in 'smarttherm' (admins, questions, answers)
+2026-03-18 18:19:15,341 INFO kb_admin: Loading embeddings model=google/embeddinggemma-300m device=cuda truncate_dim=None
+2026-03-18 18:19:15,342 INFO sentence_transformers.SentenceTransformer: Load pretrained SentenceTransformer: google/embeddinggemma-300m
+2026-03-18 18:19:15,711 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/modules.json "HTTP/1.1 200 OK"
+2026-03-18 18:19:15,876 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/modules.json "HTTP/1.1 200 OK"
+2026-03-18 18:19:16,046 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-03-18 18:19:16,215 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-03-18 18:19:16,401 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-03-18 18:19:16,575 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/README.md "HTTP/1.1 200 OK"
+2026-03-18 18:19:16,743 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/README.md "HTTP/1.1 200 OK"
+2026-03-18 18:19:16,973 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/modules.json "HTTP/1.1 200 OK"
+2026-03-18 18:19:17,149 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/sentence_bert_config.json "HTTP/1.1 200 OK"
+2026-03-18 18:19:17,321 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/sentence_bert_config.json "HTTP/1.1 200 OK"
+2026-03-18 18:19:17,495 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+2026-03-18 18:19:17,667 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/config.json "HTTP/1.1 200 OK"
+2026-03-18 18:19:17,840 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/config.json "HTTP/1.1 200 OK"
+2026-03-18 18:19:18,057 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/model.safetensors "HTTP/1.1 302 Found"
+2026-03-18 18:19:18,229 INFO httpx: HTTP Request: GET https://huggingface.co/api/models/google/embeddinggemma-300m/xet-read-token/57c266a740f537b4dc058e1b0cda161fd15afa75 "HTTP/1.1 200 OK"
+2026-03-18 18:22:26,066 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/config.json "HTTP/1.1 200 OK"
+2026-03-18 18:22:26,241 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-03-18 18:22:26,406 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-03-18 18:22:26,744 INFO httpx: HTTP Request: GET https://huggingface.co/api/models/google/embeddinggemma-300m/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-03-18 18:22:26,912 INFO httpx: HTTP Request: GET https://huggingface.co/api/models/google/embeddinggemma-300m/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-03-18 18:22:27,097 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/tokenizer.json "HTTP/1.1 302 Found"
+2026-03-18 18:22:29,267 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/added_tokens.json "HTTP/1.1 200 OK"
+2026-03-18 18:22:29,443 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/added_tokens.json "HTTP/1.1 200 OK"
+2026-03-18 18:22:29,612 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/special_tokens_map.json "HTTP/1.1 200 OK"
+2026-03-18 18:22:29,782 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/special_tokens_map.json "HTTP/1.1 200 OK"
+2026-03-18 18:22:29,946 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/chat_template.jinja "HTTP/1.1 404 Not Found"
+2026-03-18 18:22:31,505 INFO httpx: HTTP Request: GET https://huggingface.co/api/models/google/embeddinggemma-300m "HTTP/1.1 200 OK"
+2026-03-18 18:22:31,674 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/1_Pooling/config.json "HTTP/1.1 200 OK"
+2026-03-18 18:22:31,838 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/1_Pooling/config.json "HTTP/1.1 200 OK"
+2026-03-18 18:22:32,002 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/2_Dense/config.json "HTTP/1.1 200 OK"
+2026-03-18 18:22:32,174 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/2_Dense/config.json "HTTP/1.1 200 OK"
+2026-03-18 18:22:32,352 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/2_Dense/model.safetensors "HTTP/1.1 302 Found"
+2026-03-18 18:22:33,726 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/3_Dense/config.json "HTTP/1.1 200 OK"
+2026-03-18 18:22:33,892 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/3_Dense/config.json "HTTP/1.1 200 OK"
+2026-03-18 18:22:34,068 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/3_Dense/model.safetensors "HTTP/1.1 302 Found"
+2026-03-18 18:22:35,246 INFO httpx: HTTP Request: GET https://huggingface.co/api/models/google/embeddinggemma-300m "HTTP/1.1 200 OK"
+2026-03-18 18:22:35,508 INFO sentence_transformers.SentenceTransformer: 14 prompts are loaded, with the keys: ['query', 'document', 'BitextMining', 'Clustering', 'Classification', 'InstructionRetrieval', 'MultilabelClassification', 'PairClassification', 'Reranking', 'Retrieval', 'Retrieval-query', 'Retrieval-document', 'STS', 'Summarization']
+2026-03-18 18:22:44,215 INFO kb_admin: Task done task_id=tg-396-1598209040 user=xto_to0_0
+2026-03-18 18:23:20,358 INFO kb_admin: Task done task_id=tg-403-1598209040 user=xto_to0_0
+2026-03-18 19:18:25,837 INFO kb_admin: DB connect target: host=db port=3306 db=smarttherm
+2026-03-18 19:18:25,840 INFO kb_admin: DB schema OK in 'smarttherm' (admins, questions, answers)
+2026-03-18 19:18:26,351 INFO kb_admin: LLM worker started
+2026-03-18 19:18:26,351 INFO kb_admin: VPS proxy is configured for worker: socks5://91.184.253.218:1080
+2026-03-18 19:18:26,351 INFO kb_admin: DB connect target: host=db port=3306 db=smarttherm
+2026-03-18 19:18:26,354 INFO kb_admin: DB schema OK in 'smarttherm' (admins, questions, answers)
+2026-03-18 19:19:24,695 INFO kb_admin: Loading embeddings model=google/embeddinggemma-300m device=cuda truncate_dim=None
+2026-03-18 19:19:24,696 INFO sentence_transformers.SentenceTransformer: Load pretrained SentenceTransformer: google/embeddinggemma-300m
+2026-03-18 19:19:25,083 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/modules.json "HTTP/1.1 200 OK"
+2026-03-18 19:19:25,247 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/modules.json "HTTP/1.1 200 OK"
+2026-03-18 19:19:25,441 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-03-18 19:19:25,615 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-03-18 19:19:25,779 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-03-18 19:19:25,940 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/README.md "HTTP/1.1 200 OK"
+2026-03-18 19:19:26,113 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/README.md "HTTP/1.1 200 OK"
+2026-03-18 19:19:26,281 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/modules.json "HTTP/1.1 200 OK"
+2026-03-18 19:19:26,445 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/sentence_bert_config.json "HTTP/1.1 200 OK"
+2026-03-18 19:19:26,613 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/sentence_bert_config.json "HTTP/1.1 200 OK"
+2026-03-18 19:19:26,784 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+2026-03-18 19:19:26,945 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/config.json "HTTP/1.1 200 OK"
+2026-03-18 19:19:27,116 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/config.json "HTTP/1.1 200 OK"
+2026-03-18 19:19:27,317 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/model.safetensors "HTTP/1.1 302 Found"
+2026-03-18 19:19:27,483 INFO httpx: HTTP Request: GET https://huggingface.co/api/models/google/embeddinggemma-300m/xet-read-token/57c266a740f537b4dc058e1b0cda161fd15afa75 "HTTP/1.1 200 OK"
+2026-03-18 19:22:38,314 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/config.json "HTTP/1.1 200 OK"
+2026-03-18 19:22:38,485 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-03-18 19:22:38,662 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-03-18 19:22:38,869 INFO httpx: HTTP Request: GET https://huggingface.co/api/models/google/embeddinggemma-300m/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-03-18 19:22:39,039 INFO httpx: HTTP Request: GET https://huggingface.co/api/models/google/embeddinggemma-300m/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-03-18 19:22:39,211 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/tokenizer.json "HTTP/1.1 302 Found"
+2026-03-18 19:22:41,179 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/added_tokens.json "HTTP/1.1 200 OK"
+2026-03-18 19:22:41,352 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/added_tokens.json "HTTP/1.1 200 OK"
+2026-03-18 19:22:41,514 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/special_tokens_map.json "HTTP/1.1 200 OK"
+2026-03-18 19:22:41,677 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/special_tokens_map.json "HTTP/1.1 200 OK"
+2026-03-18 19:22:41,845 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/chat_template.jinja "HTTP/1.1 404 Not Found"
+2026-03-18 19:22:43,412 INFO httpx: HTTP Request: GET https://huggingface.co/api/models/google/embeddinggemma-300m "HTTP/1.1 200 OK"
+2026-03-18 19:22:43,583 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/1_Pooling/config.json "HTTP/1.1 200 OK"
+2026-03-18 19:22:43,747 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/1_Pooling/config.json "HTTP/1.1 200 OK"
+2026-03-18 19:22:43,918 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/2_Dense/config.json "HTTP/1.1 200 OK"
+2026-03-18 19:22:44,086 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/2_Dense/config.json "HTTP/1.1 200 OK"
+2026-03-18 19:22:44,268 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/2_Dense/model.safetensors "HTTP/1.1 302 Found"
+2026-03-18 19:22:45,643 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/3_Dense/config.json "HTTP/1.1 200 OK"
+2026-03-18 19:22:45,806 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/3_Dense/config.json "HTTP/1.1 200 OK"
+2026-03-18 19:22:45,978 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/3_Dense/model.safetensors "HTTP/1.1 302 Found"
+2026-03-18 19:22:47,158 INFO httpx: HTTP Request: GET https://huggingface.co/api/models/google/embeddinggemma-300m "HTTP/1.1 200 OK"
+2026-03-18 19:22:47,422 INFO sentence_transformers.SentenceTransformer: 14 prompts are loaded, with the keys: ['query', 'document', 'BitextMining', 'Clustering', 'Classification', 'InstructionRetrieval', 'MultilabelClassification', 'PairClassification', 'Reranking', 'Retrieval', 'Retrieval-query', 'Retrieval-document', 'STS', 'Summarization']
+2026-03-18 19:22:55,266 INFO kb_admin: Task done task_id=tg-409-1598209040 user=xto_to0_0
+2026-03-18 21:07:26,719 INFO kb_admin: Loading embeddings model=google/embeddinggemma-300m device=cuda truncate_dim=None
+2026-03-18 21:07:26,760 INFO sentence_transformers.SentenceTransformer: Load pretrained SentenceTransformer: google/embeddinggemma-300m
+2026-03-18 21:07:27,100 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/modules.json "HTTP/1.1 200 OK"
+2026-03-18 21:07:27,262 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/modules.json "HTTP/1.1 200 OK"
+2026-03-18 21:07:27,455 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-03-18 21:07:27,614 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-03-18 21:07:27,780 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-03-18 21:07:27,958 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/README.md "HTTP/1.1 200 OK"
+2026-03-18 21:07:28,115 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/README.md "HTTP/1.1 200 OK"
+2026-03-18 21:07:28,282 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/modules.json "HTTP/1.1 200 OK"
+2026-03-18 21:07:28,445 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/sentence_bert_config.json "HTTP/1.1 200 OK"
+2026-03-18 21:07:28,685 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/sentence_bert_config.json "HTTP/1.1 200 OK"
+2026-03-18 21:07:28,857 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+2026-03-18 21:07:29,034 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/config.json "HTTP/1.1 200 OK"
+2026-03-18 21:07:29,199 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/config.json "HTTP/1.1 200 OK"
+2026-03-18 21:07:29,403 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/model.safetensors "HTTP/1.1 302 Found"
+2026-03-18 21:07:31,051 INFO httpx: HTTP Request: GET https://huggingface.co/api/models/google/embeddinggemma-300m/xet-read-token/57c266a740f537b4dc058e1b0cda161fd15afa75 "HTTP/1.1 200 OK"
+2026-03-18 21:10:36,684 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/config.json "HTTP/1.1 200 OK"
+2026-03-18 21:10:36,850 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-03-18 21:10:37,025 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-03-18 21:10:37,258 INFO httpx: HTTP Request: GET https://huggingface.co/api/models/google/embeddinggemma-300m/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-03-18 21:10:37,420 INFO httpx: HTTP Request: GET https://huggingface.co/api/models/google/embeddinggemma-300m/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-03-18 21:10:37,592 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/tokenizer.json "HTTP/1.1 302 Found"
+2026-03-18 21:10:39,363 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/added_tokens.json "HTTP/1.1 200 OK"
+2026-03-18 21:10:39,531 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/added_tokens.json "HTTP/1.1 200 OK"
+2026-03-18 21:10:39,694 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/special_tokens_map.json "HTTP/1.1 200 OK"
+2026-03-18 21:10:39,863 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/special_tokens_map.json "HTTP/1.1 200 OK"
+2026-03-18 21:10:40,047 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/chat_template.jinja "HTTP/1.1 404 Not Found"
+2026-03-18 21:10:41,717 INFO httpx: HTTP Request: GET https://huggingface.co/api/models/google/embeddinggemma-300m "HTTP/1.1 200 OK"
+2026-03-18 21:10:41,892 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/1_Pooling/config.json "HTTP/1.1 200 OK"
+2026-03-18 21:10:42,059 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/1_Pooling/config.json "HTTP/1.1 200 OK"
+2026-03-18 21:10:42,220 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/2_Dense/config.json "HTTP/1.1 200 OK"
+2026-03-18 21:10:42,390 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/2_Dense/config.json "HTTP/1.1 200 OK"
+2026-03-18 21:10:42,555 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/2_Dense/model.safetensors "HTTP/1.1 302 Found"
+2026-03-18 21:10:43,931 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/3_Dense/config.json "HTTP/1.1 200 OK"
+2026-03-18 21:10:44,095 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/3_Dense/config.json "HTTP/1.1 200 OK"
+2026-03-18 21:10:44,329 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/3_Dense/model.safetensors "HTTP/1.1 302 Found"
+2026-03-18 21:10:45,499 INFO httpx: HTTP Request: GET https://huggingface.co/api/models/google/embeddinggemma-300m "HTTP/1.1 200 OK"
+2026-03-18 21:10:51,265 INFO sentence_transformers.SentenceTransformer: 14 prompts are loaded, with the keys: ['query', 'document', 'BitextMining', 'Clustering', 'Classification', 'InstructionRetrieval', 'MultilabelClassification', 'PairClassification', 'Reranking', 'Retrieval', 'Retrieval-query', 'Retrieval-document', 'STS', 'Summarization']
+2026-03-18 21:11:45,490 INFO kb_admin: Task done task_id=tg-416-1598209040 user=xto_to0_0
+2026-03-18 21:12:17,853 INFO kb_admin: Task done task_id=tg-421-1598209040 user=xto_to0_0
+2026-03-18 21:13:35,293 INFO kb_admin: Task done task_id=tg-424-1598209040 user=xto_to0_0
+2026-03-18 21:18:01,408 INFO kb_admin: Task done task_id=tg-429-1598209040 user=xto_to0_0
+2026-03-18 21:23:20,491 INFO kb_admin: DB connect target: host=db port=3306 db=smarttherm
+2026-03-18 21:23:20,494 INFO kb_admin: DB schema OK in 'smarttherm' (admins, questions, answers)
+2026-03-18 21:23:22,121 INFO kb_admin: LLM worker started
+2026-03-18 21:23:22,121 INFO kb_admin: VPS proxy is configured for worker: socks5://91.184.253.218:1080
+2026-03-18 21:23:22,121 INFO kb_admin: DB connect target: host=db port=3306 db=smarttherm
+2026-03-18 21:23:22,124 INFO kb_admin: DB schema OK in 'smarttherm' (admins, questions, answers)
+2026-03-18 21:24:47,539 INFO kb_admin: Loading embeddings model=google/embeddinggemma-300m device=cuda truncate_dim=None
+2026-03-18 21:24:47,540 INFO sentence_transformers.SentenceTransformer: Load pretrained SentenceTransformer: google/embeddinggemma-300m
+2026-03-18 21:24:47,901 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/modules.json "HTTP/1.1 200 OK"
+2026-03-18 21:24:48,070 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/modules.json "HTTP/1.1 200 OK"
+2026-03-18 21:24:48,240 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-03-18 21:24:48,400 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-03-18 21:24:48,565 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-03-18 21:24:48,725 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/README.md "HTTP/1.1 200 OK"
+2026-03-18 21:24:48,882 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/README.md "HTTP/1.1 200 OK"
+2026-03-18 21:24:49,044 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/modules.json "HTTP/1.1 200 OK"
+2026-03-18 21:24:49,204 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/sentence_bert_config.json "HTTP/1.1 200 OK"
+2026-03-18 21:24:49,374 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/sentence_bert_config.json "HTTP/1.1 200 OK"
+2026-03-18 21:24:49,542 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+2026-03-18 21:24:49,708 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/config.json "HTTP/1.1 200 OK"
+2026-03-18 21:24:49,871 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/config.json "HTTP/1.1 200 OK"
+2026-03-18 21:24:50,067 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/model.safetensors "HTTP/1.1 302 Found"
+2026-03-18 21:24:50,240 INFO httpx: HTTP Request: GET https://huggingface.co/api/models/google/embeddinggemma-300m/xet-read-token/57c266a740f537b4dc058e1b0cda161fd15afa75 "HTTP/1.1 200 OK"
+2026-03-18 21:27:54,235 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/config.json "HTTP/1.1 200 OK"
+2026-03-18 21:27:54,408 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-03-18 21:27:54,575 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-03-18 21:27:54,818 INFO httpx: HTTP Request: GET https://huggingface.co/api/models/google/embeddinggemma-300m/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-03-18 21:27:54,981 INFO httpx: HTTP Request: GET https://huggingface.co/api/models/google/embeddinggemma-300m/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-03-18 21:27:55,161 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/tokenizer.json "HTTP/1.1 302 Found"
+2026-03-18 21:27:56,938 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/added_tokens.json "HTTP/1.1 200 OK"
+2026-03-18 21:27:57,099 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/added_tokens.json "HTTP/1.1 200 OK"
+2026-03-18 21:27:57,263 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/special_tokens_map.json "HTTP/1.1 200 OK"
+2026-03-18 21:27:57,435 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/special_tokens_map.json "HTTP/1.1 200 OK"
+2026-03-18 21:27:57,602 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/chat_template.jinja "HTTP/1.1 404 Not Found"
+2026-03-18 21:27:59,169 INFO httpx: HTTP Request: GET https://huggingface.co/api/models/google/embeddinggemma-300m "HTTP/1.1 200 OK"
+2026-03-18 21:27:59,341 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/1_Pooling/config.json "HTTP/1.1 200 OK"
+2026-03-18 21:27:59,503 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/1_Pooling/config.json "HTTP/1.1 200 OK"
+2026-03-18 21:27:59,666 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/2_Dense/config.json "HTTP/1.1 200 OK"
+2026-03-18 21:27:59,828 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/2_Dense/config.json "HTTP/1.1 200 OK"
+2026-03-18 21:27:59,997 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/2_Dense/model.safetensors "HTTP/1.1 302 Found"
+2026-03-18 21:28:01,365 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/3_Dense/config.json "HTTP/1.1 200 OK"
+2026-03-18 21:28:01,538 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/3_Dense/config.json "HTTP/1.1 200 OK"
+2026-03-18 21:28:01,711 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/3_Dense/model.safetensors "HTTP/1.1 302 Found"
+2026-03-18 21:28:03,082 INFO httpx: HTTP Request: GET https://huggingface.co/api/models/google/embeddinggemma-300m "HTTP/1.1 200 OK"
+2026-03-18 21:28:03,357 INFO sentence_transformers.SentenceTransformer: 14 prompts are loaded, with the keys: ['query', 'document', 'BitextMining', 'Clustering', 'Classification', 'InstructionRetrieval', 'MultilabelClassification', 'PairClassification', 'Reranking', 'Retrieval', 'Retrieval-query', 'Retrieval-document', 'STS', 'Summarization']
+2026-03-18 21:28:11,388 INFO kb_admin: Task done task_id=tg-432-1598209040 user=xto_to0_0
+2026-03-18 21:28:15,073 INFO kb_admin: Task done task_id=tg-434-1598209040 user=xto_to0_0
+2026-03-18 21:28:18,919 INFO kb_admin: Task done task_id=tg-436-1598209040 user=xto_to0_0
+2026-03-18 21:30:32,827 INFO kb_admin: Task done task_id=tg-444-1598209040 user=xto_to0_0
+2026-03-18 21:33:01,737 INFO kb_admin: Task done task_id=tg-449-1598209040 user=xto_to0_0
+2026-03-18 21:34:39,336 INFO kb_admin: Task done task_id=tg-452-1598209040 user=xto_to0_0
+2026-03-18 21:37:23,938 INFO kb_admin: Task done task_id=tg-454-1598209040 user=xto_to0_0
+2026-03-18 21:37:48,974 INFO kb_admin: Task done task_id=tg-457-1598209040 user=xto_to0_0
+2026-03-18 21:38:16,725 INFO kb_admin: Task done task_id=tg-460-1598209040 user=xto_to0_0
+2026-03-18 21:39:45,698 INFO kb_admin: Task done task_id=tg-463-1598209040 user=xto_to0_0
+2026-04-04 17:34:22,465 INFO kb_admin: LLM worker started
+2026-04-04 17:34:22,935 INFO kb_admin: VPS proxy is configured for worker: socks5://91.184.253.218:1080
+2026-04-04 17:34:22,935 INFO kb_admin: DB connect target: host=db port=3306 db=smarttherm
+2026-04-04 17:34:30,710 INFO kb_admin: DB schema OK in 'smarttherm' (admins, questions, answers)
+2026-04-04 17:34:49,282 INFO kb_admin: DB connect target: host=db port=3306 db=smarttherm
+2026-04-04 17:34:50,020 INFO kb_admin: DB schema OK in 'smarttherm' (admins, questions, answers)
+2026-04-04 17:38:05,021 INFO kb_admin: Loading embeddings model=google/embeddinggemma-300m device=cuda truncate_dim=None
+2026-04-04 17:38:05,021 INFO sentence_transformers.SentenceTransformer: Load pretrained SentenceTransformer: google/embeddinggemma-300m
+2026-04-04 17:38:05,456 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/modules.json "HTTP/1.1 200 OK"
+2026-04-04 17:38:05,647 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/modules.json "HTTP/1.1 200 OK"
+2026-04-04 17:38:05,818 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-04-04 17:38:05,995 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-04-04 17:38:06,163 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-04-04 17:38:06,324 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/README.md "HTTP/1.1 200 OK"
+2026-04-04 17:38:06,493 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/README.md "HTTP/1.1 200 OK"
+2026-04-04 17:38:06,671 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/modules.json "HTTP/1.1 200 OK"
+2026-04-04 17:38:06,843 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/sentence_bert_config.json "HTTP/1.1 200 OK"
+2026-04-04 17:38:07,013 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/sentence_bert_config.json "HTTP/1.1 200 OK"
+2026-04-04 17:38:07,184 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+2026-04-04 17:38:07,356 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/config.json "HTTP/1.1 200 OK"
+2026-04-04 17:38:07,525 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/config.json "HTTP/1.1 200 OK"
+2026-04-04 17:38:07,913 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/model.safetensors "HTTP/1.1 302 Found"
+2026-04-04 17:38:08,226 INFO httpx: HTTP Request: GET https://huggingface.co/api/models/google/embeddinggemma-300m/xet-read-token/57c266a740f537b4dc058e1b0cda161fd15afa75 "HTTP/1.1 200 OK"
+2026-04-04 17:41:21,840 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/config.json "HTTP/1.1 200 OK"
+2026-04-04 17:41:22,042 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-04-04 17:41:22,206 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-04-04 17:41:22,464 INFO httpx: HTTP Request: GET https://huggingface.co/api/models/google/embeddinggemma-300m/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-04-04 17:41:22,622 INFO httpx: HTTP Request: GET https://huggingface.co/api/models/google/embeddinggemma-300m/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-04-04 17:41:22,792 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/tokenizer.json "HTTP/1.1 302 Found"
+2026-04-04 17:41:26,968 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/added_tokens.json "HTTP/1.1 200 OK"
+2026-04-04 17:41:27,145 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/added_tokens.json "HTTP/1.1 200 OK"
+2026-04-04 17:41:27,302 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/special_tokens_map.json "HTTP/1.1 200 OK"
+2026-04-04 17:41:27,467 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/special_tokens_map.json "HTTP/1.1 200 OK"
+2026-04-04 17:41:27,629 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/chat_template.jinja "HTTP/1.1 404 Not Found"
+2026-04-04 17:41:29,245 INFO httpx: HTTP Request: GET https://huggingface.co/api/models/google/embeddinggemma-300m "HTTP/1.1 200 OK"
+2026-04-04 17:41:29,402 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/1_Pooling/config.json "HTTP/1.1 200 OK"
+2026-04-04 17:41:29,582 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/1_Pooling/config.json "HTTP/1.1 200 OK"
+2026-04-04 17:41:29,742 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/2_Dense/config.json "HTTP/1.1 200 OK"
+2026-04-04 17:41:29,901 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/2_Dense/config.json "HTTP/1.1 200 OK"
+2026-04-04 17:41:30,069 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/2_Dense/model.safetensors "HTTP/1.1 302 Found"
+2026-04-04 17:41:31,450 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/3_Dense/config.json "HTTP/1.1 200 OK"
+2026-04-04 17:41:31,615 INFO httpx: HTTP Request: GET https://huggingface.co/google/embeddinggemma-300m/resolve/main/3_Dense/config.json "HTTP/1.1 200 OK"
+2026-04-04 17:41:31,781 INFO httpx: HTTP Request: HEAD https://huggingface.co/google/embeddinggemma-300m/resolve/main/3_Dense/model.safetensors "HTTP/1.1 302 Found"
+2026-04-04 17:41:33,149 INFO httpx: HTTP Request: GET https://huggingface.co/api/models/google/embeddinggemma-300m "HTTP/1.1 200 OK"
+2026-04-04 17:41:33,502 INFO sentence_transformers.SentenceTransformer: 14 prompts are loaded, with the keys: ['query', 'document', 'BitextMining', 'Clustering', 'Classification', 'InstructionRetrieval', 'MultilabelClassification', 'PairClassification', 'Reranking', 'Retrieval', 'Retrieval-query', 'Retrieval-document', 'STS', 'Summarization']
+2026-04-04 17:42:17,482 INFO kb_admin: Task done task_id=tg-466-1598209040 user=xto_to0_0
+2026-04-04 17:42:24,796 INFO kb_admin: Task done task_id=tg-470-1598209040 user=xto_to0_0
+2026-04-04 17:42:32,043 INFO kb_admin: Task done task_id=tg-474-1598209040 user=xto_to0_0
+2026-04-04 17:42:36,139 ERROR kb_admin: Task failed task_id=tg-477-1598209040
+Traceback (most recent call last):
+  File "/app/app/worker/run_worker.py", line 82, in main
+    await send_log_message(
+  File "/app/app/infrastructure/telegram_logger.py", line 126, in send_log_message
+    await bot.send_media_group(chat_id=chat_id, media=media_group)
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/client/bot.py", line 2761, in send_media_group
+    return await self(call, request_timeout=request_timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/client/bot.py", line 492, in __call__
+    return await self.session(self, method, timeout=request_timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/client/session/base.py", line 254, in __call__
+    return cast(TelegramType, await middleware(bot, method))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/client/session/aiohttp.py", line 178, in make_request
+    response = self.check_response(
+               ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/client/session/base.py", line 110, in check_response
+    raise TelegramRetryAfter(
+aiogram.exceptions.TelegramRetryAfter: Telegram server says - Flood control exceeded on method 'SendMediaGroup' in chat -1003719471127. Retry in 34 seconds.
+Original description: Too Many Requests: retry after 34
+(background on this error at: https://core.telegram.org/bots/faq#my-bot-is-hitting-limits-how-do-i-avoid-this)
+2026-04-04 17:42:40,113 ERROR kb_admin: Task failed task_id=tg-481-1598209040
+Traceback (most recent call last):
+  File "/app/app/worker/run_worker.py", line 82, in main
+    await send_log_message(
+  File "/app/app/infrastructure/telegram_logger.py", line 116, in send_log_message
+    await bot.send_message(
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/client/bot.py", line 2823, in send_message
+    return await self(call, request_timeout=request_timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/client/bot.py", line 492, in __call__
+    return await self.session(self, method, timeout=request_timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/client/session/base.py", line 254, in __call__
+    return cast(TelegramType, await middleware(bot, method))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/client/session/aiohttp.py", line 178, in make_request
+    response = self.check_response(
+               ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/aiogram/client/session/base.py", line 110, in check_response
+    raise TelegramRetryAfter(
+aiogram.exceptions.TelegramRetryAfter: Telegram server says - Flood control exceeded on method 'SendMessage' in chat -1003719471127. Retry in 30 seconds.
+Original description: Too Many Requests: retry after 30
+(background on this error at: https://core.telegram.org/bots/faq#my-bot-is-hitting-limits-how-do-i-avoid-this)
+2026-04-05 23:44:37,946 INFO kb_admin: LLM worker started
+2026-04-05 23:44:37,965 INFO kb_admin: VPS proxy is configured for worker: socks5://91.184.253.218:1080
+2026-04-05 23:44:37,966 INFO kb_admin: DB connect target: host=db port=3306 db=smarttherm
+2026-04-05 23:44:37,975 INFO kb_admin: DB schema OK in 'smarttherm' (admins, questions, answers)
+2026-04-05 23:44:45,276 INFO kb_admin: DB connect target: host=db port=3306 db=smarttherm
+2026-04-05 23:44:45,283 INFO kb_admin: DB schema OK in 'smarttherm' (admins, questions, answers)
+2026-04-06 03:58:53,147 INFO kb_admin: LLM worker started
+2026-04-06 03:58:53,288 INFO kb_admin: VPS proxy is configured for worker: socks5://91.184.253.218:1080
+2026-04-06 03:58:53,288 INFO kb_admin: DB connect target: host=db port=3306 db=smarttherm
+2026-04-06 03:58:53,298 INFO kb_admin: DB schema OK in 'smarttherm' (admins, questions, answers)
+2026-04-06 03:59:05,009 INFO kb_admin: DB connect target: host=db port=3306 db=smarttherm
+2026-04-06 03:59:05,018 INFO kb_admin: DB schema OK in 'smarttherm' (admins, questions, answers)
+2026-04-07 09:55:40,471 INFO kb_admin: LLM worker started
+2026-04-07 09:55:40,509 INFO kb_admin: VPS proxy is configured for worker: socks5://91.184.253.218:1080
+2026-04-07 09:55:40,510 INFO kb_admin: DB connect target: host=db port=3306 db=smarttherm
+2026-04-07 09:55:40,518 INFO kb_admin: DB schema OK in 'smarttherm' (admins, questions, answers)
+2026-04-07 09:55:53,109 INFO kb_admin: DB connect target: host=db port=3306 db=smarttherm
+2026-04-07 09:55:53,118 INFO kb_admin: DB schema OK in 'smarttherm' (admins, questions, answers)
+2026-04-07 10:17:28,863 INFO kb_admin: LLM worker started
+2026-04-07 10:17:28,863 INFO kb_admin: VPS proxy is configured for worker: socks5://91.184.253.218:1080
+2026-04-07 10:17:28,863 INFO kb_admin: DB connect target: host=db port=3306 db=smarttherm
+2026-04-07 10:17:28,867 INFO kb_admin: DB schema OK in 'smarttherm' (admins, questions, answers)
+2026-04-07 10:17:29,016 INFO kb_admin: DB connect target: host=db port=3306 db=smarttherm
+2026-04-07 10:17:29,019 INFO kb_admin: DB schema OK in 'smarttherm' (admins, questions, answers)
+2026-04-08 04:03:54,987 INFO kb_admin: LLM worker started
+2026-04-08 04:03:55,181 INFO kb_admin: VPS proxy is configured for worker: socks5://91.184.253.218:1080
+2026-04-08 04:03:55,181 INFO kb_admin: DB connect target: host=db port=3306 db=smarttherm
+2026-04-08 04:03:55,190 INFO kb_admin: DB schema OK in 'smarttherm' (admins, questions, answers)
+2026-04-08 04:04:06,260 INFO kb_admin: DB connect target: host=db port=3306 db=smarttherm
+2026-04-08 04:04:06,269 INFO kb_admin: DB schema OK in 'smarttherm' (admins, questions, answers)
+2026-04-08 12:00:21,581 INFO kb_admin: LLM worker started
+2026-04-08 12:00:21,581 INFO kb_admin: VPS proxy is configured for worker: socks5://91.184.253.218:1080
+2026-04-08 12:00:21,581 INFO kb_admin: DB connect target: host=db port=3306 db=smarttherm
+2026-04-08 12:00:21,736 ERROR kb_admin: DB schema check failed
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/dist-packages/pymysql/connections.py", line 649, in connect
+    sock = socket.create_connection(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/socket.py", line 828, in create_connection
+    for res in getaddrinfo(host, port, 0, SOCK_STREAM):
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/socket.py", line 963, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno -2] Name or service not known
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/dist-packages/sqlalchemy/engine/base.py", line 146, in __init__
+    self._dbapi_connection = engine.raw_connection()
+                             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/sqlalchemy/engine/base.py", line 3302, in raw_connection
+    return self.pool.connect()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/sqlalchemy/pool/base.py", line 449, in connect
+    return _ConnectionFairy._checkout(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/sqlalchemy/pool/base.py", line 1263, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/sqlalchemy/pool/base.py", line 712, in checkout
+    rec = pool._do_get()
+          ^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/sqlalchemy/pool/impl.py", line 179, in _do_get
+    with util.safe_reraise():
+  File "/usr/local/lib/python3.12/dist-packages/sqlalchemy/util/langhelpers.py", line 146, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "/usr/local/lib/python3.12/dist-packages/sqlalchemy/pool/impl.py", line 177, in _do_get
+    return self._create_connection()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/sqlalchemy/pool/base.py", line 390, in _create_connection
+    return _ConnectionRecord(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/sqlalchemy/pool/base.py", line 674, in __init__
+    self.__connect()
+  File "/usr/local/lib/python3.12/dist-packages/sqlalchemy/pool/base.py", line 900, in __connect
+    with util.safe_reraise():
+  File "/usr/local/lib/python3.12/dist-packages/sqlalchemy/util/langhelpers.py", line 146, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "/usr/local/lib/python3.12/dist-packages/sqlalchemy/pool/base.py", line 896, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/sqlalchemy/engine/create.py", line 643, in connect
+    return dialect.connect(*cargs, **cparams)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/sqlalchemy/engine/default.py", line 621, in connect
+    return self.loaded_dbapi.connect(*cargs, **cparams)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/pymysql/connections.py", line 361, in __init__
+    self.connect()
+  File "/usr/local/lib/python3.12/dist-packages/pymysql/connections.py", line 716, in connect
+    raise exc
+pymysql.err.OperationalError: (2003, "Can't connect to MySQL server on 'db' ([Errno -2] Name or service not known)")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/app/app/db_init.py", line 26, in check_schema_or_raise
+    with engine.connect() as conn:
+         ^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/sqlalchemy/engine/base.py", line 3278, in connect
+    return self._connection_cls(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/sqlalchemy/engine/base.py", line 148, in __init__
+    Connection._handle_dbapi_exception_noconnection(
+  File "/usr/local/lib/python3.12/dist-packages/sqlalchemy/engine/base.py", line 2442, in _handle_dbapi_exception_noconnection
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/usr/local/lib/python3.12/dist-packages/sqlalchemy/engine/base.py", line 146, in __init__
+    self._dbapi_connection = engine.raw_connection()
+                             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/sqlalchemy/engine/base.py", line 3302, in raw_connection
+    return self.pool.connect()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/sqlalchemy/pool/base.py", line 449, in connect
+    return _ConnectionFairy._checkout(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/sqlalchemy/pool/base.py", line 1263, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/sqlalchemy/pool/base.py", line 712, in checkout
+    rec = pool._do_get()
+          ^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/sqlalchemy/pool/impl.py", line 179, in _do_get
+    with util.safe_reraise():
+  File "/usr/local/lib/python3.12/dist-packages/sqlalchemy/util/langhelpers.py", line 146, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "/usr/local/lib/python3.12/dist-packages/sqlalchemy/pool/impl.py", line 177, in _do_get
+    return self._create_connection()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/sqlalchemy/pool/base.py", line 390, in _create_connection
+    return _ConnectionRecord(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/sqlalchemy/pool/base.py", line 674, in __init__
+    self.__connect()
+  File "/usr/local/lib/python3.12/dist-packages/sqlalchemy/pool/base.py", line 900, in __connect
+    with util.safe_reraise():
+  File "/usr/local/lib/python3.12/dist-packages/sqlalchemy/util/langhelpers.py", line 146, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "/usr/local/lib/python3.12/dist-packages/sqlalchemy/pool/base.py", line 896, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/sqlalchemy/engine/create.py", line 643, in connect
+    return dialect.connect(*cargs, **cparams)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/sqlalchemy/engine/default.py", line 621, in connect
+    return self.loaded_dbapi.connect(*cargs, **cparams)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/pymysql/connections.py", line 361, in __init__
+    self.connect()
+  File "/usr/local/lib/python3.12/dist-packages/pymysql/connections.py", line 716, in connect
+    raise exc
+sqlalchemy.exc.OperationalError: (pymysql.err.OperationalError) (2003, "Can't connect to MySQL server on 'db' ([Errno -2] Name or service not known)")
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2026-04-08 12:00:33,265 INFO kb_admin: DB connect target: host=db port=3306 db=smarttherm
+2026-04-08 12:00:33,266 ERROR kb_admin: DB schema check failed
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/dist-packages/pymysql/connections.py", line 649, in connect
+    sock = socket.create_connection(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/socket.py", line 852, in create_connection
+    raise exceptions[0]
+  File "/usr/lib/python3.12/socket.py", line 837, in create_connection
+    sock.connect(sa)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/dist-packages/sqlalchemy/engine/base.py", line 146, in __init__
+    self._dbapi_connection = engine.raw_connection()
+                             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/sqlalchemy/engine/base.py", line 3302, in raw_connection
+    return self.pool.connect()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/sqlalchemy/pool/base.py", line 449, in connect
+    return _ConnectionFairy._checkout(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/sqlalchemy/pool/base.py", line 1263, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/sqlalchemy/pool/base.py", line 712, in checkout
+    rec = pool._do_get()
+          ^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/sqlalchemy/pool/impl.py", line 179, in _do_get
+    with util.safe_reraise():
+  File "/usr/local/lib/python3.12/dist-packages/sqlalchemy/util/langhelpers.py", line 146, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "/usr/local/lib/python3.12/dist-packages/sqlalchemy/pool/impl.py", line 177, in _do_get
+    return self._create_connection()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/sqlalchemy/pool/base.py", line 390, in _create_connection
+    return _ConnectionRecord(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/sqlalchemy/pool/base.py", line 674, in __init__
+    self.__connect()
+  File "/usr/local/lib/python3.12/dist-packages/sqlalchemy/pool/base.py", line 900, in __connect
+    with util.safe_reraise():
+  File "/usr/local/lib/python3.12/dist-packages/sqlalchemy/util/langhelpers.py", line 146, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "/usr/local/lib/python3.12/dist-packages/sqlalchemy/pool/base.py", line 896, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/sqlalchemy/engine/create.py", line 643, in connect
+    return dialect.connect(*cargs, **cparams)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/sqlalchemy/engine/default.py", line 621, in connect
+    return self.loaded_dbapi.connect(*cargs, **cparams)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/pymysql/connections.py", line 361, in __init__
+    self.connect()
+  File "/usr/local/lib/python3.12/dist-packages/pymysql/connections.py", line 716, in connect
+    raise exc
+pymysql.err.OperationalError: (2003, "Can't connect to MySQL server on 'db' ([Errno 111] Connection refused)")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/app/app/db_init.py", line 26, in check_schema_or_raise
+    with engine.connect() as conn:
+         ^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/sqlalchemy/engine/base.py", line 3278, in connect
+    return self._connection_cls(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/sqlalchemy/engine/base.py", line 148, in __init__
+    Connection._handle_dbapi_exception_noconnection(
+  File "/usr/local/lib/python3.12/dist-packages/sqlalchemy/engine/base.py", line 2442, in _handle_dbapi_exception_noconnection
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/usr/local/lib/python3.12/dist-packages/sqlalchemy/engine/base.py", line 146, in __init__
+    self._dbapi_connection = engine.raw_connection()
+                             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/sqlalchemy/engine/base.py", line 3302, in raw_connection
+    return self.pool.connect()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/sqlalchemy/pool/base.py", line 449, in connect
+    return _ConnectionFairy._checkout(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/sqlalchemy/pool/base.py", line 1263, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/sqlalchemy/pool/base.py", line 712, in checkout
+    rec = pool._do_get()
+          ^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/sqlalchemy/pool/impl.py", line 179, in _do_get
+    with util.safe_reraise():
+  File "/usr/local/lib/python3.12/dist-packages/sqlalchemy/util/langhelpers.py", line 146, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "/usr/local/lib/python3.12/dist-packages/sqlalchemy/pool/impl.py", line 177, in _do_get
+    return self._create_connection()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/sqlalchemy/pool/base.py", line 390, in _create_connection
+    return _ConnectionRecord(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/sqlalchemy/pool/base.py", line 674, in __init__
+    self.__connect()
+  File "/usr/local/lib/python3.12/dist-packages/sqlalchemy/pool/base.py", line 900, in __connect
+    with util.safe_reraise():
+  File "/usr/local/lib/python3.12/dist-packages/sqlalchemy/util/langhelpers.py", line 146, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "/usr/local/lib/python3.12/dist-packages/sqlalchemy/pool/base.py", line 896, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/sqlalchemy/engine/create.py", line 643, in connect
+    return dialect.connect(*cargs, **cparams)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/sqlalchemy/engine/default.py", line 621, in connect
+    return self.loaded_dbapi.connect(*cargs, **cparams)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/pymysql/connections.py", line 361, in __init__
+    self.connect()
+  File "/usr/local/lib/python3.12/dist-packages/pymysql/connections.py", line 716, in connect
+    raise exc
+sqlalchemy.exc.OperationalError: (pymysql.err.OperationalError) (2003, "Can't connect to MySQL server on 'db' ([Errno 111] Connection refused)")
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2026-04-08 12:00:44,099 INFO kb_admin: DB connect target: host=db port=3306 db=smarttherm
+2026-04-08 12:00:44,102 INFO kb_admin: DB schema OK in 'smarttherm' (admins, questions, answers)
+2026-04-08 12:00:45,041 INFO kb_admin: LLM worker started
+2026-04-08 12:00:45,041 INFO kb_admin: VPS proxy is configured for worker: socks5://91.184.253.218:1080
+2026-04-08 12:00:45,041 INFO kb_admin: DB connect target: host=db port=3306 db=smarttherm
+2026-04-08 12:00:45,044 INFO kb_admin: DB schema OK in 'smarttherm' (admins, questions, answers)
