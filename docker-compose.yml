@@ -244,6 +244,24 @@ services:
       - webkb
     command: ["bash", "-lc", "python -m bot.main"]
 
+  webchat:
+    build:
+      context: ./webchat
+      dockerfile: Dockerfile
+    container_name: smarttherm-webchat
+    restart: unless-stopped
+    environment:
+      WEBKB_INTERNAL_BASE_URL: "http://webkb:8052"
+      ROOT_PATH: "${ROOT_PATH}"
+      TURNSTILE_SECRET: "${TURNSTILE_SECRET}"
+      TURNSTILE_SITE_KEY: "${TURNSTILE_SITE_KEY}"
+      WEBCHAT_RATE_LIMIT: "${WEBCHAT_RATE_LIMIT:-5}"
+      WEBCHAT_RATE_WINDOW: "${WEBCHAT_RATE_WINDOW:-60}"
+    ports:
+      - "0.0.0.0:18090:8090"
+    depends_on:
+      - webkb
+
   db_backup:
     image: mariadb:11.8
     container_name: smarttherm-db-backup

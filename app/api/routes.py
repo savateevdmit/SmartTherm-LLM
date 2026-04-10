@@ -2,7 +2,7 @@ import uuid
 from fastapi import APIRouter
 from pydantic import BaseModel
 
-from app.infrastructure.redis_queue import enqueue, wait_result
+from app.infrastructure.redis_queue import enqueue, wait_result, queue_length
 
 router = APIRouter(prefix="/api")
 
@@ -11,10 +11,14 @@ class AskRequest(BaseModel):
     user_id: int
     username: str
     text: str
+    source: str = "telegram"
+    tg_username: str = ""
 
 
 class AskResponse(BaseModel):
     task_id: str
+    queue_position: int = 1
+    eta_seconds: int = 30
 
 
 class ResultResponse(BaseModel):
@@ -34,9 +38,13 @@ def ask(req: AskRequest):
             "task_id": task_id,
             "user": {"id": req.user_id, "username": req.username},
             "text": req.text,
+            "source": req.source or "telegram",
+            "tg_username": (req.tg_username or "").strip(),
         }
     )
-    return AskResponse(task_id=task_id)
+    qlen = queue_length()
+    position = max(qlen, 1)
+    return AskResponse(task_id=task_id, queue_position=position, eta_seconds=position * 30)
 
 
 @router.get("/result/{task_id}", response_model=ResultResponse)

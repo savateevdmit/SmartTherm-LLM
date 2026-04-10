@@ -16,7 +16,15 @@ def _vps_proxy() -> str:
     return (os.getenv("VPS_PROXY", "") or "").strip()
 
 
-def _format_log(username: str, question: str, answer: str, min_dist: float, answer_ids: list[int]) -> str:
+def _format_log(
+    username: str,
+    question: str,
+    answer: str,
+    min_dist: float,
+    answer_ids: list[int],
+    source: str = "telegram",
+    tg_username: str = "",
+) -> str:
     q = (question or "").strip()
     a = (answer or "").strip()
 
@@ -27,8 +35,19 @@ def _format_log(username: str, question: str, answer: str, min_dist: float, answ
 
     ids_str = ", ".join(map(str, answer_ids)) if answer_ids else "—"
 
+    if source == "web":
+        source_label = "Сайт"
+        if tg_username:
+            user_label = f"@{tg_username} (через сайт)"
+        else:
+            user_label = f"{username} (через сайт)"
+    else:
+        source_label = "Telegram"
+        user_label = f"@{username}"
+
     return (
-        f"<b>Пользователь:</b> @{username}\n"
+        f"<b>Источник:</b> {source_label}\n"
+        f"<b>Пользователь:</b> {user_label}\n"
         f"<b>Вопрос:</b>\n{q}\n\n"
         f"<b>Ответ:</b>\n{a}\n\n"
         f"<b>Номера ответов из БД:</b> {ids_str}\n"
@@ -58,6 +77,8 @@ async def main():
         user = task.get("user") or {}
         username = user.get("username") or "unknown"
         text = task.get("text") or ""
+        source = task.get("source") or "telegram"
+        tg_username = task.get("tg_username") or ""
 
         try:
             db = SessionLocal()
@@ -80,7 +101,10 @@ async def main():
 
             answer_ids = [h.answer_id for h in (result.rag_hits or [])]
             await send_log_message(
-                _format_log(username, text, result.answer_text, result.min_dist, answer_ids),
+                _format_log(
+                    username, text, result.answer_text, result.min_dist, answer_ids,
+                    source=source, tg_username=tg_username,
+                ),
                 media_ids=result.media_ids,
             )
             log.info("Task done task_id=%s user=%s", task_id, username)
