@@ -1,4 +1,6 @@
 import os
+import logging
+
 from fastapi import FastAPI
 from fastapi.responses import Response
 from fastapi.staticfiles import StaticFiles
@@ -9,10 +11,34 @@ from app.api.routes import router as api_router
 from app.middleware import SecurityHeadersMiddleware, AppErrorMiddleware
 from app.infrastructure.logging_setup import setup_logging
 from app.media_storage_s3 import get_media_bytes, ensure_bucket_exists
-from app.db_init import check_schema_or_raise
 
 setup_logging()
+
+log = logging.getLogger("kb_admin")
+
+log.info("[startup] Initializing database...")
+from app.db import init_db
+init_db()
+
+log.info("[startup] Checking DB schema...")
+from app.db_init import check_schema_or_raise
 check_schema_or_raise()
+
+log.info("[startup] Checking Redis...")
+from app.infrastructure.redis_queue import ping_redis
+if ping_redis():
+    log.info("[startup] Redis OK.")
+else:
+    log.warning("[startup] Redis unavailable — queue features may not work.")
+
+log.info("[startup] Loading embedding model...")
+try:
+    from app.embeddings import load_model_on_startup
+    load_model_on_startup()
+except Exception as e:
+    log.error("[startup] Embedding model preload failed: %s — will load lazily.", e)
+
+log.info("[startup] Initialization complete.")
 
 
 def _storage_mode() -> str:

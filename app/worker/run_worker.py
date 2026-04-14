@@ -5,9 +5,7 @@ import logging
 from app.infrastructure.logging_setup import setup_logging
 from app.infrastructure.redis_queue import dequeue, set_result
 from app.infrastructure.telegram_logger import send_log_message
-from app.db import SessionLocal
 from app.ai.answer_service import AnswerService
-from app.db_init import check_schema_or_raise
 
 log = logging.getLogger("kb_admin")
 
@@ -37,10 +35,7 @@ def _format_log(
 
     if source == "web":
         source_label = "Сайт"
-        if tg_username:
-            user_label = f"@{tg_username} (через сайт)"
-        else:
-            user_label = f"{username} (через сайт)"
+        user_label = f"@{tg_username} (через сайт)" if tg_username else f"{username} (через сайт)"
     else:
         source_label = "Telegram"
         user_label = f"@{username}"
@@ -65,7 +60,21 @@ async def main():
     else:
         log.info("VPS proxy is not configured for worker (VPS_PROXY is empty)")
 
+    from app.db import init_db
+    init_db()
+
+    from app.db_init import check_schema_or_raise
     check_schema_or_raise()
+
+    log.info("Loading embedding model...")
+    try:
+        from app.embeddings import load_model_on_startup
+        load_model_on_startup()
+    except Exception as e:
+        log.error("Embedding model preload failed: %s — will load lazily.", e)
+
+    log.info("Worker ready, waiting for tasks...")
+    from app.db import SessionLocal
 
     while True:
         task = dequeue(block_seconds=5)

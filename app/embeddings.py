@@ -19,10 +19,11 @@ def _ensure_hf_login():
     login(token=settings.hf_token)
 
 
-def _load_model():
+def load_model_on_startup():
     global _model
     if _model is not None:
-        return _model
+        log.info("Embedding model already loaded, skipping.")
+        return
 
     _ensure_hf_login()
 
@@ -40,6 +41,19 @@ def _load_model():
         device=settings.embed_device,
         truncate_dim=settings.embed_truncate_dim,
     )
+
+    try:
+        _model.encode(["warmup"], batch_size=1, show_progress_bar=False)
+        log.info("Embedding model loaded and warmed up on device=%s", settings.embed_device)
+    except Exception as e:
+        log.warning("Embedding model warmup failed (non-fatal): %s", e)
+
+
+def _get_model():
+    global _model
+    if _model is None:
+        log.warning("Embedding model not preloaded — loading lazily (may be slow).")
+        load_model_on_startup()
     return _model
 
 
@@ -52,7 +66,7 @@ def encode_question_embedding(text: str) -> Optional[List[float]]:
     if not text:
         return None
 
-    model = _load_model()
+    model = _get_model()
 
     emb = model.encode(
         [text],

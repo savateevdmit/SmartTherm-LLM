@@ -2,7 +2,6 @@ import logging
 from sqlalchemy import text as sql_text
 from sqlalchemy.exc import SQLAlchemyError
 
-from app.db import engine
 from app.config import settings
 
 log = logging.getLogger("kb_admin")
@@ -11,6 +10,13 @@ REQUIRED_TABLES = ("admins", "questions", "answers")
 
 
 def check_schema_or_raise() -> None:
+    from app.db import engine
+
+    if engine is None:
+        raise RuntimeError(
+            "DB engine not initialized. Call init_db() before check_schema_or_raise()."
+        )
+
     try:
         log.info(
             "DB connect target: host=%s port=%s db=%s",
@@ -27,13 +33,11 @@ def check_schema_or_raise() -> None:
             conn.execute(sql_text("SELECT 1"))
 
             rows = conn.execute(
-                sql_text(
-                    """
+                sql_text("""
                     SELECT table_name
                     FROM information_schema.tables
                     WHERE table_schema = :db
-                    """
-                ),
+                """),
                 {"db": db_name},
             ).fetchall()
 
