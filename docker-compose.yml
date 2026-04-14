@@ -169,7 +169,7 @@ services:
     volumes:
       - ./data:/app/data
     ports:
-      - "0.0.0.0:18052:8052"
+      - "127.0.0.1:18052:8052"
     depends_on:
       - redis
       - db
@@ -258,7 +258,7 @@ services:
       WEBCHAT_RATE_LIMIT: "${WEBCHAT_RATE_LIMIT:-5}"
       WEBCHAT_RATE_WINDOW: "${WEBCHAT_RATE_WINDOW:-60}"
     ports:
-      - "0.0.0.0:18090:8090"
+      - "127.0.0.1:18090:8090"
     depends_on:
       - webkb
 

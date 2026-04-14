@@ -167,7 +167,7 @@
     }
 
     try {
-      const resp = await fetch("/chat/ask", {
+      const resp = await fetch("chat/ask", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -238,7 +238,7 @@
       }
 
       try {
-        const resp = await fetch("/chat/poll", {
+        const resp = await fetch("chat/poll", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ task_id: taskId }),
@@ -265,7 +265,7 @@
           grid.className = "media-grid";
           data.media_ids.forEach((mid) => {
             const img = document.createElement("img");
-            img.src = `/chat/media/${mid}`;
+            img.src = `chat/media/${mid}`;
             img.alt = `Изображение ${mid}`;
             img.loading = "lazy";
             img.addEventListener("click", () => openLightbox(img.src));
