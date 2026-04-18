@@ -1,6 +1,19 @@
 {% extends "base.html" %}
 {% block title %}Запись #{{ q.id }} — SmartTherm — База знаний{% endblock %}
 {% block content %}
+<style>
+  .unverified-detail-card {
+    border-left: 4px solid #ffc107;
+    background: #fffdf5;
+  }
+  .badge-unverified-detail {
+    background: #fff3cd;
+    border: 1px solid #ffc107;
+    color: #664d03;
+    font-weight: 600;
+  }
+</style>
+
 <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
   <div class="btn-group" role="group" aria-label="Навигация по вопросам">
     <a class="btn btn-outline-secondary btn-sm {% if not prev_id %}disabled{% endif %}" href="{% if prev_id %}{{ url('/questions/' ~ prev_id) }}{% else %}#{% endif %}">
@@ -14,11 +27,20 @@
   <a class="btn btn-outline-secondary btn-sm" href="{{ url('/questions') }}?from={{ q.id }}">Ко всем вопросам</a>
 </div>
 
-<div class="card p-4 mb-3">
+<div class="card p-4 mb-3 {% if not q.is_verified %}unverified-detail-card{% endif %}">
   <div class="d-flex justify-content-between align-items-start gap-3 flex-wrap">
     <div>
       <div class="text-muted small">SmartTherm · ID #{{ q.id }}</div>
       <h1 class="h4 mb-2">{{ q.text }}</h1>
+
+      {% if not q.is_verified %}
+      <div class="d-flex gap-2 mb-2 flex-wrap">
+        {% if creator %}
+        <span class="badge badge-unverified-detail rounded-pill">{{ creator.username }}</span>
+        {% endif %}
+        <span class="badge badge-unverified-detail rounded-pill">Не проверено</span>
+      </div>
+      {% endif %}
 
       {% if q.tags %}
       <div class="d-flex flex-wrap gap-2">
@@ -29,15 +51,36 @@
       {% endif %}
     </div>
 
-    <div class="d-flex gap-2">
+    <div class="d-flex gap-2 flex-wrap">
+      {% if can_edit %}
       <a class="btn btn-outline-secondary btn-sm" href="{{ url('/questions/' ~ q.id ~ '/edit') }}">Редактировать</a>
+      {% endif %}
+      {% if can_delete %}
       <form method="post" action="{{ url('/questions/' ~ q.id ~ '/delete') }}" data-confirm="Удалить запись?" class="m-0">
         <input type="hidden" name="csrf" value="{{ sess.csrf }}"/>
         <button class="btn btn-outline-danger btn-sm" type="submit">Удалить</button>
       </form>
+      {% endif %}
     </div>
   </div>
 </div>
+
+{% if not q.is_verified and q.review_status == 'pending' and (sess.role == 'admin' or sess.role == 'operator') %}
+<div class="card p-4 mb-3 border-warning">
+  <h2 class="h5 mb-3">Проверка записи</h2>
+  <p class="text-muted small mb-3">Эта запись создана волонтёром и ожидает проверки. Примите или отклоните запись.</p>
+  <div class="d-flex gap-2">
+    <form method="post" action="{{ url('/questions/' ~ q.id ~ '/accept') }}" class="m-0">
+      <input type="hidden" name="csrf" value="{{ sess.csrf }}"/>
+      <button class="btn btn-success btn-sm" type="submit">Принять</button>
+    </form>
+    <form method="post" action="{{ url('/questions/' ~ q.id ~ '/reject') }}" data-confirm="Отклонить запись? Она будет удалена." class="m-0">
+      <input type="hidden" name="csrf" value="{{ sess.csrf }}"/>
+      <button class="btn btn-danger btn-sm" type="submit">Отклонить</button>
+    </form>
+  </div>
+</div>
+{% endif %}
 
 <div class="card p-4">
   <h2 class="h5 mb-3">Ответ</h2>

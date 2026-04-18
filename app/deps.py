@@ -1,4 +1,4 @@
-from typing import Optional, Dict, Any
+from typing import Optional, Dict, Any, Union, Sequence
 from fastapi import Request
 from fastapi.responses import RedirectResponse
 from sqlalchemy.orm import Session
@@ -36,9 +36,13 @@ def require_login(request: Request) -> Dict[str, Any]:
     return sess
 
 
-def require_role(request: Request, role: str) -> Dict[str, Any]:
+def require_role(request: Request, role: Union[str, Sequence[str]]) -> Dict[str, Any]:
     sess = require_login(request)
-    if sess.get("role") != role:
+    if isinstance(role, str):
+        allowed = {role}
+    else:
+        allowed = set(role)
+    if sess.get("role") not in allowed:
         raise Forbidden()
     return sess
 
@@ -53,6 +57,14 @@ def get_current_admin(db: Session, request: Request) -> Optional[Admin]:
 def require_csrf(sess: Dict[str, Any], form_csrf: str) -> None:
     if not form_csrf or form_csrf != sess.get("csrf"):
         raise BadRequest("Ошибка CSRF. Обновите страницу и попробуйте снова")
+
+
+def is_volunteer(sess: Dict[str, Any]) -> bool:
+    return sess.get("role") == "volunteer"
+
+
+def is_admin_or_operator(sess: Dict[str, Any]) -> bool:
+    return sess.get("role") in ("admin", "operator")
 
 
 class NotAuthenticated(Exception):

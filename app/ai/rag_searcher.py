@@ -61,6 +61,7 @@ class RagSearcher:
               a.visual_path AS visual_path
             FROM questions q
             JOIN answers a ON a.question_id = q.id
+            WHERE q.is_verified = 1
             ORDER BY dist ASC
             LIMIT :top_k
             """

@@ -12,7 +12,7 @@ from sqlalchemy import text as sql_text
 
 from app.db import get_db
 from app.models import Answer
-from app.deps import require_login, require_csrf
+from app.deps import require_login, require_csrf, is_volunteer
 from app.validators import validate_question_text, validate_answer_text, parse_tags
 from app.embeddings import encode_question_embedding
 from app.media import save_images, delete_media_files
@@ -67,10 +67,8 @@ def result(task_id: str):
     res = wait_result(task_id, timeout_seconds=1)
     if not res:
         return ResultResponse(status="pending")
-
     if res.get("error"):
         return ResultResponse(status="done", error=res.get("error"))
-
     return ResultResponse(
         status="done",
         answer_text=res.get("answer_text"),
@@ -98,20 +96,27 @@ async def _embed_with_timeout(text: str, seconds: int = 60):
         return await anyio.to_thread.run_sync(encode_question_embedding, text)
 
 
-def _insert_question(db: Session, text_val: str, tags_val, emb) -> int:
+def _insert_question(db: Session, text_val: str, tags_val, emb,
+                     is_verified: bool = True, created_by_id=None, review_status=None) -> int:
     emb_json = _emb_to_json(emb)
     if emb_json is None:
         db.execute(
-            sql_text("INSERT INTO questions (text, tags) VALUES (:text, :tags)"),
-            {"text": text_val, "tags": tags_val},
+            sql_text(
+                "INSERT INTO questions (text, tags, is_verified, created_by_id, review_status) "
+                "VALUES (:text, :tags, :is_verified, :created_by_id, :review_status)"
+            ),
+            {"text": text_val, "tags": tags_val, "is_verified": int(is_verified),
+             "created_by_id": created_by_id, "review_status": review_status},
         )
     else:
         db.execute(
             sql_text(
-                "INSERT INTO questions (text, embedding, tags) "
-                "VALUES (:text, VEC_FromText(:emb_json), :tags)"
+                "INSERT INTO questions (text, embedding, tags, is_verified, created_by_id, review_status) "
+                "VALUES (:text, VEC_FromText(:emb_json), :tags, :is_verified, :created_by_id, :review_status)"
             ),
-            {"text": text_val, "emb_json": emb_json, "tags": tags_val},
+            {"text": text_val, "emb_json": emb_json, "tags": tags_val,
+             "is_verified": int(is_verified), "created_by_id": created_by_id,
+             "review_status": review_status},
         )
     return int(db.execute(sql_text("SELECT LAST_INSERT_ID()")).scalar_one())
 
@@ -126,7 +131,6 @@ async def api_question_create(
     files: Union[UploadFile, List[UploadFile], None] = File(default=None),
     db: Session = Depends(get_db),
 ):
-
     try:
         sess = require_login(request)
         require_csrf(sess, csrf)
@@ -148,6 +152,8 @@ async def api_question_create(
         except ValueError as e:
             return JSONResponse({"ok": False, "error": str(e)}, status_code=400)
 
+    volunteer = is_volunteer(sess)
+
     try:
         emb = await _embed_with_timeout(text, seconds=60)
     except TimeoutError:
@@ -159,7 +165,12 @@ async def api_question_create(
         return JSONResponse({"ok": False, "error": f"Ошибка embedding: {type(e).__name__}: {e}"}, status_code=500)
 
     try:
-        qid = _insert_question(db, text, tags_csv or None, emb)
+        qid = _insert_question(
+            db, text, tags_csv or None, emb,
+            is_verified=not volunteer,
+            created_by_id=sess.get("admin_id"),
+            review_status="pending" if volunteer else None,
+        )
         db.add(Answer(question_id=qid, text=answer_text, visual_path=media_ids or None))
         db.commit()
     except Exception:

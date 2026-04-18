@@ -18,7 +18,7 @@
       --st-primary-600: #1d4ed8;
     }
     body { background: var(--st-bg); color: var(--st-text); }
-    .navbar { background: rgba(255,255,255,.8); backdrop-filter: blur(10px); border-bottom: 1px solid var(--st-border); }
+    .navbar { background: rgba(255,255,255,.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--st-border); }
     .brand-dot { width: 10px; height: 10px; border-radius: 999px; background: var(--st-primary); display:inline-block; margin-right:8px; box-shadow: 0 0 0 4px rgba(37,99,235,.12); }
     .card { background: var(--st-card); border: 1px solid var(--st-border); border-radius: 16px; box-shadow: 0 10px 30px rgba(2, 6, 23, 0.06); }
     .text-muted { color: var(--st-muted)!important; }
@@ -31,18 +31,218 @@
     .page-link { border-radius: 12px; }
     .table thead th { color: var(--st-muted); font-weight: 600; }
 
-    /* new style for top "All questions" button */
-    .btn-all-questions {
-      border-radius: 999px;
-      border: 1px solid rgba(15, 23, 42, 0.18);
+    .user-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
       background: rgba(15, 23, 42, 0.04);
-      color: rgba(15, 23, 42, 0.92);
+      border: 1px solid rgba(15, 23, 42, 0.10);
+      border-radius: 999px;
+      padding: 4px 14px 4px 10px;
+      font-size: .82rem;
+      font-weight: 600;
+      color: var(--st-text);
+      white-space: nowrap;
+    }
+    .user-pill .role-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .role-dot-admin { background: #7c3aed; box-shadow: 0 0 0 3px rgba(124,58,237,.18); }
+    .role-dot-operator { background: #0ea5e9; box-shadow: 0 0 0 3px rgba(14,165,233,.18); }
+    .role-dot-volunteer { background: #22c55e; box-shadow: 0 0 0 3px rgba(34,197,94,.18); }
+
+    .role-label {
+      font-size: .72rem;
+      font-weight: 500;
+      color: var(--st-muted);
+    }
+
+    .nav-btn {
+      border-radius: 999px;
+      border: 1px solid rgba(15, 23, 42, 0.14);
+      background: transparent;
+      color: rgba(15, 23, 42, 0.82);
+      font-weight: 500;
+      font-size: .82rem;
+      padding: 5px 14px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: background .15s, border-color .15s;
+      white-space: nowrap;
+    }
+    .nav-btn:hover {
+      background: rgba(15, 23, 42, 0.06);
+      border-color: rgba(15, 23, 42, 0.22);
+      color: rgba(15, 23, 42, 1);
+    }
+    .nav-btn-logout {
+      color: #b91c1c;
+      border-color: rgba(185, 28, 28, 0.18);
+    }
+    .nav-btn-logout:hover {
+      background: rgba(185, 28, 28, 0.06);
+      border-color: rgba(185, 28, 28, 0.30);
+      color: #991b1b;
+    }
+
+    .review-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 18px;
+      height: 18px;
+      border-radius: 999px;
+      background: #dc3545;
+      color: #fff;
+      font-size: .68rem;
+      font-weight: 700;
+      padding: 0 5px;
+      line-height: 1;
+    }
+
+    .st-floating-notif {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 1080;
+      max-width: 360px;
+      border-radius: 14px;
+      box-shadow: 0 8px 32px rgba(0,0,0,.18);
+      padding: 14px 18px;
+      cursor: pointer;
+      transition: opacity .3s ease, transform .3s ease;
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .st-floating-notif.st-hidden {
+      opacity: 0;
+      transform: translateY(20px);
+      pointer-events: none;
+    }
+    .st-floating-notif-admin {
+      background: #fff3cd;
+      border: 1px solid #ffc107;
+      color: #664d03;
+    }
+    .st-floating-notif-volunteer {
+      background: #d1e7dd;
+      border: 1px solid #198754;
+      color: #0f5132;
+    }
+    .st-floating-notif-rejected {
+      background: #f8d7da;
+      border: 1px solid #dc3545;
+      color: #842029;
+    }
+    .st-notif-close {
+      background: none;
+      border: none;
+      font-size: 1.1rem;
+      line-height: 1;
+      opacity: .5;
+      cursor: pointer;
+      padding: 0 4px;
+      float: right;
+    }
+    .st-notif-close:hover { opacity: 1; }
+
+    .review-modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.35);
+      z-index: 1050;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity .2s ease;
+      pointer-events: none;
+    }
+    .review-modal-backdrop.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+    .review-modal {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 16px 48px rgba(0,0,0,.18);
+      width: 90%;
+      max-width: 680px;
+      max-height: 80vh;
+      display: flex;
+      flex-direction: column;
+      transform: translateY(20px) scale(.97);
+      transition: transform .2s ease;
+    }
+    .review-modal-backdrop.active .review-modal {
+      transform: translateY(0) scale(1);
+    }
+    .review-modal-header {
+      padding: 18px 22px;
+      border-bottom: 1px solid var(--st-border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .review-modal-header h3 {
+      margin: 0;
+      font-size: 1.05rem;
       font-weight: 600;
     }
-    .btn-all-questions:hover {
-      background: rgba(15, 23, 42, 0.08);
-      border-color: rgba(15, 23, 42, 0.24);
-      color: rgba(15, 23, 42, 1);
+    .review-modal-body {
+      padding: 16px 22px;
+      overflow-y: auto;
+      flex: 1;
+    }
+    .review-modal-close {
+      background: none;
+      border: none;
+      font-size: 1.3rem;
+      opacity: .5;
+      cursor: pointer;
+      padding: 0 4px;
+    }
+    .review-modal-close:hover { opacity: 1; }
+    .review-item {
+      border: 1px solid rgba(255,193,7,.4);
+      border-left: 4px solid #ffc107;
+      border-radius: 10px;
+      padding: 12px 14px;
+      margin-bottom: 10px;
+      background: #fffdf5;
+    }
+    .review-item:last-child { margin-bottom: 0; }
+    .review-item-title {
+      font-weight: 600;
+      font-size: .9rem;
+      margin-bottom: 4px;
+    }
+    .review-item-title a {
+      color: var(--st-text);
+      text-decoration: none;
+    }
+    .review-item-title a:hover {
+      color: var(--st-primary);
+    }
+    .review-item-meta {
+      font-size: .76rem;
+      color: var(--st-muted);
+    }
+    .review-item-answer {
+      font-size: .8rem;
+      color: #555;
+      margin-top: 4px;
+    }
+    .review-empty {
+      text-align: center;
+      color: var(--st-muted);
+      padding: 32px 16px;
+      font-size: .9rem;
     }
   </style>
 </head>
@@ -56,18 +256,29 @@
 
     {% if sess %}
     <div class="d-flex gap-2 align-items-center flex-wrap justify-content-end">
-      <span class="text-muted small">Пользователь: <strong>{{ sess.username }}</strong> ({{ 'Администратор' if sess.role=='admin' else 'Оператор' }})</span>
+      <span class="user-pill">
+        <span class="role-dot role-dot-{{ sess.role }}"></span>
+        {{ sess.username }}
+        <span class="role-label">{% if sess.role == 'admin' %}Администратор{% elif sess.role == 'operator' %}Оператор{% else %}Волонтёр{% endif %}</span>
+      </span>
 
-      <a class="btn btn-all-questions btn-sm" href="{{ url('/questions') }}">Все вопросы</a>
+      <a class="nav-btn" href="{{ url('/questions') }}">Все записи</a>
 
-      <a class="btn btn-outline-primary btn-sm" href="{{ url('/me/password') }}">Изменить пароль</a>
+      {% if sess.role in ('admin', 'operator') %}
+      <button class="nav-btn" type="button" id="btn-review-open">
+        На проверке
+        <span class="review-badge" id="review-badge" style="display:none">0</span>
+      </button>
+      {% endif %}
+
+      <a class="nav-btn" href="{{ url('/me/password') }}">Пароль</a>
 
       {% if sess.role == 'admin' %}
-        <a class="btn btn-outline-secondary btn-sm" href="{{ url('/admins') }}">Пользователи</a>
+        <a class="nav-btn" href="{{ url('/admins') }}">Пользователи</a>
       {% endif %}
 
       <form method="post" action="{{ url('/logout') }}" class="m-0">
-        <button class="btn btn-outline-danger btn-sm" type="submit">Выйти</button>
+        <button class="nav-btn nav-btn-logout" type="submit">Выйти</button>
       </form>
     </div>
     {% endif %}
@@ -84,6 +295,22 @@
   {% block content %}{% endblock %}
 </main>
 
+<div id="floating-notifications"></div>
+
+{% if sess and sess.role in ('admin', 'operator') %}
+<div class="review-modal-backdrop" id="review-modal-backdrop">
+  <div class="review-modal">
+    <div class="review-modal-header">
+      <h3>Записи на проверке</h3>
+      <button class="review-modal-close" type="button" id="review-modal-close">&times;</button>
+    </div>
+    <div class="review-modal-body" id="review-modal-body">
+      <div class="review-empty">Загрузка...</div>
+    </div>
+  </div>
+</div>
+{% endif %}
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
   document.addEventListener("submit", (e) => {
@@ -93,5 +320,161 @@
     }
   });
 </script>
+
+{% if sess %}
+<script>
+(function() {
+  'use strict';
+  var role = {{ sess.role | tojson }};
+  var container = document.getElementById('floating-notifications');
+
+  if (role === 'admin' || role === 'operator') {
+    initReviewModal();
+    checkUnverified();
+    setInterval(checkUnverified, 30000);
+  }
+
+  if (role === 'volunteer') {
+    checkVolunteerNotifs();
+    setInterval(checkVolunteerNotifs, 15000);
+  }
+
+  function checkUnverified() {
+    fetch({{ url('/api/unverified-count') | tojson }}, {credentials: 'same-origin'})
+      .then(function(r) { return r.json(); })
+      .then(function(data) {
+        var badge = document.getElementById('review-badge');
+        if (!badge) return;
+        if (data.count > 0) {
+          badge.textContent = data.count;
+          badge.style.display = '';
+        } else {
+          badge.style.display = 'none';
+        }
+
+        var existing = document.getElementById('notif-unverified');
+        if (data.count > 0) {
+          if (!existing) {
+            var el = document.createElement('div');
+            el.id = 'notif-unverified';
+            el.className = 'st-floating-notif st-floating-notif-admin';
+            el.innerHTML = '<button class="st-notif-close" type="button">&times;</button>' +
+              '<div class="fw-semibold small">\uD83D\uDCCB Непроверенных записей: ' + data.count + '</div>' +
+              '<div class="small mt-1">Нажмите, чтобы открыть список</div>';
+            el.addEventListener('click', function(e) {
+              if (e.target.classList.contains('st-notif-close')) {
+                el.classList.add('st-hidden');
+                setTimeout(function() { el.remove(); }, 300);
+                return;
+              }
+              openReviewModal();
+            });
+            container.appendChild(el);
+          } else {
+            existing.querySelector('.fw-semibold').innerHTML = '\uD83D\uDCCB Непроверенных записей: ' + data.count;
+          }
+        } else {
+          if (existing) {
+            existing.classList.add('st-hidden');
+            setTimeout(function() { existing.remove(); }, 300);
+          }
+        }
+      })
+      .catch(function() {});
+  }
+
+  function initReviewModal() {
+    var backdrop = document.getElementById('review-modal-backdrop');
+    var btnOpen = document.getElementById('btn-review-open');
+    var btnClose = document.getElementById('review-modal-close');
+    if (!backdrop || !btnOpen) return;
+
+    btnOpen.addEventListener('click', function() { openReviewModal(); });
+    btnClose.addEventListener('click', function() { closeReviewModal(); });
+    backdrop.addEventListener('click', function(e) {
+      if (e.target === backdrop) closeReviewModal();
+    });
+  }
+
+  function openReviewModal() {
+    var backdrop = document.getElementById('review-modal-backdrop');
+    var body = document.getElementById('review-modal-body');
+    if (!backdrop) return;
+    backdrop.classList.add('active');
+    body.innerHTML = '<div class="review-empty">Загрузка...</div>';
+
+    fetch({{ url('/api/unverified-questions') | tojson }}, {credentials: 'same-origin'})
+      .then(function(r) { return r.json(); })
+      .then(function(data) {
+        var qs = data.questions || [];
+        if (qs.length === 0) {
+          body.innerHTML = '<div class="review-empty">Нет записей на проверке</div>';
+          return;
+        }
+        var html = '';
+        var baseUrl = {{ url('/questions/') | tojson }};
+        qs.forEach(function(q) {
+          html += '<div class="review-item">';
+          html += '<div class="review-item-title"><a href="' + baseUrl + q.id + '">' + escHtml(q.text) + '</a></div>';
+          html += '<div class="review-item-meta">';
+          if (q.creator) html += 'Автор: ' + escHtml(q.creator) + ' &middot; ';
+          html += q.created_at;
+          if (q.tags) html += ' &middot; ' + escHtml(q.tags);
+          html += '</div>';
+          if (q.answer_preview) html += '<div class="review-item-answer">' + escHtml(q.answer_preview) + '</div>';
+          html += '</div>';
+        });
+        body.innerHTML = html;
+      })
+      .catch(function() {
+        body.innerHTML = '<div class="review-empty">Ошибка загрузки</div>';
+      });
+  }
+
+  function closeReviewModal() {
+    var backdrop = document.getElementById('review-modal-backdrop');
+    if (backdrop) backdrop.classList.remove('active');
+  }
+
+  function checkVolunteerNotifs() {
+    fetch({{ url('/api/volunteer-notifications') | tojson }}, {credentials: 'same-origin'})
+      .then(function(r) { return r.json(); })
+      .then(function(data) {
+        var notifs = data.notifications || [];
+        notifs.forEach(function(n) {
+          var elId = 'notif-vol-' + n.id;
+          if (document.getElementById(elId)) return;
+          var el = document.createElement('div');
+          el.id = elId;
+          var cls = n.verdict === 'accepted' ? 'st-floating-notif-volunteer' : 'st-floating-notif-rejected';
+          el.className = 'st-floating-notif ' + cls;
+          var icon = n.verdict === 'accepted' ? '\u2705' : '\u274C';
+          el.innerHTML = '<button class="st-notif-close" type="button">&times;</button>' +
+            '<div class="fw-semibold small">' + icon + ' Запись: ' + escHtml(n.question_text.substring(0, 80)) + '</div>' +
+            '<div class="small mt-1">Вердикт: ' + escHtml(n.verdict_label) + '</div>';
+          el.addEventListener('click', function() {
+            el.classList.add('st-hidden');
+            setTimeout(function() { el.remove(); }, 300);
+            fetch({{ url('/api/volunteer-notifications/') | tojson }} + n.id + '/read', {
+              method: 'POST',
+              credentials: 'same-origin',
+            }).catch(function() {});
+          });
+          container.appendChild(el);
+          el.style.marginBottom = '8px';
+        });
+      })
+      .catch(function() {});
+  }
+
+  function escHtml(s) {
+    var d = document.createElement('div');
+    d.textContent = s;
+    return d.innerHTML;
+  }
+})();
+</script>
+{% endif %}
+
 </body>
 </html>

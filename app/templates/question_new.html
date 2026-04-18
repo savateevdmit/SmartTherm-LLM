@@ -165,6 +165,7 @@
 
   const ACTION_URL = {{ url('/api/questions/create') | tojson }};
   const BASE_URL   = {{ url('/questions') | tojson }};
+  const IS_VOLUNTEER = {{ (sess.role == 'volunteer') | tojson }};
 
   function esc(s) {
     return String(s)
@@ -179,8 +180,8 @@
     el.className = 'st-toast st-pending st-entering';
     el.innerHTML = `
       <div class="st-toast-header">
-        <span class="st-icon">⏳</span>
-        <span class="st-toast-title">Сохранение вопроса…</span>
+        <span class="st-icon">&#x23F3;</span>
+        <span class="st-toast-title">Сохранение записи...</span>
         <button class="st-toast-close" title="Закрыть" type="button">&#x2715;</button>
       </div>
       <div class="st-toast-body">${esc(label)}</div>
@@ -199,8 +200,8 @@
     el.classList.remove('st-pending');
     el.classList.add(ok ? 'st-success' : 'st-error');
 
-    el.querySelector('.st-icon').textContent        = ok ? '✅' : '❌';
-    el.querySelector('.st-toast-title').textContent = ok ? 'Вопрос добавлен' : 'Ошибка';
+    el.querySelector('.st-icon').textContent = ok ? '\u2705' : '\u274C';
+    el.querySelector('.st-toast-title').textContent = ok ? (IS_VOLUNTEER ? 'Запись отправлена на проверку' : 'Запись добавлена') : 'Ошибка';
 
     const body = el.querySelector('.st-toast-body');
     if (ok && questionId) {
@@ -231,13 +232,13 @@
     }
 
     const rawText = (document.getElementById('field-text').value || '').trim();
-    const label   = rawText.length > 65 ? rawText.slice(0, 65) + '…' : rawText;
+    const label   = rawText.length > 65 ? rawText.slice(0, 65) + '...' : rawText;
 
     const toastEl = addToast(label);
 
     submitBtn.disabled = true;
     const origText = submitBtn.textContent;
-    submitBtn.textContent = 'Сохранение…';
+    submitBtn.textContent = 'Сохранение...';
 
     const fd = new FormData(form);
 

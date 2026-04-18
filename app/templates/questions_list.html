@@ -12,7 +12,6 @@
 
 <div class="card p-3 mb-3">
   <form method="get" action="{{ url('/questions') }}" class="row g-2 align-items-end">
-    {# ВАЖНО: from не передаём в форму, чтобы он не “лип” дальше #}
     <div class="col-12 col-md-8">
       <label class="form-label">Поиск (вопрос/ответ/теги)</label>
       <input name="q" class="form-control" value="{{ query or '' }}" maxlength="200" placeholder="например: wifi, датчик, ошибка..."/>
@@ -40,24 +39,45 @@
     outline: 3px solid rgba(37,99,235,.25);
     box-shadow: 0 12px 34px rgba(37,99,235,.12);
   }
+  .unverified-card {
+    border-left: 4px solid #ffc107;
+    background: #fffdf5;
+  }
+  .badge-unverified {
+    background: #fff3cd;
+    border: 1px solid #ffc107;
+    color: #664d03;
+    font-weight: 600;
+  }
 </style>
 
 <div class="row g-3" id="questionsList">
   {% for it in items %}
   {% set q = it.q %}
   {% set a = it.a %}
+  {% set creator = it.creator %}
   <div class="col-12">
-    <div class="card p-3" id="q-{{ q.id }}" data-qid="{{ q.id }}">
+    <div class="card p-3 {% if not q.is_verified %}unverified-card{% endif %}" id="q-{{ q.id }}" data-qid="{{ q.id }}">
       <div class="d-flex justify-content-between gap-3 flex-wrap">
         <div class="flex-grow-1">
           <div class="w-100">
-            <a class="h5 m-0 text-decoration-none link-dark d-block" href="{{ url('/questions/' ~ q.id) }}">
-              {{ q.text }}
-            </a>
+            <div class="d-flex align-items-center gap-2 flex-wrap">
+              <a class="h5 m-0 text-decoration-none link-dark" href="{{ url('/questions/' ~ q.id) }}">
+                {{ q.text }}
+              </a>
+              {% if not q.is_verified %}
+              <div class="d-flex gap-1 align-items-center ms-auto flex-shrink-0">
+                {% if creator %}
+                <span class="badge badge-unverified rounded-pill">{{ creator.username }}</span>
+                {% endif %}
+                <span class="badge badge-unverified rounded-pill">Не проверено</span>
+              </div>
+              {% endif %}
+            </div>
 
             {% if a and a.text %}
               <div class="text-muted small mt-1">
-                {{ a.text[:220] }}{% if a.text|length > 220 %}…{% endif %}
+                {{ a.text[:220] }}{% if a.text|length > 220 %}...{% endif %}
               </div>
             {% else %}
               <div class="text-muted small mt-1">Ответ ещё не добавлен.</div>
@@ -73,12 +93,23 @@
           </div>
         </div>
 
-        <div class="d-flex gap-2 align-items-start">
+        <div class="d-flex gap-2 align-items-start flex-wrap flex-shrink-0">
+          {% if not q.is_verified and (sess.role == 'admin' or sess.role == 'operator') %}
+            <a class="btn btn-warning btn-sm" href="{{ url('/questions/' ~ q.id) }}">Проверить</a>
+          {% endif %}
+
+          {% set can_edit = (sess.role in ('admin', 'operator')) or (sess.role == 'volunteer' and q.created_by_id == sess.admin_id) %}
+          {% set can_delete = (sess.role in ('admin', 'operator')) or (sess.role == 'volunteer' and q.created_by_id == sess.admin_id) %}
+
+          {% if can_edit %}
           <a class="btn btn-outline-secondary btn-sm" href="{{ url('/questions/' ~ q.id ~ '/edit') }}">Редактировать</a>
+          {% endif %}
+          {% if can_delete %}
           <form method="post" action="{{ url('/questions/' ~ q.id ~ '/delete') }}" data-confirm="Удалить запись?" class="m-0">
             <input type="hidden" name="csrf" value="{{ sess.csrf }}"/>
             <button class="btn btn-outline-danger btn-sm" type="submit">Удалить</button>
           </form>
+          {% endif %}
         </div>
       </div>
 
@@ -106,7 +137,7 @@
     {% if start > 1 %}
       <li class="page-item"><a class="page-link" href="{{ url('/questions') }}?{{ qs }}&page=1">1</a></li>
       {% if start > 2 %}
-        <li class="page-item disabled"><span class="page-link">…</span></li>
+        <li class="page-item disabled"><span class="page-link">...</span></li>
       {% endif %}
     {% endif %}
 
@@ -118,7 +149,7 @@
 
     {% if end < pages %}
       {% if end < pages - 1 %}
-        <li class="page-item disabled"><span class="page-link">…</span></li>
+        <li class="page-item disabled"><span class="page-link">...</span></li>
       {% endif %}
       <li class="page-item"><a class="page-link" href="{{ url('/questions') }}?{{ qs }}&page={{ pages }}">{{ pages }}</a></li>
     {% endif %}
