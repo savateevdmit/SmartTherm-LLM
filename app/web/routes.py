@@ -817,3 +817,20 @@ def api_volunteer_notification_read(request: Request, notif_id: int, db: Session
         notif.is_read = True
         db.commit()
     return JSONResponse({"ok": True})
+
+
+@router.post("/questions/{question_id}/toggle-hide-llm")
+def question_toggle_hide_llm(
+    request: Request,
+    question_id: int,
+    csrf: str = Form(""),
+    db: Session = Depends(get_db),
+):
+    sess = require_role(request, ("admin", "operator"))
+    require_csrf(sess, csrf)
+    q_obj = db.get(Question, question_id)
+    if not q_obj:
+        return JSONResponse({"ok": False, "error": "Not found"}, status_code=404)
+    q_obj.is_hidden_from_llm = not q_obj.is_hidden_from_llm
+    db.commit()
+    return JSONResponse({"ok": True, "is_hidden_from_llm": q_obj.is_hidden_from_llm})

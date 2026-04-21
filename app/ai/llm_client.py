@@ -29,11 +29,13 @@ def chat_completion(system: str, user: str) -> str:
     seed = _get_int("LLM_SEED", 42)
     temperature = _get_float("LLM_TEMPERATURE", 0.0)
     top_p = _get_float("LLM_TOP_P", 1.0)
-    max_tokens = _get_int("LLM_MAX_TOKENS", 1536)
 
-    # retry knobs
+    max_tokens = _get_int("LLM_MAX_TOKENS", 4096)
+
     retries = _get_int("LLM_RETRIES", 5)
     backoff_base = _get_float("LLM_RETRY_BACKOFF_SEC", 1.0)
+
+    timeout = _get_int("LLM_TIMEOUT", 900)
 
     payload = {
         "model": "local-model",
@@ -51,7 +53,7 @@ def chat_completion(system: str, user: str) -> str:
     last_exc: Exception | None = None
     for attempt in range(1, retries + 1):
         try:
-            r = requests.post(url, json=payload, timeout=300)
+            r = requests.post(url, json=payload, timeout=timeout)
 
             if r.status_code in (429, 503, 502, 504):
                 raise requests.HTTPError(f"{r.status_code} from LLM server", response=r)

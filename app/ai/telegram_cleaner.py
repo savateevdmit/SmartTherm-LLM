@@ -5,6 +5,18 @@ ALLOWED_URLS = [
     "https://www.umkikit.ru/index.php?route=product/product&path=67&product_id=103",
     "https://github.com/Evgen2/SmartTherm",
     "https://t.me/smartTherm",
+    "https://smarttherm.ru/",
+    "https://docs.google.com/spreadsheets/d/1wyp0VITQYxK9X20dXWBdqLty_onRzYsPemu9IB54h44/edit?usp=drive_link",
+    "https://docs.google.com/spreadsheets/d/1wyp0VITQYxK9X20dXWBdqLty_onRzYsPemu9IB54hedit?usp=drive_link",
+    "https://www.tvp-electro.ru/sovmestimost-kotlov-s-zont",
+    "https://baxi.ru/upload/iblock/2d1/6by6l35affwd3hxwcb2een48dkvrdvwp/BAXI-Connect_-s-kotlami-BAXI.pdf",
+    "https://www.wch.cn/download/CH341SER_EXE.html",
+    "https://www.silabs.com/software-and-tools/usb-to-uart-bridge-vcp-drivers?tab=overview",
+    "https://wiki.wemos.cc/tutorials:get_started:install_ch9102_driver",
+    "https://avaksru.github.io/",
+    "https://espressif.github.io/esptool-js/",
+    "https://www.putty.org/",
+    "https://github.com/Evgen2/SmartThermClient/",
 ]
 
 

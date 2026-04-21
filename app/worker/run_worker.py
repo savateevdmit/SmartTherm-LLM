@@ -108,7 +108,8 @@ async def main():
                 ttl_seconds=900,
             )
 
-            answer_ids = [h.answer_id for h in (result.rag_hits or [])]
+            answer_ids = [h.question_id for h in (result.rag_hits or [])]
+
             await send_log_message(
                 _format_log(
                     username, text, result.answer_text, result.min_dist, answer_ids,

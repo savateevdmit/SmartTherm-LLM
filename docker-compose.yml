@@ -57,6 +57,11 @@ services:
       --n-gpu-layers ${LLM_N_GPU_LAYERS}
       --ctx-size ${LLM_N_CTX}
       --seed ${LLM_SEED}
+      --cache-type-k q8_0
+      --cache-type-v q4_0
+      --flash-attn on
+      --batch-size 4096
+      --ubatch-size 4096
     ports:
       - "127.0.0.1:18080:8080"
 
@@ -197,7 +202,7 @@ services:
 
       HF_TOKEN: "${HF_TOKEN}"
       EMBED_MODEL_ID: "${EMBED_MODEL_ID}"
-      EMBED_DEVICE: "cuda"
+      EMBED_DEVICE: "${EMBED_DEVICE}"
       EMBED_TRUNCATE_DIM: "${EMBED_TRUNCATE_DIM}"
 
       MEDIA_DIR: "${MEDIA_DIR}"

@@ -49,6 +49,40 @@
     color: #664d03;
     font-weight: 600;
   }
+  .hidden-llm-card {
+    background: #f1f3f5;
+    border-color: #dee2e6;
+  }
+  .hidden-llm-card .card-question-title {
+    color: #6c757d;
+  }
+  .hidden-llm-card .card-question-preview {
+    color: #adb5bd !important;
+  }
+  .card-question-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #212529;
+    text-decoration: none;
+  }
+  .card-question-title:hover {
+    text-decoration: underline;
+    color: #0d6efd;
+  }
+  .label-hidden-llm {
+    display: inline-block;
+    font-size: .65rem;
+    font-weight: 700;
+    padding: .2em .55em;
+    border-radius: 4px;
+    background: #ffe0e0;
+    color: #c0392b;
+    border: 1px solid #f5c6c6;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    line-height: 1.5;
+    white-space: nowrap;
+  }
 </style>
 
 <div class="row g-3" id="questionsList">
@@ -56,67 +90,76 @@
   {% set q = it.q %}
   {% set a = it.a %}
   {% set creator = it.creator %}
+  {% set can_edit = (sess.role in ('admin', 'operator')) or (sess.role == 'volunteer' and q.created_by_id == sess.admin_id) %}
+  {% set can_delete = (sess.role in ('admin', 'operator')) or (sess.role == 'volunteer' and q.created_by_id == sess.admin_id) %}
+
   <div class="col-12">
-    <div class="card p-3 {% if not q.is_verified %}unverified-card{% endif %}" id="q-{{ q.id }}" data-qid="{{ q.id }}">
-      <div class="d-flex justify-content-between gap-3 flex-wrap">
-        <div class="flex-grow-1">
-          <div class="w-100">
-            <div class="d-flex align-items-center gap-2 flex-wrap">
-              <a class="h5 m-0 text-decoration-none link-dark" href="{{ url('/questions/' ~ q.id) }}">
-                {{ q.text }}
-              </a>
-              {% if not q.is_verified %}
-              <div class="d-flex gap-1 align-items-center ms-auto flex-shrink-0">
-                {% if creator %}
-                <span class="badge badge-unverified rounded-pill">{{ creator.username }}</span>
-                {% endif %}
-                <span class="badge badge-unverified rounded-pill">Не проверено</span>
-              </div>
-              {% endif %}
-            </div>
+    <div class="card p-3 {% if q.is_hidden_from_llm %}hidden-llm-card{% elif not q.is_verified %}unverified-card{% endif %}" id="q-{{ q.id }}" data-qid="{{ q.id }}">
 
-            {% if a and a.text %}
-              <div class="text-muted small mt-1">
-                {{ a.text[:220] }}{% if a.text|length > 220 %}...{% endif %}
-              </div>
-            {% else %}
-              <div class="text-muted small mt-1">Ответ ещё не добавлен.</div>
-            {% endif %}
+      {# Бейджи "не проверено" #}
+      <div class="d-flex align-items-center gap-2 flex-wrap mb-1">
+        {% if not q.is_verified %}
+          {% if creator %}
+            <span class="badge badge-unverified rounded-pill">{{ creator.username }}</span>
+          {% endif %}
+          <span class="badge badge-unverified rounded-pill">Не проверено</span>
+        {% endif %}
+      </div>
 
-            {% if q.tags %}
-            <div class="d-flex flex-wrap gap-2 mt-2">
-              {% for t in q.tags.split(",") %}
-                <span class="badge badge-tag rounded-pill">{{ t }}</span>
-              {% endfor %}
-            </div>
-            {% endif %}
-          </div>
+      {# Заголовок + лейбл "скрыто от LLM" в одной строке #}
+      <div class="d-flex align-items-start gap-2">
+        <a class="card-question-title flex-grow-1" href="{{ url('/questions/' ~ q.id) }}">{{ q.text }}</a>
+        {% if q.is_hidden_from_llm %}
+          <span class="label-hidden-llm flex-shrink-0 mt-1">скрыто от LLM</span>
+        {% endif %}
+      </div>
+
+      {% if a and a.text %}
+        <div class="card-question-preview text-muted small mt-1">
+          {{ a.text[:220] }}{% if a.text|length > 220 %}...{% endif %}
+        </div>
+      {% else %}
+        <div class="text-muted small mt-1">Ответ ещё не добавлен.</div>
+      {% endif %}
+
+      {% if q.tags %}
+      <div class="d-flex flex-wrap gap-2 mt-2">
+        {% for t in q.tags.split(",") %}
+          <span class="badge badge-tag rounded-pill">{{ t }}</span>
+        {% endfor %}
+      </div>
+      {% endif %}
+
+      <div class="d-flex justify-content-between align-items-center mt-2 flex-wrap gap-2">
+        <div class="text-muted small">
+          №: {{ loop.index0 + (page - 1) * page_size + 1 }}
+          <span class="ms-2">ID: {{ q.id }}</span>
         </div>
 
-        <div class="d-flex gap-2 align-items-start flex-wrap flex-shrink-0">
+        <div class="d-flex align-items-center gap-2 flex-wrap">
           {% if not q.is_verified and (sess.role == 'admin' or sess.role == 'operator') %}
             <a class="btn btn-warning btn-sm" href="{{ url('/questions/' ~ q.id) }}">Проверить</a>
           {% endif %}
-
-          {% set can_edit = (sess.role in ('admin', 'operator')) or (sess.role == 'volunteer' and q.created_by_id == sess.admin_id) %}
-          {% set can_delete = (sess.role in ('admin', 'operator')) or (sess.role == 'volunteer' and q.created_by_id == sess.admin_id) %}
-
           {% if can_edit %}
-          <a class="btn btn-outline-secondary btn-sm" href="{{ url('/questions/' ~ q.id ~ '/edit') }}">Редактировать</a>
+            <a class="btn btn-outline-secondary btn-sm" href="{{ url('/questions/' ~ q.id ~ '/edit') }}">Редактировать</a>
           {% endif %}
           {% if can_delete %}
-          <form method="post" action="{{ url('/questions/' ~ q.id ~ '/delete') }}" data-confirm="Удалить запись?" class="m-0">
-            <input type="hidden" name="csrf" value="{{ sess.csrf }}"/>
-            <button class="btn btn-outline-danger btn-sm" type="submit">Удалить</button>
-          </form>
+            <form method="post" action="{{ url('/questions/' ~ q.id ~ '/delete') }}" data-confirm="Удалить запись?" class="m-0">
+              <input type="hidden" name="csrf" value="{{ sess.csrf }}"/>
+              <button class="btn btn-outline-danger btn-sm" type="submit">Удалить</button>
+            </form>
+          {% endif %}
+          {% if sess.role in ('admin', 'operator') %}
+            <button
+              class="btn btn-outline-secondary btn-sm toggle-hide-btn"
+              data-question-id="{{ q.id }}"
+              data-csrf="{{ sess.csrf }}">
+              {% if q.is_hidden_from_llm %}Показать LLM{% else %}Скрыть от LLM{% endif %}
+            </button>
           {% endif %}
         </div>
       </div>
 
-      <div class="text-muted small mt-2">
-        №: {{ loop.index0 + (page - 1) * page_size + 1 }}
-        <span class="ms-2">ID: {{ q.id }}</span>
-      </div>
     </div>
   </div>
   {% endfor %}
@@ -164,13 +207,28 @@
   (function() {
     const fromId = Number("{{ from_id or 0 }}");
     if (!fromId) return;
-
     const el = document.getElementById("q-" + fromId);
     if (!el) return;
-
     el.classList.add("focus-card");
     el.scrollIntoView({behavior: "smooth", block: "center"});
     setTimeout(() => el.classList.remove("focus-card"), 2200);
   })();
+
+  document.querySelectorAll(".toggle-hide-btn").forEach(btn => {
+    btn.addEventListener("click", async function () {
+      const qid = this.dataset.questionId;
+      const csrf = this.dataset.csrf;
+      const resp = await fetch("{{ url('/questions') }}/" + qid + "/toggle-hide-llm", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams({ csrf }).toString(),
+      });
+      if (resp.ok) {
+        window.location.reload();
+      } else {
+        alert("Ошибка при изменении статуса");
+      }
+    });
+  });
 </script>
 {% endblock %}

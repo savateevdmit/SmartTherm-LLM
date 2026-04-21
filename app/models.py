@@ -25,6 +25,7 @@ class Question(Base):
     created_at = Column(TIMESTAMP, server_default=func.current_timestamp(), nullable=False)
 
     is_verified = Column(Boolean, nullable=False, server_default=sql_text("1"))
+    is_hidden_from_llm = Column(Boolean, nullable=False, server_default=sql_text("0"))  # NEW
     created_by_id = Column(Integer, ForeignKey("admins.id", ondelete="SET NULL"), nullable=True)
     reviewed_by_id = Column(Integer, ForeignKey("admins.id", ondelete="SET NULL"), nullable=True)
     review_status = Column(Enum("pending", "accepted", "rejected"), nullable=True)

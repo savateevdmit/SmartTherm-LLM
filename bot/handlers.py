@@ -106,7 +106,7 @@ async def on_text(message: Message):
 
     qlen = queue_length()
     position = qlen + 1
-    eta_seconds = position * 30
+    eta_seconds = position * 60
 
     await message.answer(
         "Ваш вопрос принят, уже готовим для вас ответ.\n"
