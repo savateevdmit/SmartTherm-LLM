@@ -9,7 +9,7 @@ log = logging.getLogger("kb_admin")
 def _server_url() -> str:
     url = os.getenv("LLM_SERVER_URL", "").strip()
     if not url:
-        raise RuntimeError("LLM_SERVER_URL is not set (expected e.g. http://llama:8080)")
+        raise RuntimeError("LLM_SERVER_URL is not set (expected e.g. http://127.0.0.1:8080)")
     return url.rstrip("/")
 
 
@@ -24,17 +24,18 @@ def _get_float(name: str, default: float) -> float:
 
 
 def chat_completion(system: str, user: str) -> str:
+    from app.infrastructure.llm_loader import ensure_loaded, keep_alive
+
+    ensure_loaded()
+
     url = f"{_server_url()}/v1/chat/completions"
 
     seed = _get_int("LLM_SEED", 42)
     temperature = _get_float("LLM_TEMPERATURE", 0.0)
     top_p = _get_float("LLM_TOP_P", 1.0)
-
     max_tokens = _get_int("LLM_MAX_TOKENS", 4096)
-
     retries = _get_int("LLM_RETRIES", 5)
     backoff_base = _get_float("LLM_RETRY_BACKOFF_SEC", 1.0)
-
     timeout = _get_int("LLM_TIMEOUT", 900)
 
     payload = {
@@ -60,12 +61,20 @@ def chat_completion(system: str, user: str) -> str:
 
             r.raise_for_status()
             data = r.json()
-            return data["choices"][0]["message"]["content"]
+            result = data["choices"][0]["message"]["content"]
+            keep_alive()
+            return result
 
         except Exception as e:
             last_exc = e
             wait = backoff_base * attempt
-            log.warning("LLM request failed (attempt %s/%s): %s. Sleeping %.1fs", attempt, retries, e, wait)
+            log.warning(
+                "LLM request failed (attempt %s/%s): %s. Sleeping %.1fs",
+                attempt,
+                retries,
+                e,
+                wait,
+            )
             time.sleep(wait)
 
     raise RuntimeError(f"LLM server unavailable after {retries} retries: {last_exc}")

@@ -73,6 +73,9 @@ async def main():
     except Exception as e:
         log.error("Embedding model preload failed: %s — will load lazily.", e)
 
+    from app.infrastructure.llm_loader import startup as llm_startup
+    llm_startup()
+
     log.info("Worker ready, waiting for tasks...")
     from app.db import SessionLocal
 
@@ -90,12 +93,27 @@ async def main():
         tg_username = task.get("tg_username") or ""
 
         try:
+            from app.infrastructure.llm_loader import ensure_loaded, keep_alive
+
+            try:
+                ensure_loaded()
+            except Exception as load_err:
+                log.error(
+                    "LLM model load failed, cannot process task %s: %s",
+                    task_id,
+                    load_err,
+                )
+                set_result(task_id, {"error": "model_load_error"}, ttl_seconds=300)
+                continue
+
             db = SessionLocal()
             try:
                 svc = AnswerService(db)
                 result = svc.generate(text)
             finally:
                 db.close()
+
+            keep_alive()
 
             set_result(
                 task_id,
