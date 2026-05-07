@@ -8,6 +8,7 @@ from aiogram import Router, F
 from aiogram.enums import ParseMode
 from aiogram.types import Message, InputMediaPhoto
 from aiogram.types.input_file import BufferedInputFile
+from aiogram.filters import Command
 
 from app.infrastructure.redis_queue import enqueue, wait_result, queue_length
 from app.infrastructure.telegram_html import sanitize_telegram_html
@@ -86,6 +87,13 @@ async def _build_media_group_as_bytes(media_ids: list, internal_base: str) -> li
 
     return media_group
 
+
+@router.message(Command("start"))
+async def on_start(message: Message):
+    await message.answer(
+        "Здравствуйте! Я — бот технической поддержки контроллера котла отопления SmartTherm. "
+        "Какой у вас вопрос?"
+    )
 
 @router.message(F.text)
 async def on_text(message: Message):
